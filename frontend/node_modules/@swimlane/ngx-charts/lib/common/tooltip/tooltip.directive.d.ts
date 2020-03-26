@@ -1,0 +1,74 @@
+import { EventEmitter, ViewContainerRef, Renderer2, OnDestroy } from '@angular/core';
+import { PlacementTypes } from './position';
+import { StyleTypes } from './style.type';
+import { AlignmentTypes } from './alignment.type';
+import { ShowTypes } from './show.type';
+import { TooltipService } from './tooltip.service';
+import * as ɵngcc0 from '@angular/core';
+export declare class TooltipDirective implements OnDestroy {
+    private tooltipService;
+    private viewContainerRef;
+    private renderer;
+    tooltipCssClass: string;
+    tooltipTitle: string;
+    tooltipAppendToBody: boolean;
+    tooltipSpacing: number;
+    tooltipDisabled: boolean;
+    tooltipShowCaret: boolean;
+    tooltipPlacement: PlacementTypes;
+    tooltipAlignment: AlignmentTypes;
+    tooltipType: StyleTypes;
+    tooltipCloseOnClickOutside: boolean;
+    tooltipCloseOnMouseLeave: boolean;
+    tooltipHideTimeout: number;
+    tooltipShowTimeout: number;
+    tooltipTemplate: any;
+    tooltipShowEvent: ShowTypes;
+    tooltipContext: any;
+    tooltipImmediateExit: boolean;
+    show: EventEmitter<any>;
+    hide: EventEmitter<any>;
+    private readonly listensForFocus;
+    private readonly listensForHover;
+    private component;
+    private timeout;
+    private mouseLeaveContentEvent;
+    private mouseEnterContentEvent;
+    private documentClickEvent;
+    constructor(tooltipService: TooltipService, viewContainerRef: ViewContainerRef, renderer: Renderer2);
+    ngOnDestroy(): void;
+    onFocus(): void;
+    onBlur(): void;
+    onMouseEnter(): void;
+    onMouseLeave(target: any): void;
+    onMouseClick(): void;
+    showTooltip(immediate?: boolean): void;
+    addHideListeners(tooltip: any): void;
+    hideTooltip(immediate?: boolean): void;
+    private createBoundOptions;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<TooltipDirective>;
+    static ɵdir: ɵngcc0.ɵɵDirectiveDefWithMeta<TooltipDirective, "[ngx-tooltip]", never, {
+    "tooltipCssClass": "tooltipCssClass";
+    "tooltipTitle": "tooltipTitle";
+    "tooltipAppendToBody": "tooltipAppendToBody";
+    "tooltipSpacing": "tooltipSpacing";
+    "tooltipDisabled": "tooltipDisabled";
+    "tooltipShowCaret": "tooltipShowCaret";
+    "tooltipPlacement": "tooltipPlacement";
+    "tooltipAlignment": "tooltipAlignment";
+    "tooltipType": "tooltipType";
+    "tooltipCloseOnClickOutside": "tooltipCloseOnClickOutside";
+    "tooltipCloseOnMouseLeave": "tooltipCloseOnMouseLeave";
+    "tooltipHideTimeout": "tooltipHideTimeout";
+    "tooltipShowTimeout": "tooltipShowTimeout";
+    "tooltipShowEvent": "tooltipShowEvent";
+    "tooltipImmediateExit": "tooltipImmediateExit";
+    "tooltipTemplate": "tooltipTemplate";
+    "tooltipContext": "tooltipContext";
+}, {
+    "show": "show";
+    "hide": "hide";
+}, never>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9vbHRpcC5kaXJlY3RpdmUuZC50cyIsInNvdXJjZXMiOlsidG9vbHRpcC5kaXJlY3RpdmUuZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7OztBQU1BOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBeUNBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRXZlbnRFbWl0dGVyLCBWaWV3Q29udGFpbmVyUmVmLCBSZW5kZXJlcjIsIE9uRGVzdHJveSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgUGxhY2VtZW50VHlwZXMgfSBmcm9tICcuL3Bvc2l0aW9uJztcbmltcG9ydCB7IFN0eWxlVHlwZXMgfSBmcm9tICcuL3N0eWxlLnR5cGUnO1xuaW1wb3J0IHsgQWxpZ25tZW50VHlwZXMgfSBmcm9tICcuL2FsaWdubWVudC50eXBlJztcbmltcG9ydCB7IFNob3dUeXBlcyB9IGZyb20gJy4vc2hvdy50eXBlJztcbmltcG9ydCB7IFRvb2x0aXBTZXJ2aWNlIH0gZnJvbSAnLi90b29sdGlwLnNlcnZpY2UnO1xuZXhwb3J0IGRlY2xhcmUgY2xhc3MgVG9vbHRpcERpcmVjdGl2ZSBpbXBsZW1lbnRzIE9uRGVzdHJveSB7XG4gICAgcHJpdmF0ZSB0b29sdGlwU2VydmljZTtcbiAgICBwcml2YXRlIHZpZXdDb250YWluZXJSZWY7XG4gICAgcHJpdmF0ZSByZW5kZXJlcjtcbiAgICB0b29sdGlwQ3NzQ2xhc3M6IHN0cmluZztcbiAgICB0b29sdGlwVGl0bGU6IHN0cmluZztcbiAgICB0b29sdGlwQXBwZW5kVG9Cb2R5OiBib29sZWFuO1xuICAgIHRvb2x0aXBTcGFjaW5nOiBudW1iZXI7XG4gICAgdG9vbHRpcERpc2FibGVkOiBib29sZWFuO1xuICAgIHRvb2x0aXBTaG93Q2FyZXQ6IGJvb2xlYW47XG4gICAgdG9vbHRpcFBsYWNlbWVudDogUGxhY2VtZW50VHlwZXM7XG4gICAgdG9vbHRpcEFsaWdubWVudDogQWxpZ25tZW50VHlwZXM7XG4gICAgdG9vbHRpcFR5cGU6IFN0eWxlVHlwZXM7XG4gICAgdG9vbHRpcENsb3NlT25DbGlja091dHNpZGU6IGJvb2xlYW47XG4gICAgdG9vbHRpcENsb3NlT25Nb3VzZUxlYXZlOiBib29sZWFuO1xuICAgIHRvb2x0aXBIaWRlVGltZW91dDogbnVtYmVyO1xuICAgIHRvb2x0aXBTaG93VGltZW91dDogbnVtYmVyO1xuICAgIHRvb2x0aXBUZW1wbGF0ZTogYW55O1xuICAgIHRvb2x0aXBTaG93RXZlbnQ6IFNob3dUeXBlcztcbiAgICB0b29sdGlwQ29udGV4dDogYW55O1xuICAgIHRvb2x0aXBJbW1lZGlhdGVFeGl0OiBib29sZWFuO1xuICAgIHNob3c6IEV2ZW50RW1pdHRlcjxhbnk+O1xuICAgIGhpZGU6IEV2ZW50RW1pdHRlcjxhbnk+O1xuICAgIHByaXZhdGUgcmVhZG9ubHkgbGlzdGVuc0ZvckZvY3VzO1xuICAgIHByaXZhdGUgcmVhZG9ubHkgbGlzdGVuc0ZvckhvdmVyO1xuICAgIHByaXZhdGUgY29tcG9uZW50O1xuICAgIHByaXZhdGUgdGltZW91dDtcbiAgICBwcml2YXRlIG1vdXNlTGVhdmVDb250ZW50RXZlbnQ7XG4gICAgcHJpdmF0ZSBtb3VzZUVudGVyQ29udGVudEV2ZW50O1xuICAgIHByaXZhdGUgZG9jdW1lbnRDbGlja0V2ZW50O1xuICAgIGNvbnN0cnVjdG9yKHRvb2x0aXBTZXJ2aWNlOiBUb29sdGlwU2VydmljZSwgdmlld0NvbnRhaW5lclJlZjogVmlld0NvbnRhaW5lclJlZiwgcmVuZGVyZXI6IFJlbmRlcmVyMik7XG4gICAgbmdPbkRlc3Ryb3koKTogdm9pZDtcbiAgICBvbkZvY3VzKCk6IHZvaWQ7XG4gICAgb25CbHVyKCk6IHZvaWQ7XG4gICAgb25Nb3VzZUVudGVyKCk6IHZvaWQ7XG4gICAgb25Nb3VzZUxlYXZlKHRhcmdldDogYW55KTogdm9pZDtcbiAgICBvbk1vdXNlQ2xpY2soKTogdm9pZDtcbiAgICBzaG93VG9vbHRpcChpbW1lZGlhdGU/OiBib29sZWFuKTogdm9pZDtcbiAgICBhZGRIaWRlTGlzdGVuZXJzKHRvb2x0aXA6IGFueSk6IHZvaWQ7XG4gICAgaGlkZVRvb2x0aXAoaW1tZWRpYXRlPzogYm9vbGVhbik6IHZvaWQ7XG4gICAgcHJpdmF0ZSBjcmVhdGVCb3VuZE9wdGlvbnM7XG59XG4iXX0=
