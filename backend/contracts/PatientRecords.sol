@@ -58,9 +58,6 @@ contract PatientRecords is UserRoles {
     event RecordRetrieve(
         address indexed _patient,
         address indexed _medic,
-        string  _nombre,
-        string  _comorb,
-        string  _groupBlood,
         string  _ipfsHash,
         uint256  _uploadDate,
         uint256 _queryDate);
@@ -185,9 +182,6 @@ contract PatientRecords is UserRoles {
         emit RecordRetrieve(
             _account,
             msg.sender,
-            estudio.nombre,
-            estudio.comorb,
-            estudio.groupBlood,
             estudio.ipfsHash,
             estudio.uploadDate,
             _queryDate

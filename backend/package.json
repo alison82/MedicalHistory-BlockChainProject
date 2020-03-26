@@ -6,7 +6,10 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "package.json": "^2.0.1",
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
   "devDependencies": {
     "@openzeppelin/contracts": "^2.5.0"
   },
