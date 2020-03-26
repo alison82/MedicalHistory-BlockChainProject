@@ -1,0 +1,75 @@
+import { ChangeDetectorRef, EventEmitter, ElementRef, ViewContainerRef, OnDestroy, DoCheck } from '@angular/core';
+import { TableColumn } from '../../types/table-column.type';
+import { SortDirection } from '../../types/sort-direction.type';
+import * as ɵngcc0 from '@angular/core';
+export declare type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
+export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
+    private cd;
+    displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
+    group: any;
+    rowHeight: number;
+    isSelected: boolean;
+    expanded: boolean;
+    rowIndex: number;
+    column: TableColumn;
+    row: any;
+    sorts: any[];
+    treeStatus: TreeStatus;
+    activate: EventEmitter<any>;
+    treeAction: EventEmitter<any>;
+    cellTemplate: ViewContainerRef;
+    readonly columnCssClasses: any;
+    readonly width: number;
+    readonly minWidth: number;
+    readonly maxWidth: number;
+    readonly height: string | number;
+    sanitizedValue: any;
+    value: any;
+    sortDir: SortDirection;
+    isFocused: boolean;
+    onCheckboxChangeFn: any;
+    activateFn: any;
+    cellContext: any;
+    private _isSelected;
+    private _sorts;
+    private _column;
+    private _row;
+    private _group;
+    private _rowHeight;
+    private _rowIndex;
+    private _expanded;
+    private _element;
+    private _treeStatus;
+    constructor(element: ElementRef, cd: ChangeDetectorRef);
+    ngDoCheck(): void;
+    ngOnDestroy(): void;
+    checkValueUpdates(): void;
+    onFocus(): void;
+    onBlur(): void;
+    onClick(event: MouseEvent): void;
+    onDblClick(event: MouseEvent): void;
+    onKeyDown(event: KeyboardEvent): void;
+    onCheckboxChange(event: any): void;
+    calcSortDir(sorts: any[]): any;
+    stripHtml(html: string): string;
+    onTreeAction(): void;
+    calcLeftMargin(column: any, row: any): number;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<DataTableBodyCellComponent>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<DataTableBodyCellComponent, "datatable-body-cell", never, {
+    "group": "group";
+    "rowHeight": "rowHeight";
+    "isSelected": "isSelected";
+    "expanded": "expanded";
+    "rowIndex": "rowIndex";
+    "column": "column";
+    "row": "row";
+    "sorts": "sorts";
+    "treeStatus": "treeStatus";
+    "displayCheck": "displayCheck";
+}, {
+    "activate": "activate";
+    "treeAction": "treeAction";
+}, never>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYm9keS1jZWxsLmNvbXBvbmVudC5kLnRzIiwic291cmNlcyI6WyJib2R5LWNlbGwuY29tcG9uZW50LmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7QUFHQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFvREEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3RvclJlZiwgRXZlbnRFbWl0dGVyLCBFbGVtZW50UmVmLCBWaWV3Q29udGFpbmVyUmVmLCBPbkRlc3Ryb3ksIERvQ2hlY2sgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IFRhYmxlQ29sdW1uIH0gZnJvbSAnLi4vLi4vdHlwZXMvdGFibGUtY29sdW1uLnR5cGUnO1xuaW1wb3J0IHsgU29ydERpcmVjdGlvbiB9IGZyb20gJy4uLy4uL3R5cGVzL3NvcnQtZGlyZWN0aW9uLnR5cGUnO1xuZXhwb3J0IGRlY2xhcmUgdHlwZSBUcmVlU3RhdHVzID0gJ2NvbGxhcHNlZCcgfCAnZXhwYW5kZWQnIHwgJ2xvYWRpbmcnIHwgJ2Rpc2FibGVkJztcbmV4cG9ydCBkZWNsYXJlIGNsYXNzIERhdGFUYWJsZUJvZHlDZWxsQ29tcG9uZW50IGltcGxlbWVudHMgRG9DaGVjaywgT25EZXN0cm95IHtcbiAgICBwcml2YXRlIGNkO1xuICAgIGRpc3BsYXlDaGVjazogKHJvdzogYW55LCBjb2x1bW4/OiBUYWJsZUNvbHVtbiwgdmFsdWU/OiBhbnkpID0+IGJvb2xlYW47XG4gICAgZ3JvdXA6IGFueTtcbiAgICByb3dIZWlnaHQ6IG51bWJlcjtcbiAgICBpc1NlbGVjdGVkOiBib29sZWFuO1xuICAgIGV4cGFuZGVkOiBib29sZWFuO1xuICAgIHJvd0luZGV4OiBudW1iZXI7XG4gICAgY29sdW1uOiBUYWJsZUNvbHVtbjtcbiAgICByb3c6IGFueTtcbiAgICBzb3J0czogYW55W107XG4gICAgdHJlZVN0YXR1czogVHJlZVN0YXR1cztcbiAgICBhY3RpdmF0ZTogRXZlbnRFbWl0dGVyPGFueT47XG4gICAgdHJlZUFjdGlvbjogRXZlbnRFbWl0dGVyPGFueT47XG4gICAgY2VsbFRlbXBsYXRlOiBWaWV3Q29udGFpbmVyUmVmO1xuICAgIHJlYWRvbmx5IGNvbHVtbkNzc0NsYXNzZXM6IGFueTtcbiAgICByZWFkb25seSB3aWR0aDogbnVtYmVyO1xuICAgIHJlYWRvbmx5IG1pbldpZHRoOiBudW1iZXI7XG4gICAgcmVhZG9ubHkgbWF4V2lkdGg6IG51bWJlcjtcbiAgICByZWFkb25seSBoZWlnaHQ6IHN0cmluZyB8IG51bWJlcjtcbiAgICBzYW5pdGl6ZWRWYWx1ZTogYW55O1xuICAgIHZhbHVlOiBhbnk7XG4gICAgc29ydERpcjogU29ydERpcmVjdGlvbjtcbiAgICBpc0ZvY3VzZWQ6IGJvb2xlYW47XG4gICAgb25DaGVja2JveENoYW5nZUZuOiBhbnk7XG4gICAgYWN0aXZhdGVGbjogYW55O1xuICAgIGNlbGxDb250ZXh0OiBhbnk7XG4gICAgcHJpdmF0ZSBfaXNTZWxlY3RlZDtcbiAgICBwcml2YXRlIF9zb3J0cztcbiAgICBwcml2YXRlIF9jb2x1bW47XG4gICAgcHJpdmF0ZSBfcm93O1xuICAgIHByaXZhdGUgX2dyb3VwO1xuICAgIHByaXZhdGUgX3Jvd0hlaWdodDtcbiAgICBwcml2YXRlIF9yb3dJbmRleDtcbiAgICBwcml2YXRlIF9leHBhbmRlZDtcbiAgICBwcml2YXRlIF9lbGVtZW50O1xuICAgIHByaXZhdGUgX3RyZWVTdGF0dXM7XG4gICAgY29uc3RydWN0b3IoZWxlbWVudDogRWxlbWVudFJlZiwgY2Q6IENoYW5nZURldGVjdG9yUmVmKTtcbiAgICBuZ0RvQ2hlY2soKTogdm9pZDtcbiAgICBuZ09uRGVzdHJveSgpOiB2b2lkO1xuICAgIGNoZWNrVmFsdWVVcGRhdGVzKCk6IHZvaWQ7XG4gICAgb25Gb2N1cygpOiB2b2lkO1xuICAgIG9uQmx1cigpOiB2b2lkO1xuICAgIG9uQ2xpY2soZXZlbnQ6IE1vdXNlRXZlbnQpOiB2b2lkO1xuICAgIG9uRGJsQ2xpY2soZXZlbnQ6IE1vdXNlRXZlbnQpOiB2b2lkO1xuICAgIG9uS2V5RG93bihldmVudDogS2V5Ym9hcmRFdmVudCk6IHZvaWQ7XG4gICAgb25DaGVja2JveENoYW5nZShldmVudDogYW55KTogdm9pZDtcbiAgICBjYWxjU29ydERpcihzb3J0czogYW55W10pOiBhbnk7XG4gICAgc3RyaXBIdG1sKGh0bWw6IHN0cmluZyk6IHN0cmluZztcbiAgICBvblRyZWVBY3Rpb24oKTogdm9pZDtcbiAgICBjYWxjTGVmdE1hcmdpbihjb2x1bW46IGFueSwgcm93OiBhbnkpOiBudW1iZXI7XG59XG4iXX0=

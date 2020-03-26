@@ -1,0 +1,72 @@
+import { OnChanges, ElementRef, EventEmitter, AfterViewInit, SimpleChanges } from '@angular/core';
+import * as ɵngcc0 from '@angular/core';
+export declare class YAxisTicksComponent implements OnChanges, AfterViewInit {
+    scale: any;
+    orient: any;
+    tickArguments: number[];
+    tickValues: any[];
+    tickStroke: string;
+    trimTicks: boolean;
+    maxTickLength: number;
+    tickFormatting: any;
+    showGridLines: boolean;
+    gridLineWidth: any;
+    height: any;
+    referenceLines: any;
+    showRefLabels: boolean;
+    showRefLines: boolean;
+    dimensionsChanged: EventEmitter<any>;
+    innerTickSize: any;
+    tickPadding: any;
+    tickSpacing: any;
+    verticalSpacing: number;
+    textAnchor: any;
+    dy: any;
+    x1: any;
+    x2: any;
+    y1: any;
+    y2: any;
+    adjustedScale: any;
+    transform: (o: any) => string;
+    tickFormat: (o: any) => string;
+    ticks: any;
+    width: number;
+    outerTickSize: number;
+    rotateLabels: boolean;
+    refMax: number;
+    refMin: number;
+    referenceLineLength: number;
+    referenceAreaPath: string;
+    ticksElement: ElementRef;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngAfterViewInit(): void;
+    updateDims(): void;
+    update(): void;
+    setReferencelines(): void;
+    getTicks(): any;
+    getMaxTicks(tickHeight: number): number;
+    tickTransform(tick: any): string;
+    gridLineTransform(): string;
+    tickTrim(label: string): string;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<YAxisTicksComponent>;
+    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<YAxisTicksComponent, "g[ngx-charts-y-axis-ticks]", never, {
+    "tickArguments": "tickArguments";
+    "tickStroke": "tickStroke";
+    "trimTicks": "trimTicks";
+    "maxTickLength": "maxTickLength";
+    "showGridLines": "showGridLines";
+    "showRefLabels": "showRefLabels";
+    "showRefLines": "showRefLines";
+    "scale": "scale";
+    "orient": "orient";
+    "tickValues": "tickValues";
+    "tickFormatting": "tickFormatting";
+    "gridLineWidth": "gridLineWidth";
+    "height": "height";
+    "referenceLines": "referenceLines";
+}, {
+    "dimensionsChanged": "dimensionsChanged";
+}, never>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieS1heGlzLXRpY2tzLmNvbXBvbmVudC5kLnRzIiwic291cmNlcyI6WyJ5LWF4aXMtdGlja3MuY29tcG9uZW50LmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0FBQ0E7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFnREEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBPbkNoYW5nZXMsIEVsZW1lbnRSZWYsIEV2ZW50RW1pdHRlciwgQWZ0ZXJWaWV3SW5pdCwgU2ltcGxlQ2hhbmdlcyB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuZXhwb3J0IGRlY2xhcmUgY2xhc3MgWUF4aXNUaWNrc0NvbXBvbmVudCBpbXBsZW1lbnRzIE9uQ2hhbmdlcywgQWZ0ZXJWaWV3SW5pdCB7XG4gICAgc2NhbGU6IGFueTtcbiAgICBvcmllbnQ6IGFueTtcbiAgICB0aWNrQXJndW1lbnRzOiBudW1iZXJbXTtcbiAgICB0aWNrVmFsdWVzOiBhbnlbXTtcbiAgICB0aWNrU3Ryb2tlOiBzdHJpbmc7XG4gICAgdHJpbVRpY2tzOiBib29sZWFuO1xuICAgIG1heFRpY2tMZW5ndGg6IG51bWJlcjtcbiAgICB0aWNrRm9ybWF0dGluZzogYW55O1xuICAgIHNob3dHcmlkTGluZXM6IGJvb2xlYW47XG4gICAgZ3JpZExpbmVXaWR0aDogYW55O1xuICAgIGhlaWdodDogYW55O1xuICAgIHJlZmVyZW5jZUxpbmVzOiBhbnk7XG4gICAgc2hvd1JlZkxhYmVsczogYm9vbGVhbjtcbiAgICBzaG93UmVmTGluZXM6IGJvb2xlYW47XG4gICAgZGltZW5zaW9uc0NoYW5nZWQ6IEV2ZW50RW1pdHRlcjxhbnk+O1xuICAgIGlubmVyVGlja1NpemU6IGFueTtcbiAgICB0aWNrUGFkZGluZzogYW55O1xuICAgIHRpY2tTcGFjaW5nOiBhbnk7XG4gICAgdmVydGljYWxTcGFjaW5nOiBudW1iZXI7XG4gICAgdGV4dEFuY2hvcjogYW55O1xuICAgIGR5OiBhbnk7XG4gICAgeDE6IGFueTtcbiAgICB4MjogYW55O1xuICAgIHkxOiBhbnk7XG4gICAgeTI6IGFueTtcbiAgICBhZGp1c3RlZFNjYWxlOiBhbnk7XG4gICAgdHJhbnNmb3JtOiAobzogYW55KSA9PiBzdHJpbmc7XG4gICAgdGlja0Zvcm1hdDogKG86IGFueSkgPT4gc3RyaW5nO1xuICAgIHRpY2tzOiBhbnk7XG4gICAgd2lkdGg6IG51bWJlcjtcbiAgICBvdXRlclRpY2tTaXplOiBudW1iZXI7XG4gICAgcm90YXRlTGFiZWxzOiBib29sZWFuO1xuICAgIHJlZk1heDogbnVtYmVyO1xuICAgIHJlZk1pbjogbnVtYmVyO1xuICAgIHJlZmVyZW5jZUxpbmVMZW5ndGg6IG51bWJlcjtcbiAgICByZWZlcmVuY2VBcmVhUGF0aDogc3RyaW5nO1xuICAgIHRpY2tzRWxlbWVudDogRWxlbWVudFJlZjtcbiAgICBuZ09uQ2hhbmdlcyhjaGFuZ2VzOiBTaW1wbGVDaGFuZ2VzKTogdm9pZDtcbiAgICBuZ0FmdGVyVmlld0luaXQoKTogdm9pZDtcbiAgICB1cGRhdGVEaW1zKCk6IHZvaWQ7XG4gICAgdXBkYXRlKCk6IHZvaWQ7XG4gICAgc2V0UmVmZXJlbmNlbGluZXMoKTogdm9pZDtcbiAgICBnZXRUaWNrcygpOiBhbnk7XG4gICAgZ2V0TWF4VGlja3ModGlja0hlaWdodDogbnVtYmVyKTogbnVtYmVyO1xuICAgIHRpY2tUcmFuc2Zvcm0odGljazogYW55KTogc3RyaW5nO1xuICAgIGdyaWRMaW5lVHJhbnNmb3JtKCk6IHN0cmluZztcbiAgICB0aWNrVHJpbShsYWJlbDogc3RyaW5nKTogc3RyaW5nO1xufVxuIl19
