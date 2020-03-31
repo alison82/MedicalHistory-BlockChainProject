@@ -1,6 +1,6 @@
 pragma solidity 0.5.16;
 
-import "./Roles.sol";
+import "@openzeppelin/contracts/access/Roles.sol";
 
 /**
  * @title Smart Contract de roles - Control de Permisos/Acceso basado en rol.
@@ -17,27 +17,27 @@ contract UserRoles {
      * @dev Eventos que serán registrados en la blockchain con finalidad de auditoria.
      */
     event AdminAdded(
-        address indexed account,
+        address indexed newAdm,
         address indexed whoAddedAdm);
 
     event AdminRenounce(address indexed accountRen);
 
     event MedicAdded(
-        address indexed account,
+        address indexed newMed,
         address indexed whoAddedMed);
 
     event MedicRemoved(
-        address indexed account,
+        address indexed oldMed,
         address indexed whoRemovedMed);
 
-    event MedicRenounce(address indexed accountRen);
+    event MedicRenounce(address indexed medRen);
 
     event PatientAdded(
-        address indexed account,
+        address indexed newPat,
         address indexed whoAddedPat);
 
     event PatientRemoved(
-        address indexed account,
+        address indexed oldPat,
         address indexed whoRemovedPat);
 
     /**

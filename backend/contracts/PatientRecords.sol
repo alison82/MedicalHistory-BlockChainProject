@@ -58,6 +58,9 @@ contract PatientRecords is UserRoles {
     event RecordRetrieve(
         address indexed _patient,
         address indexed _medic,
+        string _nombre,
+        string _comorb,
+        string _groupBlood,
         string  _ipfsHash,
         uint256  _uploadDate,
         uint256 _queryDate);
@@ -65,6 +68,7 @@ contract PatientRecords is UserRoles {
     event RecordDelete(
         address indexed _patient,
         address indexed _medic,
+        string ipfsHash,
         uint256 _uploadDate);
 
     /**
@@ -182,6 +186,9 @@ contract PatientRecords is UserRoles {
         emit RecordRetrieve(
             _account,
             msg.sender,
+            estudio.nombre,
+            estudio.comorb,
+            estudio.groupBlood,
             estudio.ipfsHash,
             estudio.uploadDate,
             _queryDate
@@ -259,16 +266,16 @@ contract PatientRecords is UserRoles {
 
         for (uint256 i = 0; i < len; i++) {
             if (fileToPatient[_account][i].uploadDate == _uploadDate) {
+                emit RecordDelete(
+                    _account,
+                    msg.sender,
+                    fileToPatient[_account][i].ipfsHash,
+                    _queryDate
+                );
                 delete fileToPatient[_account][i];
                 break;
             }
         }
-
-        emit RecordDelete(
-            _account,
-            msg.sender,
-            _queryDate
-        );
         _success = true;
     }
 
