@@ -122,7 +122,7 @@ contract PatientRecords is UserRoles {
         string memory _groupBlood,
         string memory _ipfsHash)
     public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account == 0x0000000000000000000000000000000000000000);
+        require(_account != 0x0000000000000000000000000000000000000000);
         require(bytes(_nombre).length < 128);
         require(bytes(_comorb).length < 512);
         require(bytes(_groupBlood).length < 8);
