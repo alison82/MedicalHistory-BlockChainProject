@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import Web3 from 'web3';
+import { WindowScrollController } from '@fullcalendar/core';
 
 declare const $: any;
 @Component({
@@ -21,6 +22,11 @@ export class SigninComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {    
+
+    if (window.ethereum.isMetaMask)
+      console.log("No hay problema");
+    else
+    console.log("De instalar metamask");
 
     this.loginForm = this.formBuilder.group({
       username: [''],
