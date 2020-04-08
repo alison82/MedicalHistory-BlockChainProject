@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import Web3 from 'web3';
+
 declare const $: any;
 @Component({
   selector: 'app-signin',
@@ -17,7 +20,8 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-  ngOnInit() {
+  ngOnInit() {    
+
     this.loginForm = this.formBuilder.group({
       username: [''],
       password: ['']
@@ -43,7 +47,7 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    this.submitted = true;
+    this.submitted = true;    
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
