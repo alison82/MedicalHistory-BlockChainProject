@@ -15,19 +15,15 @@ export class SigninComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
-  hide = true;
+  hide = true;  
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private window: Window
   ) {}
-  ngOnInit() {    
-
-    if (window.ethereum.isMetaMask)
-      console.log("No hay problema");
-    else
-    console.log("De instalar metamask");
-
+  ngOnInit() {  
+    
     this.loginForm = this.formBuilder.group({
       username: [''],
       password: ['']

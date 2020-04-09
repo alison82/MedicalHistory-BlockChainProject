@@ -95,6 +95,11 @@ const routes: Routes = [
     loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule)
   },
   {
+    path: 'errors',
+    loadChildren: () =>
+      import('./errors/errors.module').then(m => m.ErrorsModule)
+  },
+  {
     path: '',
     redirectTo: 'authentication',
     pathMatch: 'full'
