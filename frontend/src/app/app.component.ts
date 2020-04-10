@@ -42,12 +42,13 @@ export class AppComponent {
 
     let browser = this.deviceService.getDeviceInfo().browser;
 
+    console.log(browser);
+
     if (this.web3.currentProvider) {
       await this.web3.currentProvider;
       console.log(this.web3.currentProvider);
     }
     else {
-      console.log('para etherum');
       this._router.navigate(['/errors/etherumconfig']);
     }
     const accounts = await this.web3.eth.getAccounts();
