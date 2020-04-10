@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import Web3 from 'web3';
+import { WindowScrollController } from '@fullcalendar/core';
+
 declare const $: any;
 @Component({
   selector: 'app-signin',
@@ -11,13 +15,15 @@ export class SigninComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
-  hide = true;
+  hide = true;  
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private window: Window
   ) {}
-  ngOnInit() {
+  ngOnInit() {  
+    
     this.loginForm = this.formBuilder.group({
       username: [''],
       password: ['']
@@ -43,7 +49,7 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    this.submitted = true;
+    this.submitted = true;    
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
