@@ -16,20 +16,14 @@ contract PatientRecords is UserRoles {
      * @title Representa un Estudio el cual le pertenece a un paciente.
      */
     struct Estudio {
-        string nombre;
-        string comorb;
-        string groupBlood;
+        string descript;
         string ipfsHash;
         uint256 uploadDate;
     }
 
     /**
-     * @notice Mapea el paciente a su historial clínico..
-     */
-    mapping (address => Estudio[]) public fileToPatient;
-
-    /**
      * @notice Patrón de switch para encender/apagar
+        Pasar a otro contrato
      */
     bool private stopped = false;
 
@@ -39,37 +33,28 @@ contract PatientRecords is UserRoles {
     event RecordAdded(
         address indexed _patient,
         address indexed _medic,
-        string _nombre,
-        string _comorb,
-        string _groupBlood,
-        string _ipfsHash,
-        uint256 _uploadDate);
+        string _ipfsHash
+        );
 
     event RecordUpdate(
         address indexed _patient,
         address indexed _medic,
-        string _nombre,
-        string _comorb,
-        string _groupBlood,
-        string _ipfsHash,
-        uint256 _uploadDate,
-        uint256 _queryDate);
+        string _descript,
+        string _ipfsHash
+        );
 
     event RecordRetrieve(
         address indexed _patient,
         address indexed _medic,
-        string _nombre,
-        string _comorb,
-        string _groupBlood,
-        string  _ipfsHash,
-        uint256  _uploadDate,
-        uint256 _queryDate);
+        string _descript,
+        string  _ipfsHash
+        );
 
     event RecordDelete(
         address indexed _patient,
         address indexed _medic,
-        string ipfsHash,
-        uint256 _uploadDate);
+        string ipfsHash
+        );
 
     /**
     * @dev Indica que se ha puesto el contrato en pausa.
@@ -117,37 +102,30 @@ contract PatientRecords is UserRoles {
    */
     function addRecord(
         address _account,
-        string memory _nombre,
-        string memory _comorb,
-        string memory _groupBlood,
+        string memory _descript,
+        Estudio[] storage _listInDiag,
         string memory _ipfsHash)
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
-        require(bytes(_nombre).length < 128);
-        require(bytes(_comorb).length < 512);
-        require(bytes(_groupBlood).length < 8);
+        require(bytes(_descript).length < 256);
         require(bytes(_ipfsHash).length == 46);
 
         uint256 _uploadDate = now;
+
         Estudio memory estudio = Estudio(
-            _nombre,
-            _comorb,
-            _groupBlood,
+            _descript,
             _ipfsHash,
             _uploadDate
         );
 
-        fileToPatient[_account].push(estudio);
+        _listInDiag.push(estudio);
 
         emit RecordAdded(
             _account,
             msg.sender,
-            _nombre,
-            _comorb,
-            _groupBlood,
             _ipfsHash,
-            _uploadDate
         );
+
         _success = true;
     }
 
@@ -157,27 +135,20 @@ contract PatientRecords is UserRoles {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function viewRecord(address _account, uint256 _uploadDate) public nonlyStopped onlyPatient returns (
-        string memory nombre,
-        string memory comorb,
-        string memory groupBlood,
-        string memory ipfsHash) {
-        if (isPatient(msg.sender)) {
-            require(msg.sender == _account);
-        }
-        if (isMedic(msg.sender)) {
-            require(msg.sender != _account);
-        }
+    function viewRecords(address _account,
+                        uint256 _uploadDate,
+                        Estudios[] storage _listInDiag)
+    public nonlyStopped onlyPatient returns(string _descript, string _ipfsHash) {
         require(_account != 0x0000000000000000000000000000000000000000);
         require(_uploadDate >= 0 && _uploadDate <= 2**256 - 1);
-        require(fileToPatient[_account].length > 0);
+        require(_listInDiag.length > 0);
 
         uint256 _queryDate = now;
-        uint256 len = getRecordCount(_account);
+        uint256 len = _listInDiag.length;
         Estudio memory estudio;
 
         for (uint256 i = 0; i < len; i++) {
-            estudio = fileToPatient[_account][i];
+            estudio = _listInDiag[i];
             if (estudio.uploadDate == _uploadDate) {
                 break;
             }
@@ -186,17 +157,13 @@ contract PatientRecords is UserRoles {
         emit RecordRetrieve(
             _account,
             msg.sender,
-            estudio.nombre,
-            estudio.comorb,
-            estudio.groupBlood,
+            estudio.descript,
             estudio.ipfsHash,
             estudio.uploadDate,
             _queryDate
         );
-        nombre = estudio.nombre;
-        comorb = estudio.comorb;
-        groupBlood = estudio.groupBlood;
-        ipfsHash = estudio.ipfsHash;
+        _descript = estudio.descript;
+        _ipfsHash = estudio.ipfsHash;
     }
 
     /**
@@ -207,42 +174,35 @@ contract PatientRecords is UserRoles {
     */
     function updateRecord(
         address _account,
-        string memory _nombre,
-        string memory _comorb,
-        string memory _groupBlood,
+        Estudio[] storage _listInDiag,
+        string memory _descript,
         string memory _ipfsHash,
         uint256 _uploadDate)
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
-        require(bytes(_nombre).length < 128);
-        require(bytes(_comorb).length < 512);
-        require(bytes(_groupBlood).length < 8);
+        require(bytes(_descript).length < 256);
         require(bytes(_ipfsHash).length == 46);
         require(_uploadDate >= 0 && _uploadDate <= 2**256 - 1);
-        require(fileToPatient[_account].length > 0);
+        require(_listInDiag.length > 0);
 
         uint256 _queryDate = now;
-        uint256 len = getRecordCount(_account);
+        uint256 len = _listInDiag.length;
         Estudio memory estudio;
         for (uint256 i = 0; i < len; i++) {
-            estudio = fileToPatient[_account][i];
+            estudio = _listInDiag[i];
             if (estudio.uploadDate == _uploadDate) {
                 break;
             }
         }
 
-        estudio.nombre = _nombre;
-        estudio.comorb = _comorb;
-        estudio.groupBlood = _groupBlood;
+        estudio.nombre = _descript;
         estudio.ipfsHash = _ipfsHash;
         estudio.uploadDate = _uploadDate;
 
         emit RecordUpdate(
             _account,
             msg.sender,
-            estudio.nombre,
-            estudio.comorb,
-            estudio.groupBlood,
+            estudio.descript,
             estudio.ipfsHash,
             estudio.uploadDate,
             _queryDate
@@ -256,37 +216,31 @@ contract PatientRecords is UserRoles {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function deleteRecord(address _account, uint256 _uploadDate) public nonlyStopped onlyMedic returns (bool _success) {
+    function deleteRecord(
+        address _account,
+        Estudio[] storage _listInDiag,
+        uint256 _uploadDate)
+    public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
         require(_uploadDate >= 0 && _uploadDate <= 2**256 - 1);
-        require(fileToPatient[_account].length > 0);
+        require(_listInDiag.length > 0);
 
         uint256 _queryDate = now;
-        uint256 len = getRecordCount(_account);
+        uint256 len = _listInDiag.length;
 
         for (uint256 i = 0; i < len; i++) {
-            if (fileToPatient[_account][i].uploadDate == _uploadDate) {
+            if (_listInDiag[i].uploadDate == _uploadDate) {
                 emit RecordDelete(
                     _account,
                     msg.sender,
-                    fileToPatient[_account][i].ipfsHash,
+                    _listInDiag[i].ipfsHash,
                     _queryDate
                 );
-                delete fileToPatient[_account][i];
+                delete _listInDiag[i];
                 break;
             }
         }
         _success = true;
     }
 
-    /**
-    * @notice Retorna el número de Estudios que posee cierta dirección de paciente.
-    * @dev Controlado por el switch
-    * @param _patient El dueño de la dirección
-    * @return Retorna el número de estudios de cierto paciente
-    */
-    function getRecordCount(address _patient) internal view nonlyStopped returns (uint256) {
-        require(_patient != 0x0000000000000000000000000000000000000000);
-        return fileToPatient[_patient].length;
-    }
 }

@@ -1,5 +1,5 @@
 pragma solidity 0.5.16;
-import "./acceso/UserRoles.sol";
+import "./PatienRecords.sol";
 
 /**
  * @title Smart Contract de Diagnóstico de pacientes - Control de Diagnóstico realizado por el médico.
@@ -8,7 +8,7 @@ import "./acceso/UserRoles.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
-contract PatientDiagnosis is UserRoles{
+contract PatientDiagnosis is PatientRecords {
 
     /**
      * @title Representa un Diágnostico el cual le pertenece a un paciente.
@@ -33,7 +33,6 @@ contract PatientDiagnosis is UserRoles{
     /**
      * @dev Eventos que serán registrados en la blockchain.
      */
-
     event DiagnosticdAdded(
         address indexed _patient,
         address indexed _medic,
@@ -113,8 +112,7 @@ contract PatientDiagnosis is UserRoles{
    *@param _date a
    * @return _success a
    */
-
-   function addDiagnostic(
+    function addDiagnostic(
         address _account,
         uint256 _age,
         uint256 _weight,
@@ -128,7 +126,7 @@ contract PatientDiagnosis is UserRoles{
         require(bytes(_observations).length < 512);
         uint256 _date = now;
 
-        
+
         Diagnostico memory diagnostico = Diagnostico(
             _age,
             _weight,
@@ -150,7 +148,6 @@ contract PatientDiagnosis is UserRoles{
         );
         _success = true;
     }
-
 
     /**
     * @notice Returns el Diagnóstico en el índice del propietario de la dirección.
@@ -277,7 +274,6 @@ contract PatientDiagnosis is UserRoles{
         }
         _success = true;
     }
-
 
     /**
     * @notice Retorna el número de Diagnósticos que posee cierta dirección de paciente.
