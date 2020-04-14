@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/guard/auth.guard';
+import { Roles } from './shared/models/user.model';
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.admin, Roles.doctor]}
   },
   {
     path: 'email',
@@ -18,7 +22,9 @@ const routes: Routes = [
   {
     path: 'doctors',
     loadChildren: () =>
-      import('./doctors/doctors.module').then(m => m.DoctorsModule)
+      import('./doctors/doctors.module').then(m => m.DoctorsModule),
+      canActivate: [AuthGuard],
+      data: { roles: [Roles.admin]}
   },
   {
     path: 'staff',

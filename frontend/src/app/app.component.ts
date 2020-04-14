@@ -12,6 +12,7 @@ import Web3 from 'web3';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 import {LoggeduserService} from 'src/app/shared/services/loggeduser.service';
+import { Roles } from './shared/models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -50,7 +51,6 @@ export class AppComponent {
     if ((browser.includes('Chrome')) || (browser.includes('Firefox')) || (browser.includes('Opera')) || (browser.includes('MS-Edge-Chromium'))){
       if (this.web3.currentProvider) {
         await this.web3.currentProvider;
-        console.log(this.web3.currentProvider);
       }
       else {
         this._router.navigate(['/errors/etherum-config']);
@@ -66,7 +66,7 @@ export class AppComponent {
     //Existen cuentas disponibles en metamask
     if (accounts.length > 0){
       this._router.navigate(['/dashboard/main']);
-      this.loggedUser.setUserLoggedIn({username: accounts[0].toString()});
+      this.loggedUser.setUserLoggedIn({username: accounts[0].toString(), rol: Roles.admin});
     } else {
       console.log("No Accounts: " + accounts);
     }
