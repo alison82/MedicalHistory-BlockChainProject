@@ -1,4 +1,4 @@
-pragma solidity 0.5.16;
+pragma solidity ^0.5.16;
 
 import "./acceso/UserRoles.sol";
 
@@ -17,9 +17,13 @@ contract PatientRecords is UserRoles {
      */
     struct Estudio {
         string descript;
-        string ipfsHash;
         uint256 uploadDate;
     }
+
+    /**
+     * @notice Mapea el ipfsHash a su estudio..
+     */
+    mapping (string => Estudio) public ipfsHashToEstudio;
 
     /**
      * @notice Patrón de switch para encender/apagar
@@ -39,21 +43,20 @@ contract PatientRecords is UserRoles {
     event RecordUpdate(
         address indexed _patient,
         address indexed _medic,
-        string _descript,
-        string _ipfsHash
+        string _descript
         );
 
     event RecordRetrieve(
         address indexed _patient,
         address indexed _medic,
         string _descript,
-        string  _ipfsHash
+        uint256 _uploadDate
         );
 
     event RecordDelete(
         address indexed _patient,
         address indexed _medic,
-        string ipfsHash
+        string _ipfsHash
         );
 
     /**
@@ -94,38 +97,32 @@ contract PatientRecords is UserRoles {
   /**
    * @dev Función de creación de Estudio. Esta función es realizada por un doctor.
    * @param _account a
-   * @param _nombre a
-   * @param _comorb a
-   * @param _groupBlood a
    * @param _ipfsHash a
    * @return _success a
    */
     function addRecord(
         address _account,
         string memory _descript,
-        Estudio[] storage _listInDiag,
         string memory _ipfsHash)
     public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account != 0x0000000000000000000000000000000000000000);
+        require(_account != address(0));
         require(bytes(_descript).length < 256);
         require(bytes(_ipfsHash).length == 46);
 
         uint256 _uploadDate = now;
 
-        Estudio memory estudio = Estudio(
+        Estudio memory _estudio = Estudio(
             _descript,
-            _ipfsHash,
             _uploadDate
         );
 
-        _listInDiag.push(estudio);
+        ipfsHashToEstudio[_ipfsHash] = _estudio;
 
         emit RecordAdded(
             _account,
             msg.sender,
-            _ipfsHash,
+            _ipfsHash
         );
-
         _success = true;
     }
 
@@ -135,35 +132,21 @@ contract PatientRecords is UserRoles {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function viewRecords(address _account,
-                        uint256 _uploadDate,
-                        Estudios[] storage _listInDiag)
-    public nonlyStopped onlyPatient returns(string _descript, string _ipfsHash) {
+    function viewRecords(address _account, string memory _ipfsHash)
+    public nonlyStopped onlyPatient returns(string memory _descript, uint256 _uploadDate) {
         require(_account != 0x0000000000000000000000000000000000000000);
-        require(_uploadDate >= 0 && _uploadDate <= 2**256 - 1);
-        require(_listInDiag.length > 0);
+        require(bytes(_ipfsHash).length == 46);
 
-        uint256 _queryDate = now;
-        uint256 len = _listInDiag.length;
-        Estudio memory estudio;
-
-        for (uint256 i = 0; i < len; i++) {
-            estudio = _listInDiag[i];
-            if (estudio.uploadDate == _uploadDate) {
-                break;
-            }
-        }
+        Estudio memory estudio = ipfsHashToEstudio[_ipfsHash];
 
         emit RecordRetrieve(
             _account,
             msg.sender,
             estudio.descript,
-            estudio.ipfsHash,
-            estudio.uploadDate,
-            _queryDate
+            estudio.uploadDate
         );
         _descript = estudio.descript;
-        _ipfsHash = estudio.ipfsHash;
+        _uploadDate = estudio.uploadDate;
     }
 
     /**
@@ -174,38 +157,21 @@ contract PatientRecords is UserRoles {
     */
     function updateRecord(
         address _account,
-        Estudio[] storage _listInDiag,
         string memory _descript,
-        string memory _ipfsHash,
-        uint256 _uploadDate)
+        string memory _ipfsHash)
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
         require(bytes(_descript).length < 256);
         require(bytes(_ipfsHash).length == 46);
-        require(_uploadDate >= 0 && _uploadDate <= 2**256 - 1);
-        require(_listInDiag.length > 0);
 
-        uint256 _queryDate = now;
-        uint256 len = _listInDiag.length;
-        Estudio memory estudio;
-        for (uint256 i = 0; i < len; i++) {
-            estudio = _listInDiag[i];
-            if (estudio.uploadDate == _uploadDate) {
-                break;
-            }
-        }
+        Estudio memory estudio = ipfsHashToEstudio[_ipfsHash];
 
-        estudio.nombre = _descript;
-        estudio.ipfsHash = _ipfsHash;
-        estudio.uploadDate = _uploadDate;
+        estudio.descript = _descript;
 
         emit RecordUpdate(
             _account,
             msg.sender,
-            estudio.descript,
-            estudio.ipfsHash,
-            estudio.uploadDate,
-            _queryDate
+            estudio.descript
         );
         _success = true;
     }
@@ -218,28 +184,20 @@ contract PatientRecords is UserRoles {
     */
     function deleteRecord(
         address _account,
-        Estudio[] storage _listInDiag,
-        uint256 _uploadDate)
+        string memory _ipfsHash
+        )
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
-        require(_uploadDate >= 0 && _uploadDate <= 2**256 - 1);
-        require(_listInDiag.length > 0);
+        require(bytes(_ipfsHash).length == 46);
 
-        uint256 _queryDate = now;
-        uint256 len = _listInDiag.length;
+        delete ipfsHashToEstudio[_ipfsHash];
 
-        for (uint256 i = 0; i < len; i++) {
-            if (_listInDiag[i].uploadDate == _uploadDate) {
-                emit RecordDelete(
-                    _account,
-                    msg.sender,
-                    _listInDiag[i].ipfsHash,
-                    _queryDate
-                );
-                delete _listInDiag[i];
-                break;
-            }
-        }
+        emit RecordDelete(
+            _account,
+            msg.sender,
+            _ipfsHash
+        );
+
         _success = true;
     }
 
