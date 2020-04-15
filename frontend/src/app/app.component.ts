@@ -11,6 +11,9 @@ import { WEB3 } from './etherum/web3';
 import Web3 from 'web3';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
+import {LoggeduserService} from 'src/app/shared/services/loggeduser.service';
+import { Roles } from './shared/models/user.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +23,8 @@ export class AppComponent {
   currentUrl: string;
   showLoadingIndicatior = true;
 
-  constructor(public _router: Router, location: PlatformLocation, @Inject(WEB3) private web3: Web3, private deviceService: DeviceDetectorService) {
+  constructor(public _router: Router, location: PlatformLocation, @Inject(WEB3) private web3: Web3, private deviceService: DeviceDetectorService,
+  private loggedUser: LoggeduserService) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
         this.showLoadingIndicatior = true;
@@ -44,15 +48,29 @@ export class AppComponent {
 
     console.log(browser);
 
-    if (this.web3.currentProvider) {
-      await this.web3.currentProvider;
-      console.log(this.web3.currentProvider);
+    if ((browser.includes('Chrome')) || (browser.includes('Firefox')) || (browser.includes('Opera')) || (browser.includes('MS-Edge-Chromium'))){
+      if (this.web3.currentProvider) {
+        await this.web3.currentProvider;
+      }
+      else {
+        this._router.navigate(['/errors/etherum-config']);
+        return;
+      }
+    } else {
+      this._router.navigate(['/errors/browser-unsupported']);
+      return;
     }
-    else {
-      this._router.navigate(['/errors/etherumconfig']);
-    }
+
     const accounts = await this.web3.eth.getAccounts();
-    console.log(accounts);
+
+    //Existen cuentas disponibles en metamask
+    if (accounts.length > 0){
+      this._router.navigate(['/dashboard/main']);
+      this.loggedUser.setUserLoggedIn({username: accounts[0].toString(), rol: Roles.admin});
+    } else {
+      console.log("No Accounts: " + accounts);
+    }
+
   }
 
 }

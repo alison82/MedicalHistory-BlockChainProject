@@ -8,6 +8,8 @@ import {
   HostListener
 } from '@angular/core';
 import { ROUTES } from './sidebar-items';
+import { LoggeduserService } from 'src/app/shared/services/loggeduser.service';
+import { User } from 'src/app/shared/models/user.model';
 declare const Waves: any;
 @Component({
   selector: 'app-sidebar',
@@ -23,11 +25,16 @@ export class SidebarComponent implements OnInit {
   listMaxHeight: string;
   listMaxWidth: string;
   headerHeight = 60;
+  user: User;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    public elementRef: ElementRef
-  ) {}
+    public elementRef: ElementRef,
+    private loggedUser: LoggeduserService
+  ) {
+    this.user = loggedUser.getUserLoggedIn();
+    console.log("User: " + JSON.stringify(loggedUser.getUserLoggedIn()));
+  }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
     this.setMenuHeight();
