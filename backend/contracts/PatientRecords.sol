@@ -23,7 +23,7 @@ contract PatientRecords is UserRoles {
     /**
      * @notice Mapea el ipfsHash a su estudio..
      */
-    mapping (string => Estudio) public ipfsHashToEstudio;
+    mapping (string => Estudio) internal ipfsHashToEstudio;
 
     /**
      * @notice Patrón de switch para encender/apagar
@@ -106,6 +106,7 @@ contract PatientRecords is UserRoles {
         string memory _ipfsHash)
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
+        require(isPatient(_account));
         require(bytes(_descript).length < 256);
         require(bytes(_ipfsHash).length == 46);
 

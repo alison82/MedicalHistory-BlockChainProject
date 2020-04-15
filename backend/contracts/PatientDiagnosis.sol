@@ -147,7 +147,8 @@ contract PatientDiagnosis is PatientRecords {
         string[] memory _estudio
         )
     public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account != 0x0000000000000000000000000000000000000000);
+        require(_account != address(0));
+        require(isPatient(_account) && isMedic(msg.sender));
         require(bytes(_nombre).length < 25);
         require(bytes(_aPat).length < 25);
         require(bytes(_aMat).length < 25);

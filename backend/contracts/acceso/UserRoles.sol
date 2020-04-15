@@ -85,18 +85,16 @@ contract UserRoles {
     }
 
     modifier onlyAssistant() {
-        require(isAssistant(msg.sender) || isMedic(msg.sender), "No se cuenta con el rol especificado(Asistente o médico)");
+        require(isAssistant(msg.sender) || isMedic(msg.sender),
+        "No se cuenta con el rol especificado(Asistente o médico)");
         _;
     }
-
-  
 
     /**
     * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.
     * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
     */
     function() external {}
-
 
     /**
     * @param account Cuenta donde se validará el rol.
@@ -169,31 +167,6 @@ contract UserRoles {
     }
 
     /**
-    * @dev Función interna para implementar la asignación de asistente
-    * @param account La cuenta que será asignada como asistente.
-    */
-    function _addAssistant(address account) internal {
-        _assistant.add(account);
-        emit AssistantAdded(account, msg.sender);
-    }
-
-    /**
-    * @dev Remover a rol de asistente. Quien invoque al contrato no volverá a ser asistente.
-    */
-    function removeAssistant(address account) public onlyAdmin {
-        _removeAssistant(account);
-    }
-
-     /**
-     * @dev Función interna para implementar la renuncia/revocación de asistentes
-     * @param account La cuenta que será revocada de asistentes.
-    */
-    function _removeAssistant(address account) internal {
-        _assistant.remove(account);
-        emit AssistantRemoved(account, msg.sender);
-    }
-
-    /**
     * @param account Cuenta donde se validará el rol.
     * @return true si la cuenta tiene rol de paciente
     */
@@ -205,7 +178,7 @@ contract UserRoles {
      * @dev Función pública para asignar paciente
      * @param account Cuenta que será asignada como paciente
      */
-    function addPatient(address account) public onlyAssistant{
+    function addPatient(address account) public onlyAssistant {
         _addPatient(account);
     }
 
@@ -214,6 +187,31 @@ contract UserRoles {
     */
     function removePatient(address account) public onlyMedic {
         _removePatient(account);
+    }
+
+    /**
+    * @dev Remover a rol de asistente. Quien invoque al contrato no volverá a ser asistente.
+    */
+    function removeAssistant(address account) public onlyAdmin {
+        _removeAssistant(account);
+    }
+
+    /**
+    * @dev Función interna para implementar la asignación de asistente
+    * @param account La cuenta que será asignada como asistente.
+    */
+    function _addAssistant(address account) internal {
+        _assistant.add(account);
+        emit AssistantAdded(account, msg.sender);
+    }
+
+     /**
+     * @dev Función interna para implementar la renuncia/revocación de asistentes
+     * @param account La cuenta que será revocada de asistentes.
+    */
+    function _removeAssistant(address account) internal {
+        _assistant.remove(account);
+        emit AssistantRemoved(account, msg.sender);
     }
 
     /**

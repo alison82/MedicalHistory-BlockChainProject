@@ -1,7 +1,6 @@
 pragma solidity 0.5.16;
 import "./acceso/UserRoles.sol";
 
-
 /**
  * @title Smart Contract de Registro de asistentes - El administrador agrega un asistente.
  * @author Francisco Alemán
@@ -9,12 +8,11 @@ import "./acceso/UserRoles.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
- contract AssistantRegister is UserRoles{
+contract AssistantRegister is UserRoles {
      /**
      * @title Representa los datos del asistente.
      */
-
-     struct Asistente {
+    struct Asistente {
         string name;
         string aPat;
         string aMat;
@@ -36,7 +34,6 @@ import "./acceso/UserRoles.sol";
     /**
      * @dev Eventos que serán registrados en la blockchain.
      */
-    
     event AssistantAdded(
         address indexed _assistant,
         address indexed _admin,
@@ -121,7 +118,6 @@ import "./acceso/UserRoles.sol";
    *@param _date a
    * @return _success a
    */
-
     function addAssistant(
         address _account,
         string memory _name,
@@ -138,7 +134,7 @@ import "./acceso/UserRoles.sol";
         require(bytes(_hashPicture).length == 5);
         uint256 _date = now;
 
-        
+
         Asistente memory asistente = Asistente(
             _name,
             _aPat,
@@ -305,4 +301,4 @@ import "./acceso/UserRoles.sol";
         return fileToAssistant[_assistant].length;
     }
 
- }
+}

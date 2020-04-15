@@ -8,7 +8,7 @@ import "./acceso/UserRoles.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
- contract MedicsRegister is UserRoles{
+contract MedicsRegister is UserRoles {
 
      /**
      * @title Representan los datos del médico.
@@ -35,8 +35,7 @@ import "./acceso/UserRoles.sol";
      /**
      * @dev Eventos que serán registrados en la blockchain.
      */
-
-    event Medics_Added(
+    event MedicsAdded(
         address indexed _medic,
         address indexed _admin,
         string _name,
@@ -46,7 +45,7 @@ import "./acceso/UserRoles.sol";
         string _hashPicture,
         uint256 _date);
 
-    event Medics_Update(
+    event MedicsUpdate(
         address indexed _medic,
         address indexed _admin,
         string _name,
@@ -57,7 +56,7 @@ import "./acceso/UserRoles.sol";
         uint256 _date,
         uint256 _queryDate);
 
-    event Medics_Retrieve(
+    event MedicsRetrieve(
         address indexed _medic,
         address indexed _admin,
         string _name,
@@ -68,7 +67,7 @@ import "./acceso/UserRoles.sol";
         uint256 _date,
         uint256 _queryDate);
 
-    event Medics_Delete(
+    event MedicsDelete(
         address indexed _medic,
         address indexed _admin,
         string _hashPicture,
@@ -119,7 +118,7 @@ import "./acceso/UserRoles.sol";
    * @param _hashPicture a
    * @return _success a
    */
-    function add_Medics(
+    function addMedics(
         address _account,
         string memory _name,
         string memory _specialty,
@@ -146,7 +145,7 @@ import "./acceso/UserRoles.sol";
 
         fileToMedic[_account].push(medico);
 
-        emit Medics_Added(
+        emit MedicsAdded(
             _account,
             msg.sender,
             _name,
@@ -165,7 +164,7 @@ import "./acceso/UserRoles.sol";
     * @param _account Cuenta del médico
     * @return a
     */
-    function update_Medics(
+    function updateMedics(
         address _account,
         string memory _name,
         string memory _specialty,
@@ -200,7 +199,7 @@ import "./acceso/UserRoles.sol";
         medico.hashPicture = _hashPicture;
         medico.date = _date;
 
-        emit Medics_Update(
+        emit MedicsUpdate(
             _account,
             msg.sender,
             medico.name,
@@ -244,7 +243,7 @@ import "./acceso/UserRoles.sol";
             }
         }
 
-        emit Medics_Retrieve(
+        emit MedicsRetrieve(
             _account,
             msg.sender,
             medico.name,
@@ -278,7 +277,7 @@ import "./acceso/UserRoles.sol";
 
         for (uint256 i = 0; i < len; i++) {
             if (fileToMedic[_account][i].date == _date) {
-                emit Medics_Delete(
+                emit MedicsDelete(
                     _account,
                     msg.sender,
                     fileToMedic[_account][i].hashPicture,
@@ -290,7 +289,6 @@ import "./acceso/UserRoles.sol";
         }
         _success = true;
     }
-
 
     /**
     * @notice Retorna el numero de medicos de esa direccion
