@@ -50,7 +50,8 @@ contract PatientDiagnosis is PatientRecords {
         uint256 _age,
         uint256 _weight,
         string _diagnostic,
-        string _observations
+        string _observations,
+        uint256 _date
         );
 
     event DiagnosisUpdate(
@@ -140,8 +141,8 @@ contract PatientDiagnosis is PatientRecords {
         string memory _aPat,
         string memory _aMat,
         string memory _comorb,
-        uint256 _age,
-        uint256 _weight,
+        uint8 _age,
+        uint8 _weight,
         string memory _diagnostic,
         string memory _observations,
         string[] memory _estudio
@@ -183,7 +184,8 @@ contract PatientDiagnosis is PatientRecords {
             _age,
             _weight,
             _diagnostic,
-            _observations
+            _observations,
+            _date
         );
         _success = true;
     }
