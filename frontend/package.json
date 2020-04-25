@@ -80,6 +80,7 @@
     "rxjs": "^6.5.4",
     "simple-line-icons": "^2.4.1",
     "sweetalert2": "^9.8.2",
+    "truffle-contract": "^4.0.31",
     "tslib": "^1.11.0",
     "web3": "^1.2.6",
     "zone.js": "~0.10.2"
@@ -100,6 +101,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "circular-json": "^0.5.9",
     "codelyzer": "^5.2.1",
     "del": "^5.1.0",
     "echarts": "^4.6.0",

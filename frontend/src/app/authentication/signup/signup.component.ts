@@ -1,6 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Web3 from 'web3';
+import { SigninService } from '../signin/signin.service';
+import { WEB3 } from 'src/app/etherum/web3';
+import { ContractsService } from 'src/app/contracts/contracts.service';
+import { Contracts, Roles } from 'src/app/shared/models/enums.enum';
+
+import * as cj from 'circular-json';
+import { Doctor } from 'src/app/shared/models/doctor.model';
+import { Patient } from 'src/app/patient/allpatient/patient.model';
+import { LoggeduserService } from 'src/app/shared/services/loggeduser.service';
+import { User } from 'src/app/shared/models/user.model';
+
 declare const $: any;
 @Component({
   selector: 'app-signup',
@@ -13,12 +25,21 @@ export class SignupComponent implements OnInit {
   returnUrl: string;
   hide = true;
   chide = true;
+  doctor: Doctor;
+  patient: Patient;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    @Inject(WEB3) private web3: Web3,
+    public signinService: SigninService,
+    private contractService: ContractsService,
+    private loggedUser: LoggeduserService
   ) {}
   ngOnInit() {
+
+    this.addDoctor();
+
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: [
@@ -56,5 +77,30 @@ export class SignupComponent implements OnInit {
     } else {
       this.router.navigate(['/dashboard/main']);
     }
+  }
+
+  async addDoctor(){
+    const contractInstance = await this.contractService.getContract(Contracts.MedicsRegister);
+
+    const address = await this.contractService.getCurrentAddress();
+
+    console.log(`Address here: ${address}`)
+
+    let doctor = new Doctor();
+    doctor.address = '';
+    doctor.firstname = 'Alison';
+    doctor.cedula = 'Yes';
+    doctor.email = 'alison.capote@gmail.com';
+    doctor.hashPicture = '';
+    doctor.specialty = '';
+    doctor.user = new User();
+    doctor.user.useraddress = address;
+    doctor.user.username = 'alison';
+    doctor.user.rol = Roles.doctor.toString();
+
+    console.log(`Hasta aqui: ${doctor.user.useraddress}`)
+
+    contractInstance.addMedics(doctor.address, doctor.firstname, doctor.specialty, doctor.cedula, doctor.email, doctor.hashPicture, { from: doctor.user.useraddress});
+
   }
 }

@@ -10,9 +10,9 @@ import { PlatformLocation } from '@angular/common';
 import { WEB3 } from './etherum/web3';
 import Web3 from 'web3';
 import { DeviceDetectorService } from 'ngx-device-detector';
-
-import {LoggeduserService} from 'src/app/shared/services/loggeduser.service';
-import { Roles } from './shared/models/user.model';
+import { LoggeduserService } from './shared/services/loggeduser.service';
+import { Roles } from './shared/models/enums.enum';
+import { ContractsService } from './contracts/contracts.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ export class AppComponent {
   showLoadingIndicatior = true;
 
   constructor(public _router: Router, location: PlatformLocation, @Inject(WEB3) private web3: Web3, private deviceService: DeviceDetectorService,
-  private loggedUser: LoggeduserService) {
+  private loggedUser: LoggeduserService, private contractService: ContractsService) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
         this.showLoadingIndicatior = true;
@@ -49,27 +49,32 @@ export class AppComponent {
     console.log(browser);
 
     if ((browser.includes('Chrome')) || (browser.includes('Firefox')) || (browser.includes('Opera')) || (browser.includes('MS-Edge-Chromium'))){
-      if (this.web3.currentProvider) {
-        await this.web3.currentProvider;
-      }
-      else {
+      if (!this.contractService.existProvider()) {
         this._router.navigate(['/errors/etherum-config']);
         return;
       }
-    } else {
+    }
+    else {
       this._router.navigate(['/errors/browser-unsupported']);
       return;
     }
+    //Temporal view
+    this.loggedUser.setUserLoggedIn({username: 'Alison', rol: Roles.admin, useraddress: ''});
 
-    const accounts = await this.web3.eth.getAccounts();
+    //const accounts = await this.web3.eth.getAccounts();
+
+    //this.web3.eth.personal.sign(this.web3.utils.fromUtf8("Hola"), accounts[0].toString(), 'prueba', (data) => {console.log(data)});
 
     //Existen cuentas disponibles en metamask
-    if (accounts.length > 0){
-      this._router.navigate(['/dashboard/main']);
+    /*if (accounts.length > 0){
       this.loggedUser.setUserLoggedIn({username: accounts[0].toString(), rol: Roles.admin});
+      this._router.navigate(['/dashboard/main']);
+      console.log(`El usuario: ${JSON.stringify(this.loggedUser.getUserLoggedIn())} entró`);
     } else {
-      console.log("No Accounts: " + accounts);
+      console.log(`No Accounts: ${accounts}`);
     }
+    */
+    //this._router.navigate(['/authentication/signin']);
 
   }
 

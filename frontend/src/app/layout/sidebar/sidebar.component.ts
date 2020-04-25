@@ -32,8 +32,8 @@ export class SidebarComponent implements OnInit {
     public elementRef: ElementRef,
     private loggedUser: LoggeduserService
   ) {
+    //Temporal code
     this.user = loggedUser.getUserLoggedIn();
-    console.log("User: " + JSON.stringify(loggedUser.getUserLoggedIn()));
   }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guard/auth.guard';
-import { Roles } from './shared/models/user.model';
+import { Roles } from './shared/models/enums.enum';
 const routes: Routes = [
   {
     path: 'dashboard',

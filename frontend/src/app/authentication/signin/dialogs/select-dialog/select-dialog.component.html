@@ -1,0 +1,36 @@
+<div class="addContainer content">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-5 p-l-10 font-17">
+                        {{dialogTitle}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="selectForm" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Aviables roles</mat-label>
+                      <mat-select formControlName="_rol" required>
+                        <mat-option *ngFor="let r of roles" [value]="r" color="primary">
+                            <mat-label>{{r}}</mat-label>
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-stroked-button color="primary" [type]="submit"
+                            [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
