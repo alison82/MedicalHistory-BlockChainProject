@@ -15,9 +15,10 @@ let medicsregisterContract = require('./MedicsRegister.json');
 import * as migrationsContract from './Migrations.json';
 import * as patientdiagnosisContract from './PatientDiagnosis.json';
 
-import { Contracts, Roles } from '../shared/models/enums.enum';
+import * as userRolesContract from './UserRoles.json';
+import { Contracts } from '../shared/models/enums.enum';
 
-import * as cj from 'circular-json';
+//import * as cj from 'circular-json';
 //import { ConsoleReporter } from 'jasmine';
 
 @Injectable({
@@ -78,8 +79,6 @@ export class ContractsService {
   }
 
   async getContract(cont: Contracts): Promise<any>{
-
-
     let ngoContract: any;
 
     switch (cont) {
@@ -100,6 +99,10 @@ export class ContractsService {
         ngoContract = contract(patientdiagnosisContract);
         break;
 
+      case Contracts.UserRoles:
+        ngoContract = contract(userRolesContract);
+        break;
+
       default:
         break;
     }
@@ -114,4 +117,7 @@ export class ContractsService {
         throw new Error('Contract has not been deployed to network.');
     }
   }
+
+
+
 }
