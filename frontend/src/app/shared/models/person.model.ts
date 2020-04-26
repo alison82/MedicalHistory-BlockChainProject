@@ -2,8 +2,9 @@ import { User } from './user.model';
 
 export class Person {
 
-  firstname: string;
-  //lastname: string;
+  name: string;
+  surname: string;
+  secondname: string;
   email: string;
   hashPicture: string;
   date: Date;

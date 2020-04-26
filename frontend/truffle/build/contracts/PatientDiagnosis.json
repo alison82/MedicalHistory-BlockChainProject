@@ -22477,12 +22477,13 @@
         }
       },
       "links": {},
-      "address": "0x502167D73DDa0F9675092Fc15DE1bAe9569FdD57",
-      "transactionHash": "0x55f88bd3c0e7989a190f87a5f324f4882e8f1a94eb987ca664cd4f7f358e5b09"
+      "address": "0x4a0eB9C708D3DF3366e579c96387E39d6a7Ac117",
+      "transactionHash": "0x3e3c48e77bde9276350b7fc3d6e6ccbdffd49a4fd50066f58eb79a155d204277"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-04-17T21:56:25.879Z",
+  "updatedAt": "2020-04-26T07:41:43.981Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Francisco Alemán",
     "details": "El contrato hereda las funciones del contrato de roles",

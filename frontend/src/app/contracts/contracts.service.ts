@@ -15,7 +15,7 @@ let medicsregisterContract = require('./MedicsRegister.json');
 import * as migrationsContract from './Migrations.json';
 import * as patientdiagnosisContract from './PatientDiagnosis.json';
 
-import { Contracts } from '../shared/models/enums.enum';
+import { Contracts, Roles } from '../shared/models/enums.enum';
 
 import * as cj from 'circular-json';
 //import { ConsoleReporter } from 'jasmine';
@@ -38,7 +38,7 @@ export class ContractsService {
 
   async getCurrentAddress(){
     const accounts = await this.web3.eth.getAccounts();
-    return accounts[0].toString();
+    return accounts[0];
   }
 
   async getAccountInfo() {
@@ -55,6 +55,22 @@ export class ContractsService {
         }
       });
     });
+  }
+
+  async getUserNonebyAddress(address){
+    // Verificar con un contrato si este usuario se encuentra ya registrado
+  }
+
+  async getUserInfobyAddress(address, none){
+  // Verificar con un contrato si este usuario se encuentra ya registrado
+
+  //Este codigo es temporal
+  return {
+    username: '',
+    useraddress: address,
+    rol: Roles.none.toString(),
+    none : none
+  }
   }
 
   async addDoctor(){

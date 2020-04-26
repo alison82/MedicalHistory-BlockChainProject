@@ -4,4 +4,5 @@ export class User {
   username: string;
   useraddress: string;
   rol: string;
+  none : string;
 }

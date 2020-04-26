@@ -17,6 +17,7 @@ import { SelectDialogComponent } from './dialogs/select-dialog/select-dialog.com
 import { SigninService } from './signin.service';
 import { Roles } from 'src/app/shared/models/enums.enum';
 import { ContractsService } from 'src/app/contracts/contracts.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare const $: any;
 @Component({
@@ -36,13 +37,12 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private window: Window,
     private loggedUser: LoggeduserService,
-    private toastrService: ToastrService,
     @Inject(WEB3) private web3: Web3,
     public dialog: MatDialog,
     public signinService: SigninService,
-    private contractService: ContractsService
+    private contractService: ContractsService,
+    //private snackBar: MatSnackBar
   ) {}
   ngOnInit() {
 
@@ -66,8 +66,6 @@ export class SigninComponent implements OnInit {
         }
       });
     });
-
-    this.toastrService.overlayContainer = this.toastContainer;
   }
   get f() {
     return this.loginForm.controls;
@@ -76,107 +74,95 @@ export class SigninComponent implements OnInit {
     this.submitted = true;
 
 
-    const accounts = await this.web3.eth.getAccounts();
+    //const accounts = await this.web3.eth.getAccounts();
 
 
-    const publicAddress: string = accounts[0];
+    //const publicAddress: string = accounts[0];
+
+    const publicAddress = (await this.contractService.getCurrentAddress());
+
+    if (!publicAddress){
+      console.log('Debe loguearse');
+      return;
+
+      /*this.showNotification(
+        'snackbar-error',
+        'You must login in metamask!!',
+        'bottom',
+        'center'
+      );*/
+    }
+
+    //Verificar si la direccion se encuentra registrada
+
+    //if (this.contractService.)
 
     console.log(`publicAddress: ${publicAddress}`);
 
-    //Code to get none value
-    const none: string = 'Hola';
+    const none = this.contractService.getUserNonebyAddress(publicAddress);
 
-    await this.web3.eth.personal.sign(this.web3.utils.fromUtf8(none), publicAddress, '', (err, signature) => {
-      if (err){
-        console.log(`Metamask error: ${err.message}`);
-        this.toastrService.error(err.message, 'Access');
-        return;
-      }
-      console.log(`login with: ${signature}`);
+      //Code to get none value
+    const info: string = 'We are getting your public address to access to the system. Are you agree?';
+
+    await this.web3.eth.personal.sign(this.web3.utils.fromUtf8(info), publicAddress, '', (err, signature) => {
+        if (err){
+          console.log(`Metamask error: ${err.message}`);
+          return;
+        }
+        console.log(`login with: ${signature}`);
     });
 
-    //const token: any =  this.web3.eth.Contract()
+    let user: User = await this.contractService.getUserInfobyAddress(publicAddress, none);
 
-    //If the user exist in the system, got to dashboard
+    //Varificar el rol del usuario para enviarlo a su vista correspondiente
 
-      //Else, create user
+    if ((user.rol === Roles.admin) || ((user.rol === Roles.admin))){
+      //Registrar login
 
-      const dialogRef = this.dialog.open(SelectDialogComponent, {
-      });
-
-      await dialogRef.afterClosed()
-        .toPromise()
-        .then(result => {
-          console.log("The dialog was closed " + result);
-        });
-
-        const user: User ={
-          username: '',
-          useraddress: publicAddress,
-          rol: Roles.none
-        };
+      //Ir a la vista correspondiente
+      this.router.navigate(['/dashboard/main']);
+    }
 
 
-        const selected = this.signinService.getRol();
 
-        switch (selected) {
-          case Roles.doctor:
-            user.rol = Roles.none_doctor;
+    const dialogRef = this.dialog.open(SelectDialogComponent, {
+    });
 
-            //this.router.navigate(['/doctors/add-doctor']);
+    await dialogRef.afterClosed()
+      .toPromise()
+      .then(result => {
+        console.log("The dialog was closed " + result);
+    });
 
-            break;
+    const selected = this.signinService.getRol();
 
-          case Roles.patient:
+    switch (selected) {
+      case Roles.doctor:
+        user.rol = Roles.none_doctor;
+        break;
 
-            user.rol = Roles.none_patient;
+      case Roles.patient:
+        user.rol = Roles.none_patient;
+        break;
 
-            //this.router.navigate(['/patient/add-patient']);
+      default:
+        break;
+    }
 
-
-            break;
-
-          default:
-            break;
-        }
-
-        //this.loggedUser.setUserLoggedIn(user);
-
-        this.router.navigate(['/authentication/signup']);
-
-
-      /*await dialogRef.afterClosed().subscribe(result => {
-        if (result === 1) {
-          console.log('Se realizó');
-        }
-      });*/
-
-
-    //this.loggedUser.setUserLoggedIn({username: publicAddress, rol: Roles.admin});
-
-
-    //Existen cuentas disponibles en metamask
-    /*if (accounts.length > 0){
-      this.loggedUser.setUserLoggedIn({username: accounts[0].toString(), rol: Roles.admin});
-      this._router.navigate(['/dashboard/main']);
-      console.log(`El usuario: ${JSON.stringify(this.loggedUser.getUserLoggedIn())} entró`);
-    }*/
-
-    // stop here if form is invalid
-    /*if (this.loginForm.invalid) {
-      console.log('Invalid data');
-      //this.toastrService.warning('');
-      return;
-    } else {
-      if (this.loggedUser.userLogged){
-        this.router.navigate(['/dashboard/main']);
-      }
-      this.toastrService.error('Invalid username-password', 'Access');
-      return;
-    }*/
+    //Ir al Registro del usuario
+    this.router.navigate(['/authentication/signup']);
   }
 
   async selectCall() {
 
+  }
+
+  showNotification(colorName, text, placementFrom, placementAlign) {
+    /*this.snackBar.open(text, '', {
+      duration: 2000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName
+    });*/
   }
 }
