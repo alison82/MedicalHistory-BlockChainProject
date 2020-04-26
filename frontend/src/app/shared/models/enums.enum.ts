@@ -2,7 +2,8 @@ export enum Contracts {
   AssistantRegister = 'AssistantRegister',
   MedicsRegister = 'MedicsRegister',
   Migrations = 'Migrations',
-  PatientDiagnosis = 'PatientDiagnosis'
+  PatientDiagnosis = 'PatientDiagnosis',
+  UserRoles = 'UserRoles'
 }
 
 export enum Roles {
