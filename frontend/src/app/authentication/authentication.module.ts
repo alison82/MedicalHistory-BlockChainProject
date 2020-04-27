@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SelectDialogComponent } from './signin/dialogs/select-dialog/select-dialog.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { DoctorSuccessfulCreationComponent } from './doctor-successful-creation/doctor-successful-creation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
     SignupComponent,
     LockedComponent,
     ForgotPasswordComponent,
-    SelectDialogComponent
+    SelectDialogComponent,
+    DoctorSuccessfulCreationComponent
   ],
   imports: [
     CommonModule,

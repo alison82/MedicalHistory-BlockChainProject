@@ -10,14 +10,14 @@ import { Doctor } from '../../models/doctor.model';
 export class AdminService {
   doctorContract: any;
 
-  constructor(private contractInstance: ContractsService) { 
+  constructor(private contractInstance: ContractsService) {
     this.doctorContract = contractInstance.getContract(Contracts.MedicsRegister);
   }
 
   addDoctor(doctor: Doctor, address): Promise<any>{
     return this.doctorContract.addMedics({
                                     _account:     doctor.address,
-                                    _name:        doctor.firstname,
+                                    _name:        doctor.name,
                                     _specialty:   doctor.specialty,
                                     _cedula:      doctor.cedula,
                                     _email:       doctor.email,

@@ -49,7 +49,7 @@ export class AppComponent {
     console.log(browser);
 
     if ((browser.includes('Chrome')) || (browser.includes('Firefox')) || (browser.includes('Opera')) || (browser.includes('MS-Edge-Chromium'))){
-      if (!this.contractService.existProvider()) {
+      if (! this.contractService.existProvider()) {
         this._router.navigate(['/errors/etherum-config']);
         return;
       }

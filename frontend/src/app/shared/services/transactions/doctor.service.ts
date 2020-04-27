@@ -12,7 +12,7 @@ export class DoctorService {
   doctorContract: any;
   diagnosisContract: any;
 
-  constructor(private contractInstance: ContractsService) { 
+  constructor(private contractInstance: ContractsService) {
     this.doctorContract = contractInstance.getContract(Contracts.MedicsRegister);
     this.diagnosisContract = contractInstance.getContract(Contracts.PatientDiagnosis);
   }
@@ -22,10 +22,10 @@ export class DoctorService {
     let _doctor: any;
     let current = new Date();
     let _timestamp= current.getTime();
-    _doctor= this.doctorContract.viewMedics({_account: address, 
-                                             _date:_timestamp},
-                                             {from: address});
-    
+    _doctor= this.doctorContract.viewMedics({_account: address,
+                                            _date:_timestamp},
+                                            {from: address});
+
       // TODO: Revisar como se regresan los datos del contrato
       return _doctor;
   }
@@ -36,8 +36,8 @@ export class DoctorService {
         string memory specialty,
         string memory cedula,
         string memory email,
-        string memory hashPicture) 
-  */ 
+        string memory hashPicture)
+  */
 
   /******************************Actions related with patient*********************************/
   setDiagnostic(diagnostic: Diagnosis): Promise<any>{

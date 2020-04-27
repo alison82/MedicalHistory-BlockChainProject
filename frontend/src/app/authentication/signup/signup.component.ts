@@ -99,19 +99,25 @@ export class SignupComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
+      console.log(`El rol predomintante es: ${this.siginService.getRol()}`);
+
       switch (this.siginService.getRol()) {
         case Roles.doctor:
           this.addDoctor();
+          this.router.navigate(['/authentication/doctor-successful-creation']);
           break;
 
         case Roles.patient:
           this.addPatient();
+
+          //Esperar aceptacion de la cuenta
+
+          this.router.navigate(['/dashboard/main']);
           break;
 
         default:
           break;
       }
-      this.router.navigate(['/dashboard/main']);
     }
   }
 
@@ -124,7 +130,7 @@ export class SignupComponent implements OnInit {
 
     let doctor = new Doctor();
     doctor.address = '';
-    doctor.name = this.loginForm.value.fullname;
+    doctor.name = this.loginForm.value.name;
     doctor.surname = this.loginForm.value.surname;
     doctor.secondname = this.loginForm.value.secondname;
     doctor.cedula = this.loginForm.value.id;
@@ -138,7 +144,7 @@ export class SignupComponent implements OnInit {
 
     console.log(`Hasta aqui: ${doctor.name}`)
 
-    contractInstance.addMedics('0x9847BCe3b39C5E9e9137532dd77d2F9E11859C37', doctor.name, doctor.specialty, doctor.cedula, doctor.email, doctor.hashPicture, { from: doctor.user.useraddress});
+    //Adicionar doctor
 
   }
 

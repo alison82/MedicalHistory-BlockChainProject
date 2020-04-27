@@ -21,7 +21,7 @@ export class SelectDialogComponent {
     private fb: FormBuilder,
     public signinService: SigninService
   ) {
-    this.dialogTitle = 'You are not registered in this system. Plese, select account type to register';
+    this.dialogTitle = 'You need to register. Select the role.';
     this._rol = Roles.patient;
     this.selectForm = this.createSelectForm();
   }

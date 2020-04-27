@@ -16,7 +16,7 @@ import * as migrationsContract from './Migrations.json';
 import * as patientdiagnosisContract from './PatientDiagnosis.json';
 
 import * as userRolesContract from './UserRoles.json';
-import { Contracts } from '../shared/models/enums.enum';
+import { Contracts, Roles } from '../shared/models/enums.enum';
 
 //import * as cj from 'circular-json';
 //import { ConsoleReporter } from 'jasmine';
@@ -59,7 +59,7 @@ export class ContractsService {
   }
 
   async getUserNonebyAddress(address){
-    // Verificar con un contrato si este usuario se encuentra ya registrado
+    // Verificar con un contrato si este usuario se encuentra ya registrado y devolver el none correspondiente
   }
 
   async getUserInfobyAddress(address, none){
@@ -117,7 +117,5 @@ export class ContractsService {
         throw new Error('Contract has not been deployed to network.');
     }
   }
-
-
 
 }
