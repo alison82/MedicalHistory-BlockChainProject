@@ -78,6 +78,7 @@ export class SignupComponent implements OnInit {
         '',
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
+      address:[this.contractService.getCurrentAddress()],
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -127,13 +128,11 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  async sendToIPFS(){
+    return this.ipfs.addJSON(this.loginForm.value);
+  }
+
   async addDoctor(){
-    // const contractInstance = await this.contractService.getContract(Contracts.MedicsRegister);
-
-    // const address = await this.contractService.getCurrentAddress();
-
-    // console.log(`Address here: ${address}`)
-
     let doctor = new Doctor();
     doctor.address = await this.contractService.getCurrentAddress();
     doctor.name = this.loginForm.value.name;
@@ -148,40 +147,16 @@ export class SignupComponent implements OnInit {
     doctor.user.username = '';
     doctor.user.rol = Roles.doctor.toString();
 
+    // console.log(`Address here: ${address}`)
+
+    var hashString = await this.sendToIPFS();
     // console.log(`Hasta aqui: ${doctor.name}`)
-    // await this.doctorService.register("QmbuXBF3UVfa7NLQV5BRbW2tTMPYeyet5A28A6oH9CBcKr",doctor.address).then(res=>{
-    //   console.log("Registered!!!!!!")
-    // },error=>{
-    //   console.log(error);
-    // });
-
-    const contractInstance = await this.contractService.getContract(Contracts.PendingRecords);
-
-    const address = await this.contractService.getCurrentAddress();
-
-    await contractInstance.addMedicRecord(
-      "QmbuXBF3UVfa7NLQV5BRbW2tTMPYeyet5A28A6oH9CBcKr",
-      {
-        from: address
-      }
-    ).then(res=>{
-      console.log("Registered!!!!!!")
+    await this.doctorService.register(hashString, doctor.address).then(res=>{
+      console.log("RegisteredX2!!!!!!")
     },error=>{
       console.log(error);
     });
 
-    //Adicionar doctor
-    // this.ipfs.addJSON(doctor, (err, result) => {
-    //   console.log(err, result);
-    //   var file=result;
-
-    //   this.doctorService.register(file,doctor.address).then(res =>{
-    //     console.log("Registered...");
-    //   },error =>{
-    //     console.log("Error in register");
-    //   });
-
-    // });
   }
 
   async addPatient(){

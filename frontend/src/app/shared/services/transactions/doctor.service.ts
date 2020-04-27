@@ -15,27 +15,20 @@ export class DoctorService {
   registerContract: any;
 
   constructor(private contractInstance: ContractsService) {
-    this.doctorContract =  contractInstance.getContract(Contracts.MedicsRegister);
+    
     this.diagnosisContract = contractInstance.getContract(Contracts.PatientDiagnosis);
-    this.registerContract = contractInstance.getContract(Contracts.PendingRecords);
+    
   }
 
-  // Send the form value
-  public register(hashString, account): Promise<any>{
-    //let file;
-    console.log(hashString);
-    // Send to IPFS
-    //  this.ipfs.addJSON(doctor, (err, result) => {
-    //    console.log(err, result);
-    //    file=result;
-    //  });
-
+  async register(hashString, address): Promise<any>{
+  
     // Send to blockchain
-    //console.log(this.registerContract);
+    this.registerContract = await this.contractInstance.getContract(Contracts.PendingRecords);
+    console.log(hashString);
     return this.registerContract.addMedicRecord(
       hashString,
       {
-        from: account
+        from: address
       }
     ).then(res=>{
       console.log("Registered!!!!!!")
@@ -45,12 +38,13 @@ export class DoctorService {
   }
 
   /************************************* Returns doctor's data ********************************/
-  getDoctorData(address): Promise<any>{
+  async getDoctorData(address): Promise<any>{
     let _doctor: any;
     let current = new Date();
     let _timestamp= current.getTime();
-    _doctor= this.doctorContract.viewMedics({_account: address,
-                                            _date:_timestamp},
+    this.doctorContract =  await this.contractInstance.getContract(Contracts.MedicsRegister);
+    _doctor= this.doctorContract.viewMedics(address,
+                                            _timestamp,
                                             {from: address});
 
       // TODO: Revisar como se regresan los datos del contrato
@@ -67,40 +61,41 @@ export class DoctorService {
   */
 
   /******************************Actions related with patient*********************************/
-  setDiagnostic(diagnostic: Diagnosis): Promise<any>{
-
-    return this.diagnosisContract.addDiagnostic({
-                                                      _patient: diagnostic.address_patient,
-                                                      _medic: diagnostic.address_doctor,
-                                                      _nombre: diagnostic.name,
-                                                      _aPat: diagnostic.last_name,
-                                                      _aMat: diagnostic.last_name_2,
-                                                      _comorb: diagnostic.comorb,
-                                                      _age: diagnostic.age,
-                                                      _weigth: diagnostic.weigth,
-                                                      _diagnostic: diagnostic.description,
-                                                      _obsevations: diagnostic.observations,
-                                                      _estudio: diagnostic.files
-                                                    },{ from: diagnostic.address_doctor }
+  async setDiagnostic(diagnostic: Diagnosis): Promise<any>{
+    this.doctorContract =  await this.contractInstance.getContract(Contracts.MedicsRegister);
+    return this.diagnosisContract.addDiagnostic(
+                                                      diagnostic.address_patient,
+                                                      diagnostic.address_doctor,
+                                                      diagnostic.name,
+                                                      diagnostic.last_name,
+                                                      diagnostic.last_name_2,
+                                                      diagnostic.comorb,
+                                                      diagnostic.age,
+                                                      diagnostic.weigth,
+                                                      diagnostic.description,
+                                                      diagnostic.observations,
+                                                      diagnostic.files
+                                                    ,{ from: diagnostic.address_doctor }
       );
   }
 
-  updateDiagnostic(diagnostic: Diagnosis): Promise<any>{
+  async updateDiagnostic(diagnostic: Diagnosis): Promise<any>{
     let current = new Date();
     let timestamp= current.getTime();
-    return this.diagnosisContract.updateDiagnostic({
-                                                      _patient: diagnostic.address_patient,
-                                                      _nombre: diagnostic.name,
-                                                      _aPat: diagnostic.last_name,
-                                                      _aMat: diagnostic.last_name_2,
-                                                      _comorb: diagnostic.comorb,
-                                                      _age: diagnostic.age,
-                                                      _weigth: diagnostic.weigth,
-                                                      _diagnostic: diagnostic.description,
-                                                      _obsevations: diagnostic.observations,
-                                                      _estudio: diagnostic.files,
-                                                      _date: timestamp
-                                                    },{ from: diagnostic.address_doctor }
+    this.doctorContract =  await this.contractInstance.getContract(Contracts.MedicsRegister);
+    return this.diagnosisContract.updateDiagnostic(
+                                                      diagnostic.address_patient,
+                                                      diagnostic.name,
+                                                      diagnostic.last_name,
+                                                      diagnostic.last_name_2,
+                                                      diagnostic.comorb,
+                                                      diagnostic.age,
+                                                      diagnostic.weigth,
+                                                      diagnostic.description,
+                                                      diagnostic.observations,
+                                                      diagnostic.files,
+                                                      timestamp
+                                                    ,{ from: diagnostic.address_doctor }
       );
   }
 

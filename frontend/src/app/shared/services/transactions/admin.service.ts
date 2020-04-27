@@ -14,12 +14,10 @@ export class AdminService {
   registerContract: any;
 
   constructor(private contractInstance: ContractsService) {
-    this.doctorContract = contractInstance.getContract(Contracts.MedicsRegister);
-    this.registerContract = contractInstance.getContract(Contracts.PendingRecords);
   }
 
-  addDoctor(doctor: Doctor, address): Promise<any>{
-
+  async addDoctor(doctor: Doctor, address): Promise<any>{
+    this.doctorContract = await this.contractInstance.getContract(Contracts.MedicsRegister);
     return this.doctorContract.addMedics(
                                     doctor.address,
                                     doctor.name,
@@ -31,9 +29,10 @@ export class AdminService {
                                   { from:address });
   }
 
-  updateDoctor(doctor): Promise<any>{
+  async updateDoctor(doctor): Promise<any>{
     let current = new Date();
     let timestamp = current.getTime();
+    this.doctorContract = await this.contractInstance.getContract(Contracts.MedicsRegister);
     return this.doctorContract.updateMedics(
                                     doctor.address,
                                     doctor.name,
@@ -47,36 +46,40 @@ export class AdminService {
   }
 
   private getSize(){
-    return this.registerContract.getPendingLength(
+    return Number(this.registerContract.getPendingLength(
       {
-        from: this.registerContract.account
+        from: this.contractInstance.getCurrentAddress()
       }
-    ).words[0];
+    ).toFixed());
   }
 
-  private getHash(position){
+  async getHash(position): Promise<any>{
     return this.registerContract.getPendingRequest(
       position,
       {
-        //from: this.web3Service.account TODO: Preguntarle a alison como usar la cuenta
+        from: this.contractInstance.getCurrentAddress()
       }
     );
   }
 
   private getDoctorData(hashString): Doctor{
-    var json = this.ipfs.catJSON(hashString).then().catch(console.log);
+    var json = this.ipfs.catJSON(hashString);
     return JSON.parse(json);
   }
 
-  getPendingRequest(): Array<Doctor>{
-    var arraySize = this.getSize();
-    let doctor_list : Array<Doctor> = new Array();
+  async getPendingRequest():Promise<Doctor[]>{
+    this.registerContract = await this.contractInstance.getContract(Contracts.PendingRecords);
+    var arraySize = await this.getSize();
+    console.log(arraySize);
+    let doctor_list : Doctor[] = [];
     for (let i = 0; i < arraySize; i++) {
       var current_doctor = new Doctor;
-      var hash_String = this.getHash(i);
-      current_doctor=this.getDoctorData(hash_String);
+      var hash_String = await this.getHash(i);
+      current_doctor= await this.getDoctorData(hash_String);
+      console.log(current_doctor);
       doctor_list.push(current_doctor);
     }
+    console.log(doctor_list);
     return doctor_list;
   }
 
