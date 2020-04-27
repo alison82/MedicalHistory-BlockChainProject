@@ -12,14 +12,19 @@ import { Doctor } from 'src/app/shared/models/doctor.model';
 import { LoggeduserService } from 'src/app/shared/services/loggeduser.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Patient } from 'src/app/shared/models/patient.model';
+import { DoctorService } from 'src/app/shared/services/transactions/doctor.service';
 
 declare const $: any;
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
+  providers: [DoctorService]   
 })
 export class SignupComponent implements OnInit {
+  IPFS = require('ipfs-mini');
+  ipfs = new this.IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https'});
+
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
@@ -38,7 +43,8 @@ export class SignupComponent implements OnInit {
     public signinService: SigninService,
     private contractService: ContractsService,
     private loggedUser: LoggeduserService,
-    private siginService: SigninService
+    private siginService: SigninService,
+    private doctorService: DoctorService
   ) {
     this.type = `Register ${siginService.getRol().toString()}`;
     this.isDoctor = false;
@@ -71,7 +77,7 @@ export class SignupComponent implements OnInit {
       email: [
         '',
         [Validators.required, Validators.email, Validators.minLength(5)]
-      ]
+      ],
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -122,14 +128,14 @@ export class SignupComponent implements OnInit {
   }
 
   async addDoctor(){
-    const contractInstance = await this.contractService.getContract(Contracts.MedicsRegister);
+    // const contractInstance = await this.contractService.getContract(Contracts.MedicsRegister);
 
-    const address = await this.contractService.getCurrentAddress();
+    // const address = await this.contractService.getCurrentAddress();
 
-    console.log(`Address here: ${address}`)
+    // console.log(`Address here: ${address}`)
 
     let doctor = new Doctor();
-    doctor.address = '';
+    doctor.address = await this.contractService.getCurrentAddress();
     doctor.name = this.loginForm.value.name;
     doctor.surname = this.loginForm.value.surname;
     doctor.secondname = this.loginForm.value.secondname;
@@ -138,14 +144,44 @@ export class SignupComponent implements OnInit {
     doctor.hashPicture = '';
     doctor.specialty = this.loginForm.value.specialty;
     doctor.user = new User();
-    doctor.user.useraddress = address;
+    doctor.user.useraddress = doctor.address ;
     doctor.user.username = '';
     doctor.user.rol = Roles.doctor.toString();
 
-    console.log(`Hasta aqui: ${doctor.name}`)
+    // console.log(`Hasta aqui: ${doctor.name}`)
+    // await this.doctorService.register("QmbuXBF3UVfa7NLQV5BRbW2tTMPYeyet5A28A6oH9CBcKr",doctor.address).then(res=>{
+    //   console.log("Registered!!!!!!")
+    // },error=>{
+    //   console.log(error);
+    // });
+
+    const contractInstance = await this.contractService.getContract(Contracts.PendingRecords);
+
+    const address = await this.contractService.getCurrentAddress();
+
+    await contractInstance.addMedicRecord(
+      "QmbuXBF3UVfa7NLQV5BRbW2tTMPYeyet5A28A6oH9CBcKr",
+      {
+        from: address
+      }
+    ).then(res=>{
+      console.log("Registered!!!!!!")
+    },error=>{
+      console.log(error);
+    });
 
     //Adicionar doctor
+    // this.ipfs.addJSON(doctor, (err, result) => {
+    //   console.log(err, result);
+    //   var file=result;
 
+    //   this.doctorService.register(file,doctor.address).then(res =>{
+    //     console.log("Registered...");
+    //   },error =>{
+    //     console.log("Error in register");
+    //   });
+
+    // });
   }
 
   async addPatient(){

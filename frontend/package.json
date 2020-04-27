@@ -55,6 +55,7 @@
     "gulp-uglifycss": "^1.1.0",
     "gulp-webserver": "^0.9.1",
     "hammerjs": "^2.0.8",
+    "ipfs-mini": "^1.1.5",
     "jquery": "^3.4.1",
     "jquery-sparkline": "^2.4.0",
     "mat-progress-buttons": "^9.1.1",

@@ -8,42 +8,76 @@ import { Doctor } from '../../models/doctor.model';
   providedIn: 'root'
 })
 export class AdminService {
+  IPFS = require('ipfs-mini');
+  ipfs = new this.IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https'});
   doctorContract: any;
+  registerContract: any;
 
   constructor(private contractInstance: ContractsService) {
     this.doctorContract = contractInstance.getContract(Contracts.MedicsRegister);
+    this.registerContract = contractInstance.getContract(Contracts.PendingRecords);
   }
 
   addDoctor(doctor: Doctor, address): Promise<any>{
-    return this.doctorContract.addMedics({
-                                    _account:     doctor.address,
-                                    _name:        doctor.name,
-                                    _specialty:   doctor.specialty,
-                                    _cedula:      doctor.cedula,
-                                    _email:       doctor.email,
-                                    _hashPicture: doctor.hashPicture
-                                  },
+
+    return this.doctorContract.addMedics(
+                                    doctor.address,
+                                    doctor.name,
+                                    doctor.specialty,
+                                    doctor.cedula,
+                                    doctor.email,
+                                    doctor.hashPicture
+                                  ,
                                   { from:address });
   }
 
-  updateDoctor(doctor,address): Promise<any>{
+  updateDoctor(doctor): Promise<any>{
     let current = new Date();
-    let timestamp= current.getTime();
-    return this.doctorContract.updateMedics({
-                                    _account:     doctor.address,
-                                    _name:        doctor.name,
-                                    _specialty:   doctor.especiality,
-                                    _cedula:      doctor.cedula,
-                                    _email:       doctor.email,
-                                    _hashPicture: doctor.hashPicture,
-                                    _date:        timestamp
-                                  },
-                                  { from:address });
+    let timestamp = current.getTime();
+    return this.doctorContract.updateMedics(
+                                    doctor.address,
+                                    doctor.name,
+                                    doctor.especiality,
+                                    doctor.cedula,
+                                    doctor.email,
+                                    doctor.hashPicture,
+                                    timestamp
+                                  ,
+                                  { from: doctor.address });
   }
 
- // getPendingRecords(): Promise<any>{
+  private getSize(){
+    return this.registerContract.getPendingLength(
+      {
+        from: this.registerContract.account
+      }
+    ).words[0];
+  }
 
- // }
+  private getHash(position){
+    return this.registerContract.getPendingRequest(
+      position,
+      {
+        //from: this.web3Service.account TODO: Preguntarle a alison como usar la cuenta
+      }
+    );
+  }
 
-  // TODO: Falta devolver la lista de registros pendiente por aprobación
+  private getDoctorData(hashString): Doctor{
+    var json = this.ipfs.catJSON(hashString).then().catch(console.log);
+    return JSON.parse(json);
+  }
+
+  getPendingRequest(): Array<Doctor>{
+    var arraySize = this.getSize();
+    let doctor_list : Array<Doctor> = new Array();
+    for (let i = 0; i < arraySize; i++) {
+      var current_doctor = new Doctor;
+      var hash_String = this.getHash(i);
+      current_doctor=this.getDoctorData(hash_String);
+      doctor_list.push(current_doctor);
+    }
+    return doctor_list;
+  }
+
 }

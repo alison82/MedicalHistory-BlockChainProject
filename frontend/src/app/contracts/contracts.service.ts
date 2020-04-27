@@ -16,14 +16,21 @@ import * as migrationsContract from './Migrations.json';
 import * as patientdiagnosisContract from './PatientDiagnosis.json';
 
 import * as userRolesContract from './UserRoles.json';
+
 import { Contracts, Roles } from '../shared/models/enums.enum';
+import * as pendingRecords from './PendingRecords.json';
+const abiPendingRecords = require('./PendingRecords.json'); // compiled contracts
 
 //import * as cj from 'circular-json';
 //import { ConsoleReporter } from 'jasmine';
 
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class ContractsService {
 
   constructor(
@@ -103,19 +110,25 @@ export class ContractsService {
         ngoContract = contract(userRolesContract);
         break;
 
+      case Contracts.PendingRecords:
+        ngoContract = contract(abiPendingRecords);
+        break;
+        
       default:
         break;
     }
-
     ngoContract.setProvider(this.web3.currentProvider);
 
-    try {
+    //try {
+        console.log(cont);
         const ngoInstance = await ngoContract.deployed();
+        //console.log(ngoInstance);
         return ngoInstance;
-    } catch (error) {
-        console.log(error);
-        throw new Error('Contract has not been deployed to network.');
-    }
+    //} catch (error) {
+    //    console.log(Contracts.PendingRecords);
+    //    console.log(error);
+    //    throw new Error('Contract has not been deployed to network.');
+    //}
   }
 
 }

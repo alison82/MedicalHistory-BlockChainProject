@@ -4,17 +4,44 @@ import { Diagnosis } from '../../models/diagnosis.model';
 import { ContractsService } from '../../../contracts/contracts.service';
 import {  Contracts} from '../../models/enums.enum'
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorService {
-
   doctorContract: any;
   diagnosisContract: any;
+  registerContract: any;
 
   constructor(private contractInstance: ContractsService) {
-    this.doctorContract = contractInstance.getContract(Contracts.MedicsRegister);
+    this.doctorContract =  contractInstance.getContract(Contracts.MedicsRegister);
     this.diagnosisContract = contractInstance.getContract(Contracts.PatientDiagnosis);
+    this.registerContract = contractInstance.getContract(Contracts.PendingRecords);
+  }
+
+  // Send the form value
+  public register(hashString, account): Promise<any>{
+    //let file;
+    console.log(hashString);
+    // Send to IPFS
+    //  this.ipfs.addJSON(doctor, (err, result) => {
+    //    console.log(err, result);
+    //    file=result;
+    //  });
+
+    // Send to blockchain
+    //console.log(this.registerContract);
+    return this.registerContract.addMedicRecord(
+      hashString,
+      {
+        from: account
+      }
+    ).then(res=>{
+      console.log("Registered!!!!!!")
+    },error=>{
+      console.log(error);
+    });
   }
 
   /************************************* Returns doctor's data ********************************/
