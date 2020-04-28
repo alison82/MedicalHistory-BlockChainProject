@@ -1,4 +1,4 @@
-pragma solidity ^0.5.16;
+pragma solidity 0.5.16;
 
 import "@openzeppelin/contracts/access/Roles.sol";
 
@@ -89,12 +89,6 @@ contract UserRoles {
         "No se cuenta con el rol especificado(Asistente o médico)");
         _;
     }
-
-    /**
-    * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.
-    * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
-    */
-    function() external {}
 
     /**
     * @param account Cuenta donde se validará el rol.

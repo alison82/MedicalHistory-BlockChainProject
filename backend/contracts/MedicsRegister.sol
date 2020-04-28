@@ -92,12 +92,6 @@ contract MedicsRegister is UserRoles {
     }
 
     /**
-    * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.
-    * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
-    */
-    function() external {}
-
-    /**
     * @notice Pausar el contrato
     * Se detiene el contrato bajo ciertas condiciones.
     * Sera útil cuando nuevos errores sean descubiertos.

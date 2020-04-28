@@ -1,6 +1,6 @@
-pragma solidity ^0.5.16;
+pragma solidity 0.5.16;
 
-import "./acceso/UserRoles.sol";
+import "./PendingRecords.sol";
 
 /**
  * @title Smart Contract de Historial de pacientes - Control de Estudio basado en rol.
@@ -11,7 +11,7 @@ import "./acceso/UserRoles.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
-contract PatientRecords is UserRoles {
+contract PatientRecords is PendingRecords {
     /**
      * @title Representa un Estudio el cual le pertenece a un paciente.
      */
@@ -76,12 +76,6 @@ contract PatientRecords is UserRoles {
         require(!stopped);
         _;
     }
-
-    /**
-    * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.
-    * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
-    */
-    function() external {}
 
     /**
     * @notice Pausar el contrato
