@@ -80,12 +80,11 @@ contract PatientDiagnosis is PatientRecords {
         uint256[] _dates
     );
 
-    event DiagnosticDelete(
-        address indexed _patient,
-        address indexed _medic,
-        uint256 _date
-        );
-
+//    event DiagnosticDelete(
+//        address indexed _patient,
+//        address indexed _medic,
+//        uint256 _date
+//        );
     event PatientAdded(
         address indexed _patient,
         address indexed _medic,
@@ -110,12 +109,11 @@ contract PatientDiagnosis is PatientRecords {
         uint256 whenWas
         );
 
-    event PatientDelete(
-        address indexed _patient,
-        address indexed _medic,
-        uint256 _date
-        );
-
+//    event PatientDelete(
+//        address indexed _patient,
+//        address indexed _medic,
+//        uint256 _date
+//        );
     /**
     * @dev Indica que se ha puesto el contrato en pausa.
     * @param _admin Un administrador
@@ -139,17 +137,6 @@ contract PatientDiagnosis is PatientRecords {
     * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
     */
     function () external payable {}
-
-    /**
-    * @notice Pausar el contrato
-    * Se detiene el contrato bajo ciertas condiciones.
-    * Sera útil cuando nuevos errores sean descubiertos.
-    * @param _stop Switch del contrado de encendido/apagado
-    */
-    function emergencyStop(bool _stop) public onlyAdmin {
-        stopped = _stop;
-        emit LogSwitchStop(msg.sender, _stop);
-    }
 
     function patientDiagnosis(address _account, uint256 _timeStamp) public view returns (Diagnostico memory diag) {
         return fileToPatientDiagnosis[_account][_timeStamp];
@@ -452,19 +439,19 @@ contract PatientDiagnosis is PatientRecords {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function deleteDiagnostic(address _account, uint256 _date) public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account != address(0));
-        require(isDiag(_account, _date));
-        require(_date >= 0 && _date <= 2**256 - 1);
-
-        fileToPatientDiagnosis[_account][_date].isDiag = false;
-
-        emit DiagnosticDelete(
-            _account,
-            msg.sender,
-            _date
-        );
-        _success = true;
-    }
+//    function deleteDiagnostic(address _account, uint256 _date) public nonlyStopped onlyMedic returns (bool _success) {
+//        require(_account != address(0));
+//        require(isDiag(_account, _date));
+//        require(_date >= 0 && _date <= 2**256 - 1);
+//
+//        fileToPatientDiagnosis[_account][_date].isDiag = false;
+//
+//        emit DiagnosticDelete(
+//            _account,
+//            msg.sender,
+//            _date
+//        );
+//        _success = true;
+//    }
 
 }

@@ -1,5 +1,6 @@
 pragma solidity ^0.5.16;
 
+import "./MedicsRegister.sol";
 import "./acceso/UserRoles.sol";
 
 /**
@@ -11,7 +12,7 @@ import "./acceso/UserRoles.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
-contract PatientRecords is UserRoles {
+contract PatientRecords is MedicsRegister {
     /**
      * @title Representa un Estudio el cual le pertenece a un paciente.
      */
@@ -54,12 +55,11 @@ contract PatientRecords is UserRoles {
         uint256 _uploadDate
         );
 
-    event RecordDelete(
-        address indexed _patient,
-        address indexed _medic,
-        string _ipfsHash
-        );
-
+//    event RecordDelete(
+//        address indexed _patient,
+//        address indexed _medic,
+//        string _ipfsHash
+//        );
     /**
     * @dev Indica que se ha puesto el contrato en pausa.
     * @param _admin Un administrador
@@ -179,23 +179,23 @@ contract PatientRecords is UserRoles {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function deleteRecord(
-        address _account,
-        string memory _ipfsHash
-        )
-    public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account != 0x0000000000000000000000000000000000000000);
-        require(bytes(_ipfsHash).length == 46);
-
-        ipfsHashToEstudio[_ipfsHash].isEstudio = false;
-
-        emit RecordDelete(
-            _account,
-            msg.sender,
-            _ipfsHash
-        );
-
-        _success = true;
-    }
+//    function deleteRecord(
+//        address _account,
+//        string memory _ipfsHash
+//        )
+//    public nonlyStopped onlyMedic returns (bool _success) {
+//        require(_account != 0x0000000000000000000000000000000000000000);
+//        require(bytes(_ipfsHash).length == 46);
+//
+//        ipfsHashToEstudio[_ipfsHash].isEstudio = false;
+//
+//        emit RecordDelete(
+//            _account,
+//            msg.sender,
+//            _ipfsHash
+//        );
+//
+//        _success = true;
+//    }
 
 }
