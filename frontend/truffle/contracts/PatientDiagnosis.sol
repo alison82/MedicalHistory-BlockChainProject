@@ -1,4 +1,4 @@
-pragma solidity ^0.5.16;
+pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
 
 import "./PatientRecords.sol";
@@ -16,9 +16,6 @@ contract PatientDiagnosis is PatientRecords {
      * @title Representa un Diágnostico el cual le pertenece a un paciente.
      */
     struct Diagnostico {
-        string nombre;
-        string aPat;
-        string aMat;
         string comorb;
         uint256 age;
         uint256 weight;
@@ -31,7 +28,7 @@ contract PatientDiagnosis is PatientRecords {
      * @notice Mapea el paciente a su diagnóstico..
      */
     mapping (address => mapping (uint256 => Diagnostico)) public fileToPatientDiagnosis;
-
+    mapping (address => uint256[]) public extendedFileToPatientDiagnosis;
     /**
      * @notice Patrón de switch para encender/apagar
      */
@@ -43,9 +40,6 @@ contract PatientDiagnosis is PatientRecords {
     event DiagnosticdAdded(
         address indexed _patient,
         address indexed _medic,
-        string _nombre,
-        string _aPat,
-        string _aMat,
         string _comorb,
         uint256 _age,
         uint256 _weight,
@@ -57,9 +51,6 @@ contract PatientDiagnosis is PatientRecords {
     event DiagnosisUpdate(
         address indexed _patient,
         address indexed _medic,
-        string _nombre,
-        string _aPat,
-        string _aMat,
         string _comorb,
         uint256 _age,
         uint256 _weight,
@@ -70,15 +61,18 @@ contract PatientDiagnosis is PatientRecords {
     event DiagnosticRetrieve(
         address indexed _patient,
         address indexed _medic,
-        string _nombre,
-        string _aPat,
-        string _aMat,
         string _comorb,
         uint256 _age,
         uint256 _weight,
         string _diagnostic,
         string  _observations
         );
+
+    event FullDiagnosticRetrieve(
+        address indexed _patient,
+        address indexed _medic,
+        uint256[] _dates
+    );
 
     event DiagnosticDelete(
         address indexed _patient,
@@ -108,7 +102,7 @@ contract PatientDiagnosis is PatientRecords {
     * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.
     * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
     */
-    function() external {}
+    function () external payable {}
 
     /**
     * @notice Pausar el contrato
@@ -137,12 +131,9 @@ contract PatientDiagnosis is PatientRecords {
    */
     function addDiagnostic(
         address _account,
-        string memory _nombre,
-        string memory _aPat,
-        string memory _aMat,
         string memory _comorb,
-        uint8 _age,
-        uint8 _weight,
+        uint16 _age,
+        uint16 _weight,
         string memory _diagnostic,
         string memory _observations,
         string[] memory _estudio
@@ -150,9 +141,6 @@ contract PatientDiagnosis is PatientRecords {
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
         require(isPatient(_account) && isMedic(msg.sender));
-        require(bytes(_nombre).length < 25);
-        require(bytes(_aPat).length < 25);
-        require(bytes(_aMat).length < 25);
         require(bytes(_comorb).length < 50);
         require(_age < 120);
         require(_weight < 700);
@@ -161,9 +149,6 @@ contract PatientDiagnosis is PatientRecords {
 
         uint256 _date = now;
         Diagnostico memory diagnostico = Diagnostico(
-            _nombre,
-            _aPat,
-            _aMat,
             _comorb,
             _age,
             _weight,
@@ -173,13 +158,11 @@ contract PatientDiagnosis is PatientRecords {
         );
 
         fileToPatientDiagnosis[_account][_date] = diagnostico;
+        extendedFileToPatientDiagnosis[_account].push(_date);
 
         emit DiagnosticdAdded(
             _account,
             msg.sender,
-            _nombre,
-            _aPat,
-            _aMat,
             _comorb,
             _age,
             _weight,
@@ -197,9 +180,6 @@ contract PatientDiagnosis is PatientRecords {
     */
     function updateDiagnostic(
         address _account,
-        string memory _nombre,
-        string memory _aPat,
-        string memory _aMat,
         string memory _comorb,
         uint256 _age,
         uint256 _weight,
@@ -210,9 +190,6 @@ contract PatientDiagnosis is PatientRecords {
         )
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
-        require(bytes(_nombre).length < 25);
-        require(bytes(_aPat).length < 25);
-        require(bytes(_aMat).length < 25);
         require(bytes(_comorb).length < 256);
         require(_age < 120);
         require(_weight < 700);
@@ -223,10 +200,6 @@ contract PatientDiagnosis is PatientRecords {
         require(_estudio.length > 0);
 
         Diagnostico memory diagnostico = patientDiagnosis(_account, _date);
-
-        diagnostico.nombre = _nombre;
-        diagnostico.aPat = _aPat;
-        diagnostico.aMat = _aMat;
         diagnostico.comorb = _comorb;
         diagnostico.age = _age;
         diagnostico.weight = _weight;
@@ -237,9 +210,6 @@ contract PatientDiagnosis is PatientRecords {
         emit DiagnosisUpdate(
             _account,
             msg.sender,
-            diagnostico.nombre,
-            diagnostico.aPat,
-            diagnostico.aMat,
             diagnostico.comorb,
             diagnostico.age,
             diagnostico.weight,
@@ -256,9 +226,6 @@ contract PatientDiagnosis is PatientRecords {
     * @return _date The uploaded timestamp
     */
     function viewDiagnostic(address _account, uint256 _date) public nonlyStopped onlyPatient returns (
-        string memory _nombre,
-        string memory _aPat,
-        string memory _aMat,
         string memory _comorb,
         uint256 _age,
         uint256 _weight,
@@ -281,24 +248,46 @@ contract PatientDiagnosis is PatientRecords {
         emit DiagnosticRetrieve(
             _account,
             msg.sender,
-            diagnostico.nombre,
-            diagnostico.aPat,
-            diagnostico.aMat,
             diagnostico.comorb,
             diagnostico.age,
             diagnostico.weight,
             diagnostico.diagnostic,
             diagnostico.observations
         );
-        _nombre = diagnostico.nombre;
-        _aPat = diagnostico.aPat;
-        _aMat = diagnostico.aMat;
         _comorb = diagnostico.comorb;
         _age = diagnostico.age;
         _weight = diagnostico.weight;
         _diagnostic = diagnostico.diagnostic;
         _observations = diagnostico.observations;
         _estudio = diagnostico.estudio;
+    }
+
+    /**
+    * @notice Returns el Diagnóstico en el índice del propietario de la dirección.
+    * @dev Controlado por el switch
+    * @param _account The owner address
+    * @return _date The uploaded timestamp
+    */
+    function extendedViewDiagnostic(
+        address _account
+        )
+    public nonlyStopped onlyPatient returns (uint256[] memory _dates) {
+        require(_account != address(0));
+        if (isMedic(msg.sender) || isPatient(msg.sender)) {
+            _dates = extendedFileToPatientDiagnosis[_account];
+        } else if (isPatient(msg.sender)) {
+            require(msg.sender == _account);
+            _dates = extendedFileToPatientDiagnosis[_account];
+        } else if (isMedic(msg.sender)) {
+            require(msg.sender != _account);
+            _dates = extendedFileToPatientDiagnosis[_account];
+        }
+
+        emit FullDiagnosticRetrieve(
+            _account,
+            msg.sender,
+            _dates
+        );
     }
 
     /**
@@ -313,6 +302,7 @@ contract PatientDiagnosis is PatientRecords {
         //require(fileToPatientDiagnosis[_account][_date] != false);
 
         delete fileToPatientDiagnosis[_account][_date];
+        //delete extendedFileToPatientDiagnosis[_account];
 
         emit DiagnosticDelete(
             _account,
