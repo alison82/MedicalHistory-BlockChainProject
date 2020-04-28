@@ -172,7 +172,7 @@ contract UserRoles {
      * @dev Función pública para asignar paciente
      * @param account Cuenta que será asignada como paciente
      */
-    function addPatient(address account) public onlyAssistant {
+    function addPatient(address account) public {
         _addPatient(account);
     }
 
