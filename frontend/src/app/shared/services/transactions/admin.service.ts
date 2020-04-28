@@ -46,37 +46,38 @@ export class AdminService {
   }
 
   private getSize(){
-    return Number(this.registerContract.getPendingLength(
-      {
-        from: this.contractInstance.getCurrentAddress()
-      }
-    ).toFixed());
+    return this.registerContract.getPendingLength();
   }
 
-  async getHash(position): Promise<any>{
-    return this.registerContract.getPendingRequest(
-      position,
-      {
-        from: this.contractInstance.getCurrentAddress()
-      }
-    );
+  private async getHash(position): Promise<any>{
+    return this.registerContract.getPendingRequest(position);
   }
 
   private getDoctorData(hashString): Doctor{
-    var json = this.ipfs.catJSON(hashString);
-    return JSON.parse(json);
+    return this.ipfs.catJSON(hashString);
+    //console.log(json);
+    //return JSON.parse(json);
   }
 
   async getPendingRequest():Promise<Doctor[]>{
     this.registerContract = await this.contractInstance.getContract(Contracts.PendingRecords);
     var arraySize = await this.getSize();
+    arraySize=arraySize.toString();
     console.log(arraySize);
     let doctor_list : Doctor[] = [];
-    for (let i = 0; i < arraySize; i++) {
+    for (let i = 0; i < Number(arraySize); i++) {
       var current_doctor = new Doctor;
       var hash_String = await this.getHash(i);
-      current_doctor= await this.getDoctorData(hash_String);
-      console.log(current_doctor);
+      var json= await this.getDoctorData(hash_String);
+      //console.log(json);
+      current_doctor.name = json.name;
+      current_doctor.surname = json.surname;
+      current_doctor.secondname = json.secondname;
+      current_doctor.email = json.email;
+      current_doctor.address = json.address;
+      current_doctor.specialty = json.specialty;
+      current_doctor.cedula = json.cedula;
+
       doctor_list.push(current_doctor);
     }
     console.log(doctor_list);
@@ -84,3 +85,8 @@ export class AdminService {
   }
 
 }
+
+
+/*
+
+*/

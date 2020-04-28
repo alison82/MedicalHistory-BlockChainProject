@@ -24,10 +24,9 @@ contract PendingRecords
     * @notice Regresa la longitud del arreglo de solicitudes pendientes
     * @return Longitud de MedicPending
     */
-    function getPendingLength() public view returns(uint count) {
-        count = MedicPending.length;
+    function getPendingLength() public view returns(string memory count) {
+        count = uintToString(MedicPending.length);
         //emit lenMedicRecord(count);
-        return count;
     }
 
     /**
