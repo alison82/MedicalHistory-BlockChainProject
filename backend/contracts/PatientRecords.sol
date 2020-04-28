@@ -1,6 +1,6 @@
-pragma solidity 0.5.16;
+pragma solidity ^0.5.16;
 
-import "./PendingRecords.sol";
+import "./acceso/UserRoles.sol";
 
 /**
  * @title Smart Contract de Historial de pacientes - Control de Estudio basado en rol.
@@ -11,13 +11,14 @@ import "./PendingRecords.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
-contract PatientRecords is PendingRecords {
+contract PatientRecords is UserRoles {
     /**
      * @title Representa un Estudio el cual le pertenece a un paciente.
      */
     struct Estudio {
         string descript;
         uint256 uploadDate;
+        bool isEstudio;
     }
 
     /**
@@ -108,7 +109,8 @@ contract PatientRecords is PendingRecords {
 
         Estudio memory _estudio = Estudio(
             _descript,
-            _uploadDate
+            _uploadDate,
+            true
         );
 
         ipfsHashToEstudio[_ipfsHash] = _estudio;
@@ -185,7 +187,7 @@ contract PatientRecords is PendingRecords {
         require(_account != 0x0000000000000000000000000000000000000000);
         require(bytes(_ipfsHash).length == 46);
 
-        delete ipfsHashToEstudio[_ipfsHash];
+        ipfsHashToEstudio[_ipfsHash].isEstudio = false;
 
         emit RecordDelete(
             _account,
