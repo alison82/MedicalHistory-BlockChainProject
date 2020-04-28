@@ -1,0 +1,3262 @@
+{
+  "contractName": "PendingRecords",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_hash",
+          "type": "string"
+        }
+      ],
+      "name": "newMedicRecord",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_hash",
+          "type": "string"
+        }
+      ],
+      "name": "removeMedicRecord",
+      "type": "event"
+    },
+    {
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "fallback"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "MedicPending",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_hashString",
+          "type": "string"
+        }
+      ],
+      "name": "addMedicRecord",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getPendingLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "count",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "_index",
+          "type": "uint32"
+        }
+      ],
+      "name": "getPendingRequest",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "_hashString",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "_index",
+          "type": "uint32"
+        }
+      ],
+      "name": "removePending",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_hash\",\"type\":\"string\"}],\"name\":\"newMedicRecord\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_hash\",\"type\":\"string\"}],\"name\":\"removeMedicRecord\",\"type\":\"event\"},{\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"fallback\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"MedicPending\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_hashString\",\"type\":\"string\"}],\"name\":\"addMedicRecord\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getPendingLength\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_index\",\"type\":\"uint32\"}],\"name\":\"getPendingRequest\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_hashString\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_index\",\"type\":\"uint32\"}],\"name\":\"removePending\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"addMedicRecord(string)\":{\"params\":{\"_hashString\":\"cadena de IPFS que contiene el archivo de registro\"}},\"getPendingLength()\":{\"return\":\"Longitud de MedicPending\"},\"getPendingRequest(uint32)\":{\"params\":{\"_index\":\"Indice a consultar\"},\"return\":\"Cadena dentro del indice indicado en MedicPending\"},\"removePending(uint32)\":{\"details\":\"Hace un swap para no dejar espacios en blanco\",\"params\":{\"_index\":\"The owner address\"},\"return\":\"booleano diciendo si fue exitoso o no\"}}},\"userdoc\":{\"methods\":{\"addMedicRecord(string)\":{\"notice\":\"Guarda el hash de un registro del medico\"},\"getPendingLength()\":{\"notice\":\"Regresa la longitud del arreglo de solicitudes pendientes\"},\"getPendingRequest(uint32)\":{\"notice\":\"Regresa la cadena hash de un indice dado\"},\"removePending(uint32)\":{\"notice\":\"Remueve el elemento del indice indicado\"}}}},\"settings\":{\"compilationTarget\":{\"/home/francisco/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol\":\"PendingRecords\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/francisco/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol\":{\"keccak256\":\"0xb2c05734076b6a20922c38e8cb9c83240f42715127198175b202e5aaade6ddff\",\"urls\":[\"bzz-raw://c00fbce0e013b50155aa3c9c6c780c71a4c49cde0e1d42fd8b73fb550cb1c166\",\"dweb:/ipfs/QmWBUxiDm8pzjMbAYxpmjhyanTYWyTr2WqUu3CK1F6kYiL\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610974806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c8063510b2f61146100595780635acec4ab146101145780637c619d69146101c15780639b2ae4c614610268578063beea194b14610286575b005b6101126004803603602081101561006f57600080fd5b810190808035906020019064010000000081111561008c57600080fd5b82018360208201111561009e57600080fd5b803590602001918460018302840111640100000000831117156100c057600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102d2565b005b6101466004803603602081101561012a57600080fd5b81019080803563ffffffff1690602001909291905050506103b0565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561018657808201518184015260208101905061016b565b50505050905090810190601f1680156101b35780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6101ed600480360360208110156101d757600080fd5b8101908080359060200190929190505050610472565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561022d578082015181840152602081019050610212565b50505050905090810190601f16801561025a5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61027061052b565b6040518082815260200191505060405180910390f35b6102b86004803603602081101561029c57600080fd5b81019080803563ffffffff16906020019092919050505061053a565b604051808215151515815260200191505060405180910390f35b600081908060018154018082558091505090600182039060005260206000200160009091929091909150908051906020019061030f929190610773565b50507f5e332f3731dadf621e80f98267e93056826ab706140072569d6b4e9c56a4b6b8816040518080602001828103825283818151815260200191508051906020019080838360005b83811015610373578082015181840152602081019050610358565b50505050905090810190601f1680156103a05780820380516001836020036101000a031916815260200191505b509250505060405180910390a150565b606060008263ffffffff16815481106103c557fe5b906000526020600020018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104635780601f1061043857610100808354040283529160200191610463565b820191906000526020600020905b81548152906001019060200180831161044657829003601f168201915b50505050509050809050919050565b6000818154811061047f57fe5b906000526020600020016000915090508054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105235780601f106104f857610100808354040283529160200191610523565b820191906000526020600020905b81548152906001019060200180831161050657829003601f168201915b505050505081565b60008080549050905080905090565b600080805490508263ffffffff1610610556576000905061076e565b606060008363ffffffff168154811061056b57fe5b906000526020600020018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156106095780601f106105de57610100808354040283529160200191610609565b820191906000526020600020905b8154815290600101906020018083116105ec57829003601f168201915b5050505050905060008363ffffffff1690505b60016000805490500381101561068a576000600182018154811061063c57fe5b906000526020600020016000828154811061065357fe5b90600052602060002001908054600181600116156101000203166002900461067c9291906107f3565b50808060010191505061061c565b506000600160008054905003815481106106a057fe5b9060005260206000200160006106b6919061087a565b60008054809190600190036106cb91906108c2565b507ff2dda0b2a2118242536b96d5f9d1e2d0ea2004859866cc4664f249fd47842551816040518080602001828103825283818151815260200191508051906020019080838360005b8381101561072e578082015181840152602081019050610713565b50505050905090810190601f16801561075b5780820380516001836020036101000a031916815260200191505b509250505060405180910390a160019150505b919050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106107b457805160ff19168380011785556107e2565b828001600101855582156107e2579182015b828111156107e15782518255916020019190600101906107c6565b5b5090506107ef91906108ee565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061082c5780548555610869565b8280016001018555821561086957600052602060002091601f016020900482015b8281111561086857825482559160010191906001019061084d565b5b50905061087691906108ee565b5090565b50805460018160011615610100020316600290046000825580601f106108a057506108bf565b601f0160209004906000526020600020908101906108be91906108ee565b5b50565b8154818355818111156108e9578183600052602060002091820191016108e89190610913565b5b505050565b61091091905b8082111561090c5760008160009055506001016108f4565b5090565b90565b61093c91905b80821115610938576000818161092f919061087a565b50600101610919565b5090565b9056fea265627a7a723158208111c8df74950b50a50a245ef086ad319ec908243306cbdee6a2adceaa8375c664736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c8063510b2f61146100595780635acec4ab146101145780637c619d69146101c15780639b2ae4c614610268578063beea194b14610286575b005b6101126004803603602081101561006f57600080fd5b810190808035906020019064010000000081111561008c57600080fd5b82018360208201111561009e57600080fd5b803590602001918460018302840111640100000000831117156100c057600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102d2565b005b6101466004803603602081101561012a57600080fd5b81019080803563ffffffff1690602001909291905050506103b0565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561018657808201518184015260208101905061016b565b50505050905090810190601f1680156101b35780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6101ed600480360360208110156101d757600080fd5b8101908080359060200190929190505050610472565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561022d578082015181840152602081019050610212565b50505050905090810190601f16801561025a5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61027061052b565b6040518082815260200191505060405180910390f35b6102b86004803603602081101561029c57600080fd5b81019080803563ffffffff16906020019092919050505061053a565b604051808215151515815260200191505060405180910390f35b600081908060018154018082558091505090600182039060005260206000200160009091929091909150908051906020019061030f929190610773565b50507f5e332f3731dadf621e80f98267e93056826ab706140072569d6b4e9c56a4b6b8816040518080602001828103825283818151815260200191508051906020019080838360005b83811015610373578082015181840152602081019050610358565b50505050905090810190601f1680156103a05780820380516001836020036101000a031916815260200191505b509250505060405180910390a150565b606060008263ffffffff16815481106103c557fe5b906000526020600020018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104635780601f1061043857610100808354040283529160200191610463565b820191906000526020600020905b81548152906001019060200180831161044657829003601f168201915b50505050509050809050919050565b6000818154811061047f57fe5b906000526020600020016000915090508054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105235780601f106104f857610100808354040283529160200191610523565b820191906000526020600020905b81548152906001019060200180831161050657829003601f168201915b505050505081565b60008080549050905080905090565b600080805490508263ffffffff1610610556576000905061076e565b606060008363ffffffff168154811061056b57fe5b906000526020600020018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156106095780601f106105de57610100808354040283529160200191610609565b820191906000526020600020905b8154815290600101906020018083116105ec57829003601f168201915b5050505050905060008363ffffffff1690505b60016000805490500381101561068a576000600182018154811061063c57fe5b906000526020600020016000828154811061065357fe5b90600052602060002001908054600181600116156101000203166002900461067c9291906107f3565b50808060010191505061061c565b506000600160008054905003815481106106a057fe5b9060005260206000200160006106b6919061087a565b60008054809190600190036106cb91906108c2565b507ff2dda0b2a2118242536b96d5f9d1e2d0ea2004859866cc4664f249fd47842551816040518080602001828103825283818151815260200191508051906020019080838360005b8381101561072e578082015181840152602081019050610713565b50505050905090810190601f16801561075b5780820380516001836020036101000a031916815260200191505b509250505060405180910390a160019150505b919050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106107b457805160ff19168380011785556107e2565b828001600101855582156107e2579182015b828111156107e15782518255916020019190600101906107c6565b5b5090506107ef91906108ee565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061082c5780548555610869565b8280016001018555821561086957600052602060002091601f016020900482015b8281111561086857825482559160010191906001019061084d565b5b50905061087691906108ee565b5090565b50805460018160011615610100020316600290046000825580601f106108a057506108bf565b601f0160209004906000526020600020908101906108be91906108ee565b5b50565b8154818355818111156108e9578183600052602060002091820191016108e89190610913565b5b505050565b61091091905b8082111561090c5760008160009055506001016108f4565b5090565b90565b61093c91905b80821115610938576000818161092f919061087a565b50600101610919565b5090565b9056fea265627a7a723158208111c8df74950b50a50a245ef086ad319ec908243306cbdee6a2adceaa8375c664736f6c63430005100032",
+  "sourceMap": "25:2156:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:2156:5;;;;;;;",
+  "deployedSourceMap": "25:2156:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:2156:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;499:146;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;499:146:5;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;499:146:5;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;499:146:5;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;499:146:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;499:146:5;;;;;;;;;;;;;;;:::i;:::-;;1120:211;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1120:211:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1120:211:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;55:28;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;55:28:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;55:28:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;777:164;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1553:460;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1553:460:5;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;499:146;566:12;584:11;566:30;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;566:30:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;611:27;626:11;611:27;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;611:27:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;499:146;:::o;1120:211::-;1182:25;1232:12;1245:6;1232:20;;;;;;;;;;;;;;;;;1218:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1313:11;1306:18;;1120:211;;;:::o;55:28::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;777:164::-;825:10;855:12;:19;;;;847:27;;929:5;922:12;;777:164;:::o;1553:460::-;1606:12;1643;:19;;;;1633:6;:29;;;1629:47;;1671:5;1664:12;;;;1629:47;1687:26;1716:12;1729:6;1716:20;;;;;;;;;;;;;;;;;1687:49;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1751:6;1760;1751:15;;;;1746:111;1790:1;1770:12;:19;;;;:21;1768:1;:23;1746:111;;;1829:12;1844:1;1842;:3;1829:17;;;;;;;;;;;;;;;1811:12;1824:1;1811:15;;;;;;;;;;;;;;;:35;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1793:3;;;;;;;1746:111;;;;1873:12;1906:1;1886:12;:19;;;;:21;1873:35;;;;;;;;;;;;;;;;1866:42;;;;:::i;:::-;1918:12;:21;;;;;;;;;;;;:::i;:::-;;1954:31;1972:12;1954:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1954:31:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2002:4;1995:11;;;1553:460;;;;:::o;25:2156::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;:::o",
+  "source": "pragma solidity 0.5.16;\n\ncontract PendingRecords\n{\n    string[] public MedicPending;\n\n    /**\n    * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.\n    * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.\n    */\n    function() external {}\n\n\n    /**\n    * @notice Guarda el hash de un registro del medico\n    * @param _hashString cadena de IPFS que contiene el archivo de registro\n    */\n    function addMedicRecord(string memory _hashString) public{\n        MedicPending.push(_hashString);\n        emit newMedicRecord(_hashString);\n    }\n\n    /**\n    * @notice Regresa la longitud del arreglo de solicitudes pendientes\n    * @return Longitud de MedicPending\n    */\n    function getPendingLength() public view returns(uint count) {\n        count = MedicPending.length;\n        //emit lenMedicRecord(count);\n        return count;\n    }\n\n    /**\n    * @notice Regresa la cadena hash de un indice dado\n    * @param _index Indice a consultar\n    * @return Cadena dentro del indice indicado en MedicPending\n    */\n    function getPendingRequest(uint32 _index) public view returns(string memory _hashString){\n        _hashString = MedicPending[_index];\n        //emit getMedicRecord(_hashString);\n        return _hashString;\n    }\n\n    /**\n    * @notice Remueve el elemento del indice indicado\n    * @dev Hace un swap para no dejar espacios en blanco\n    * @param _index The owner address\n    * @return booleano diciendo si fue exitoso o no\n    */\n    function removePending(uint32 _index) public returns(bool success){\n        if (_index >= MedicPending.length) return false;\n\n        string memory removed_hash = MedicPending[_index];\n        for (uint i = _index; i<MedicPending.length-1; i++){\n            MedicPending[i] = MedicPending[i+1];\n        }\n        delete MedicPending[MedicPending.length-1];\n        MedicPending.length--;\n        emit removeMedicRecord(removed_hash);\n        return true;\n    }\n\n    event newMedicRecord(string _hash);\n    event removeMedicRecord(string _hash);\n    //event lenMedicRecord(uint _len);\n    //event getMedicRecord(string _hash);\n\n}",
+  "sourcePath": "/home/francisco/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol",
+  "ast": {
+    "absolutePath": "/home/francisco/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol",
+    "exportedSymbols": {
+      "PendingRecords": [
+        2661
+      ]
+    },
+    "id": 2662,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2535,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2661,
+        "linearizedBaseContracts": [
+          2661
+        ],
+        "name": "PendingRecords",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2538,
+            "name": "MedicPending",
+            "nodeType": "VariableDeclaration",
+            "scope": 2661,
+            "src": "55:28:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+              "typeString": "string[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 2536,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "55:6:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "id": 2537,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "55:8:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                "typeString": "string[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2541,
+              "nodeType": "Block",
+              "src": "344:2:5",
+              "statements": []
+            },
+            "documentation": "@dev Está función será llamada para todos los mensajes que sean enviados a este contrado.\nEnviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.",
+            "id": 2542,
+            "implemented": true,
+            "kind": "fallback",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2539,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "332:2:5"
+            },
+            "returnParameters": {
+              "id": 2540,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "344:0:5"
+            },
+            "scope": 2661,
+            "src": "324:22:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 2557,
+              "nodeType": "Block",
+              "src": "556:89:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2550,
+                        "name": "_hashString",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2544,
+                        "src": "584:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2547,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "566:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2549,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "566:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_string_storage_$returns$_t_uint256_$",
+                        "typeString": "function (string storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 2551,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "566:30:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2552,
+                  "nodeType": "ExpressionStatement",
+                  "src": "566:30:5"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2554,
+                        "name": "_hashString",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2544,
+                        "src": "626:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 2553,
+                      "name": "newMedicRecord",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2656,
+                      "src": "611:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 2555,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "611:27:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2556,
+                  "nodeType": "EmitStatement",
+                  "src": "606:32:5"
+                }
+              ]
+            },
+            "documentation": "@notice Guarda el hash de un registro del medico\n@param _hashString cadena de IPFS que contiene el archivo de registro",
+            "id": 2558,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addMedicRecord",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2545,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2544,
+                  "name": "_hashString",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2558,
+                  "src": "523:25:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2543,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "523:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "522:27:5"
+            },
+            "returnParameters": {
+              "id": 2546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "556:0:5"
+            },
+            "scope": 2661,
+            "src": "499:146:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2570,
+              "nodeType": "Block",
+              "src": "837:104:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2566,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2563,
+                      "name": "count",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2561,
+                      "src": "847:5:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2564,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "855:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2565,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "855:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "847:27:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2567,
+                  "nodeType": "ExpressionStatement",
+                  "src": "847:27:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2568,
+                    "name": "count",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2561,
+                    "src": "929:5:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 2562,
+                  "id": 2569,
+                  "nodeType": "Return",
+                  "src": "922:12:5"
+                }
+              ]
+            },
+            "documentation": "@notice Regresa la longitud del arreglo de solicitudes pendientes\n@return Longitud de MedicPending",
+            "id": 2571,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPendingLength",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2559,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "802:2:5"
+            },
+            "returnParameters": {
+              "id": 2562,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2561,
+                  "name": "count",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2571,
+                  "src": "825:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2560,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "825:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "824:12:5"
+            },
+            "scope": 2661,
+            "src": "777:164:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2586,
+              "nodeType": "Block",
+              "src": "1208:123:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2582,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2578,
+                      "name": "_hashString",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2576,
+                      "src": "1218:11:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 2579,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1232:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2581,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 2580,
+                        "name": "_index",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2573,
+                        "src": "1245:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1232:20:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "src": "1218:34:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "id": 2583,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1218:34:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2584,
+                    "name": "_hashString",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2576,
+                    "src": "1313:11:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "functionReturnParameters": 2577,
+                  "id": 2585,
+                  "nodeType": "Return",
+                  "src": "1306:18:5"
+                }
+              ]
+            },
+            "documentation": "@notice Regresa la cadena hash de un indice dado\n@param _index Indice a consultar\n@return Cadena dentro del indice indicado en MedicPending",
+            "id": 2587,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPendingRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2574,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2573,
+                  "name": "_index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2587,
+                  "src": "1147:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 2572,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1147:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1146:15:5"
+            },
+            "returnParameters": {
+              "id": 2577,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2576,
+                  "name": "_hashString",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2587,
+                  "src": "1182:25:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2575,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1182:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1181:27:5"
+            },
+            "scope": 2661,
+            "src": "1120:211:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2651,
+              "nodeType": "Block",
+              "src": "1619:394:5",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 2597,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 2594,
+                      "name": "_index",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2589,
+                      "src": "1633:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2595,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1643:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2596,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1643:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1633:29:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 2600,
+                  "nodeType": "IfStatement",
+                  "src": "1629:47:5",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "hexValue": "66616c7365",
+                      "id": 2598,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1671:5:5",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "functionReturnParameters": 2593,
+                    "id": 2599,
+                    "nodeType": "Return",
+                    "src": "1664:12:5"
+                  }
+                },
+                {
+                  "assignments": [
+                    2602
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2602,
+                      "name": "removed_hash",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2651,
+                      "src": "1687:26:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string"
+                      },
+                      "typeName": {
+                        "id": 2601,
+                        "name": "string",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1687:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage_ptr",
+                          "typeString": "string"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2606,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 2603,
+                      "name": "MedicPending",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2538,
+                      "src": "1716:12:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                        "typeString": "string storage ref[] storage ref"
+                      }
+                    },
+                    "id": 2605,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 2604,
+                      "name": "_index",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2589,
+                      "src": "1729:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1716:20:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1687:49:5"
+                },
+                {
+                  "body": {
+                    "id": 2630,
+                    "nodeType": "Block",
+                    "src": "1797:60:5",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2628,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 2620,
+                              "name": "MedicPending",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2538,
+                              "src": "1811:12:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                                "typeString": "string storage ref[] storage ref"
+                              }
+                            },
+                            "id": 2622,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 2621,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2608,
+                              "src": "1824:1:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1811:15:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 2623,
+                              "name": "MedicPending",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2538,
+                              "src": "1829:12:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                                "typeString": "string storage ref[] storage ref"
+                              }
+                            },
+                            "id": 2627,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "id": 2626,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 2624,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 2608,
+                                "src": "1842:1:5",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "+",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "hexValue": "31",
+                                "id": 2625,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "number",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1844:1:5",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_rational_1_by_1",
+                                  "typeString": "int_const 1"
+                                },
+                                "value": "1"
+                              },
+                              "src": "1842:3:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1829:17:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "src": "1811:35:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "id": 2629,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1811:35:5"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 2616,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 2611,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2608,
+                      "src": "1768:1:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 2615,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2612,
+                          "name": "MedicPending",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2538,
+                          "src": "1770:12:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                            "typeString": "string storage ref[] storage ref"
+                          }
+                        },
+                        "id": 2613,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "length",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1770:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "-",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 2614,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1790:1:5",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "1770:21:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1768:23:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 2631,
+                  "initializationExpression": {
+                    "assignments": [
+                      2608
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 2608,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 2631,
+                        "src": "1751:6:5",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 2607,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1751:4:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 2610,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "id": 2609,
+                      "name": "_index",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2589,
+                      "src": "1760:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1751:15:5"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 2618,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "1793:3:5",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 2617,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2608,
+                        "src": "1793:1:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 2619,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1793:3:5"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1746:111:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2638,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "delete",
+                    "prefix": true,
+                    "src": "1866:42:5",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 2632,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1873:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2637,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 2636,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 2633,
+                            "name": "MedicPending",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2538,
+                            "src": "1886:12:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                              "typeString": "string storage ref[] storage ref"
+                            }
+                          },
+                          "id": 2634,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "length",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1886:19:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "31",
+                          "id": 2635,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1906:1:5",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "src": "1886:21:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1873:35:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2639,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1866:42:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2643,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "--",
+                    "prefix": false,
+                    "src": "1918:21:5",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2640,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1918:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2642,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1918:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2644,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1918:21:5"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2646,
+                        "name": "removed_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2602,
+                        "src": "1972:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 2645,
+                      "name": "removeMedicRecord",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2660,
+                      "src": "1954:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 2647,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1954:31:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2648,
+                  "nodeType": "EmitStatement",
+                  "src": "1949:36:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "74727565",
+                    "id": 2649,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "2002:4:5",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 2593,
+                  "id": 2650,
+                  "nodeType": "Return",
+                  "src": "1995:11:5"
+                }
+              ]
+            },
+            "documentation": "@notice Remueve el elemento del indice indicado\n@dev Hace un swap para no dejar espacios en blanco\n@param _index The owner address\n@return booleano diciendo si fue exitoso o no",
+            "id": 2652,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removePending",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2590,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2589,
+                  "name": "_index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2652,
+                  "src": "1576:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 2588,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1576:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1575:15:5"
+            },
+            "returnParameters": {
+              "id": 2593,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2592,
+                  "name": "success",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2652,
+                  "src": "1606:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 2591,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1606:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1605:14:5"
+            },
+            "scope": 2661,
+            "src": "1553:460:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 2656,
+            "name": "newMedicRecord",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2655,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2654,
+                  "indexed": false,
+                  "name": "_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2656,
+                  "src": "2040:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2653,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2040:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2039:14:5"
+            },
+            "src": "2019:35:5"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 2660,
+            "name": "removeMedicRecord",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2659,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2658,
+                  "indexed": false,
+                  "name": "_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2660,
+                  "src": "2083:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2657,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2083:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2082:14:5"
+            },
+            "src": "2059:38:5"
+          }
+        ],
+        "scope": 2662,
+        "src": "25:2156:5"
+      }
+    ],
+    "src": "0:2181:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/francisco/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol",
+    "exportedSymbols": {
+      "PendingRecords": [
+        2661
+      ]
+    },
+    "id": 2662,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2535,
+        "literals": [
+          "solidity",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2661,
+        "linearizedBaseContracts": [
+          2661
+        ],
+        "name": "PendingRecords",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 2538,
+            "name": "MedicPending",
+            "nodeType": "VariableDeclaration",
+            "scope": 2661,
+            "src": "55:28:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+              "typeString": "string[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 2536,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "55:6:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "id": 2537,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "55:8:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                "typeString": "string[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2541,
+              "nodeType": "Block",
+              "src": "344:2:5",
+              "statements": []
+            },
+            "documentation": "@dev Está función será llamada para todos los mensajes que sean enviados a este contrado.\nEnviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.",
+            "id": 2542,
+            "implemented": true,
+            "kind": "fallback",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2539,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "332:2:5"
+            },
+            "returnParameters": {
+              "id": 2540,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "344:0:5"
+            },
+            "scope": 2661,
+            "src": "324:22:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 2557,
+              "nodeType": "Block",
+              "src": "556:89:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2550,
+                        "name": "_hashString",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2544,
+                        "src": "584:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2547,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "566:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2549,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "566:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_string_storage_$returns$_t_uint256_$",
+                        "typeString": "function (string storage ref) returns (uint256)"
+                      }
+                    },
+                    "id": 2551,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "566:30:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2552,
+                  "nodeType": "ExpressionStatement",
+                  "src": "566:30:5"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2554,
+                        "name": "_hashString",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2544,
+                        "src": "626:11:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 2553,
+                      "name": "newMedicRecord",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2656,
+                      "src": "611:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 2555,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "611:27:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2556,
+                  "nodeType": "EmitStatement",
+                  "src": "606:32:5"
+                }
+              ]
+            },
+            "documentation": "@notice Guarda el hash de un registro del medico\n@param _hashString cadena de IPFS que contiene el archivo de registro",
+            "id": 2558,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addMedicRecord",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2545,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2544,
+                  "name": "_hashString",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2558,
+                  "src": "523:25:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2543,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "523:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "522:27:5"
+            },
+            "returnParameters": {
+              "id": 2546,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "556:0:5"
+            },
+            "scope": 2661,
+            "src": "499:146:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2570,
+              "nodeType": "Block",
+              "src": "837:104:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2566,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2563,
+                      "name": "count",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2561,
+                      "src": "847:5:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2564,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "855:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2565,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "855:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "847:27:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2567,
+                  "nodeType": "ExpressionStatement",
+                  "src": "847:27:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2568,
+                    "name": "count",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2561,
+                    "src": "929:5:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 2562,
+                  "id": 2569,
+                  "nodeType": "Return",
+                  "src": "922:12:5"
+                }
+              ]
+            },
+            "documentation": "@notice Regresa la longitud del arreglo de solicitudes pendientes\n@return Longitud de MedicPending",
+            "id": 2571,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPendingLength",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2559,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "802:2:5"
+            },
+            "returnParameters": {
+              "id": 2562,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2561,
+                  "name": "count",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2571,
+                  "src": "825:10:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2560,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "825:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "824:12:5"
+            },
+            "scope": 2661,
+            "src": "777:164:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2586,
+              "nodeType": "Block",
+              "src": "1208:123:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2582,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 2578,
+                      "name": "_hashString",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2576,
+                      "src": "1218:11:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 2579,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1232:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2581,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 2580,
+                        "name": "_index",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2573,
+                        "src": "1245:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint32",
+                          "typeString": "uint32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1232:20:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "src": "1218:34:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "id": 2583,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1218:34:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2584,
+                    "name": "_hashString",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2576,
+                    "src": "1313:11:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "functionReturnParameters": 2577,
+                  "id": 2585,
+                  "nodeType": "Return",
+                  "src": "1306:18:5"
+                }
+              ]
+            },
+            "documentation": "@notice Regresa la cadena hash de un indice dado\n@param _index Indice a consultar\n@return Cadena dentro del indice indicado en MedicPending",
+            "id": 2587,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPendingRequest",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2574,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2573,
+                  "name": "_index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2587,
+                  "src": "1147:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 2572,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1147:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1146:15:5"
+            },
+            "returnParameters": {
+              "id": 2577,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2576,
+                  "name": "_hashString",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2587,
+                  "src": "1182:25:5",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2575,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1182:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1181:27:5"
+            },
+            "scope": 2661,
+            "src": "1120:211:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2651,
+              "nodeType": "Block",
+              "src": "1619:394:5",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 2597,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 2594,
+                      "name": "_index",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2589,
+                      "src": "1633:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2595,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1643:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2596,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1643:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1633:29:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 2600,
+                  "nodeType": "IfStatement",
+                  "src": "1629:47:5",
+                  "trueBody": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "hexValue": "66616c7365",
+                      "id": 2598,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1671:5:5",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "functionReturnParameters": 2593,
+                    "id": 2599,
+                    "nodeType": "Return",
+                    "src": "1664:12:5"
+                  }
+                },
+                {
+                  "assignments": [
+                    2602
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2602,
+                      "name": "removed_hash",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2651,
+                      "src": "1687:26:5",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string"
+                      },
+                      "typeName": {
+                        "id": 2601,
+                        "name": "string",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1687:6:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_storage_ptr",
+                          "typeString": "string"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2606,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 2603,
+                      "name": "MedicPending",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2538,
+                      "src": "1716:12:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                        "typeString": "string storage ref[] storage ref"
+                      }
+                    },
+                    "id": 2605,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 2604,
+                      "name": "_index",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2589,
+                      "src": "1729:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1716:20:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1687:49:5"
+                },
+                {
+                  "body": {
+                    "id": 2630,
+                    "nodeType": "Block",
+                    "src": "1797:60:5",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2628,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 2620,
+                              "name": "MedicPending",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2538,
+                              "src": "1811:12:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                                "typeString": "string storage ref[] storage ref"
+                              }
+                            },
+                            "id": 2622,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 2621,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2608,
+                              "src": "1824:1:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "1811:15:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 2623,
+                              "name": "MedicPending",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 2538,
+                              "src": "1829:12:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                                "typeString": "string storage ref[] storage ref"
+                              }
+                            },
+                            "id": 2627,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "id": 2626,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "leftExpression": {
+                                "argumentTypes": null,
+                                "id": 2624,
+                                "name": "i",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 2608,
+                                "src": "1842:1:5",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "nodeType": "BinaryOperation",
+                              "operator": "+",
+                              "rightExpression": {
+                                "argumentTypes": null,
+                                "hexValue": "31",
+                                "id": 2625,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "number",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1844:1:5",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_rational_1_by_1",
+                                  "typeString": "int_const 1"
+                                },
+                                "value": "1"
+                              },
+                              "src": "1842:3:5",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1829:17:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "src": "1811:35:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "id": 2629,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1811:35:5"
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 2616,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 2611,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2608,
+                      "src": "1768:1:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 2615,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 2612,
+                          "name": "MedicPending",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2538,
+                          "src": "1770:12:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                            "typeString": "string storage ref[] storage ref"
+                          }
+                        },
+                        "id": 2613,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "length",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1770:19:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "-",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 2614,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1790:1:5",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "1770:21:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1768:23:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 2631,
+                  "initializationExpression": {
+                    "assignments": [
+                      2608
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 2608,
+                        "name": "i",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 2631,
+                        "src": "1751:6:5",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 2607,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "1751:4:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 2610,
+                    "initialValue": {
+                      "argumentTypes": null,
+                      "id": 2609,
+                      "name": "_index",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2589,
+                      "src": "1760:6:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "1751:15:5"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 2618,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "1793:3:5",
+                      "subExpression": {
+                        "argumentTypes": null,
+                        "id": 2617,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2608,
+                        "src": "1793:1:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 2619,
+                    "nodeType": "ExpressionStatement",
+                    "src": "1793:3:5"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "1746:111:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2638,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "delete",
+                    "prefix": true,
+                    "src": "1866:42:5",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 2632,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1873:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2637,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 2636,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 2633,
+                            "name": "MedicPending",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2538,
+                            "src": "1886:12:5",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                              "typeString": "string storage ref[] storage ref"
+                            }
+                          },
+                          "id": 2634,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "length",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1886:19:5",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "-",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "31",
+                          "id": 2635,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1906:1:5",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "src": "1886:21:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1873:35:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2639,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1866:42:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 2643,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "--",
+                    "prefix": false,
+                    "src": "1918:21:5",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 2640,
+                        "name": "MedicPending",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2538,
+                        "src": "1918:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
+                          "typeString": "string storage ref[] storage ref"
+                        }
+                      },
+                      "id": 2642,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1918:19:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2644,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1918:21:5"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 2646,
+                        "name": "removed_hash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2602,
+                        "src": "1972:12:5",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 2645,
+                      "name": "removeMedicRecord",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2660,
+                      "src": "1954:17:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (string memory)"
+                      }
+                    },
+                    "id": 2647,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1954:31:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 2648,
+                  "nodeType": "EmitStatement",
+                  "src": "1949:36:5"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "74727565",
+                    "id": 2649,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "2002:4:5",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 2593,
+                  "id": 2650,
+                  "nodeType": "Return",
+                  "src": "1995:11:5"
+                }
+              ]
+            },
+            "documentation": "@notice Remueve el elemento del indice indicado\n@dev Hace un swap para no dejar espacios en blanco\n@param _index The owner address\n@return booleano diciendo si fue exitoso o no",
+            "id": 2652,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removePending",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2590,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2589,
+                  "name": "_index",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2652,
+                  "src": "1576:13:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 2588,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1576:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1575:15:5"
+            },
+            "returnParameters": {
+              "id": 2593,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2592,
+                  "name": "success",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2652,
+                  "src": "1606:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 2591,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1606:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1605:14:5"
+            },
+            "scope": 2661,
+            "src": "1553:460:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 2656,
+            "name": "newMedicRecord",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2655,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2654,
+                  "indexed": false,
+                  "name": "_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2656,
+                  "src": "2040:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2653,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2040:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2039:14:5"
+            },
+            "src": "2019:35:5"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 2660,
+            "name": "removeMedicRecord",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2659,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2658,
+                  "indexed": false,
+                  "name": "_hash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2660,
+                  "src": "2083:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2657,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2083:6:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2082:14:5"
+            },
+            "src": "2059:38:5"
+          }
+        ],
+        "scope": 2662,
+        "src": "25:2156:5"
+      }
+    ],
+    "src": "0:2181:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {
+        "0x5e332f3731dadf621e80f98267e93056826ab706140072569d6b4e9c56a4b6b8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hash",
+              "type": "string"
+            }
+          ],
+          "name": "newMedicRecord",
+          "type": "event"
+        },
+        "0xf2dda0b2a2118242536b96d5f9d1e2d0ea2004859866cc4664f249fd47842551": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hash",
+              "type": "string"
+            }
+          ],
+          "name": "removeMedicRecord",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa272F832A4F0Fb8fF1859CB7615604d3750BFc0C",
+      "transactionHash": "0xa14370edadcd0b133348e2211e3bc8fa56f226238d16c62812b34a2031543f44"
+    }
+  },
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-04-27T22:15:18.124Z",
+  "devdoc": {
+    "methods": {
+      "addMedicRecord(string)": {
+        "params": {
+          "_hashString": "cadena de IPFS que contiene el archivo de registro"
+        }
+      },
+      "getPendingLength()": {
+        "return": "Longitud de MedicPending"
+      },
+      "getPendingRequest(uint32)": {
+        "params": {
+          "_index": "Indice a consultar"
+        },
+        "return": "Cadena dentro del indice indicado en MedicPending"
+      },
+      "removePending(uint32)": {
+        "details": "Hace un swap para no dejar espacios en blanco",
+        "params": {
+          "_index": "The owner address"
+        },
+        "return": "booleano diciendo si fue exitoso o no"
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "addMedicRecord(string)": {
+        "notice": "Guarda el hash de un registro del medico"
+      },
+      "getPendingLength()": {
+        "notice": "Regresa la longitud del arreglo de solicitudes pendientes"
+      },
+      "getPendingRequest(uint32)": {
+        "notice": "Regresa la cadena hash de un indice dado"
+      },
+      "removePending(uint32)": {
+        "notice": "Remueve el elemento del indice indicado"
+      }
+    }
+  }
+}

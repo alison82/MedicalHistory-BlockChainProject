@@ -8,8 +8,16 @@ import { WindowScrollController } from '@fullcalendar/core';
 import {LoggeduserService} from 'src/app/shared/services/loggeduser.service';
 
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
-import { NONE_TYPE } from '@angular/compiler';
 import { WEB3 } from 'src/app/etherum/web3';
+import { rejects } from 'assert';
+import { resolve } from 'dns';
+import { User } from 'src/app/shared/models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectDialogComponent } from './dialogs/select-dialog/select-dialog.component';
+import { SigninService } from './signin.service';
+import { Roles } from 'src/app/shared/models/enums.enum';
+import { ContractsService } from 'src/app/contracts/contracts.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare const $: any;
 @Component({
@@ -29,10 +37,12 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private window: Window,
     private loggedUser: LoggeduserService,
-    private toastrService: ToastrService,
-    @Inject(WEB3) private web3: Web3
+    @Inject(WEB3) private web3: Web3,
+    public dialog: MatDialog,
+    public signinService: SigninService,
+    private contractService: ContractsService,
+    //private snackBar: MatSnackBar
   ) {}
   ngOnInit() {
 
@@ -56,29 +66,103 @@ export class SigninComponent implements OnInit {
         }
       });
     });
-
-    this.toastrService.overlayContainer = this.toastContainer;
   }
   get f() {
     return this.loginForm.controls;
   }
-  onSubmit() {
+  async onSubmit() {
     this.submitted = true;
 
-    //this.web3.eth.personal.sign(null, this.web3.eth.getCoinbase());
 
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      console.log('Invalid data');
-      //this.toastrService.warning('');
+    //const accounts = await this.web3.eth.getAccounts();
+
+
+    //const publicAddress: string = accounts[0];
+
+    const publicAddress = (await this.contractService.getCurrentAddress());
+
+    if (!publicAddress){
+      console.log('Debe loguearse');
       return;
-    } else {
-      if (this.loggedUser.userLogged){
-        this.router.navigate(['/dashboard/main']);
-      }
-      this.toastrService.error('Invalid username-password', 'Access');
-      return;
+
+      /*this.showNotification(
+        'snackbar-error',
+        'You must login in metamask!!',
+        'bottom',
+        'center'
+      );*/
     }
+
+    //Verificar si la direccion se encuentra registrada
+
+    //if (this.contractService.)
+
+    console.log(`publicAddress: ${publicAddress}`);
+
+    const none = this.contractService.getUserNonebyAddress(publicAddress);
+
+      //Code to get none value
+    const info: string = 'We are getting your public address to access to the system. Are you agree?';
+
+    await this.web3.eth.personal.sign(this.web3.utils.fromUtf8(info), publicAddress, '', (err, signature) => {
+        if (err){
+          console.log(`Metamask error: ${err.message}`);
+          return;
+        }
+        console.log(`login with: ${signature}`);
+    });
+
+    let user: User = await this.contractService.getUserInfobyAddress(publicAddress, none);
+
+    //Varificar el rol del usuario para enviarlo a su vista correspondiente
+
+    if ((user.rol === Roles.admin) || ((user.rol === Roles.admin))){
+      //Registrar login
+
+      //Ir a la vista correspondiente
+      this.router.navigate(['/dashboard/main']);
+    }
+
+
+
+    const dialogRef = this.dialog.open(SelectDialogComponent, {
+    });
+
+    await dialogRef.afterClosed()
+      .toPromise()
+      .then(result => {
+        console.log("The dialog was closed " + result);
+    });
+
+    const selected = this.signinService.getRol();
+
+    switch (selected) {
+      case Roles.doctor:
+        user.rol = Roles.none_doctor;
+        break;
+
+      case Roles.patient:
+        user.rol = Roles.none_patient;
+        break;
+
+      default:
+        break;
+    }
+
+    //Ir al Registro del usuario
+    this.router.navigate(['/authentication/signup']);
   }
 
+  async selectCall() {
+
+  }
+
+  showNotification(colorName, text, placementFrom, placementAlign) {
+    /*this.snackBar.open(text, '', {
+      duration: 2000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName
+    });*/
+  }
 }

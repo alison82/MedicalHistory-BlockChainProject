@@ -3,14 +3,46 @@
     <div class="wrap-login100">
       <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <span class="login100-form-title p-b-30">
-          Register
+          {{type}}
         </span>
         <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput formControlName="username" required>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required>
           <mat-icon matSuffix>face</mat-icon>
-          <mat-error *ngIf="loginForm.get('username').hasError('required')">
-            Username is required
+          <mat-error *ngIf="loginForm.get('name').hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Surname</mat-label>
+          <input matInput formControlName="surname" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-error *ngIf="loginForm.get('surname').hasError('required')">
+            Surname is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Second name</mat-label>
+          <input matInput formControlName="secondname" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-error *ngIf="loginForm.get('secondname').hasError('required')">
+            Second name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="isDoctor" class="example-full-width" appearance="outline">
+          <mat-label>Speciality</mat-label>
+          <input matInput formControlName="speciality" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-error *ngIf="loginForm.get('speciality').hasError('required')">
+            Speciality is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{id}}</mat-label>
+          <input matInput formControlName="id" required>
+          <mat-icon matSuffix>face</mat-icon>
+          <mat-error *ngIf="loginForm.get('id').hasError('required')">
+            {{id}} is required
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
@@ -19,24 +51,6 @@
           <mat-icon matSuffix>mail</mat-icon>
           <mat-error *ngIf="loginForm.get('email').hasError('required') || loginForm.get('email').touched">
             Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
-          <mat-icon matSuffix (click)="hide = !hide">
-            {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf="loginForm.get('password').hasError('required')">
-            Password is required
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Confirm Password</mat-label>
-          <input matInput formControlName="cpassword" [type]="chide ? 'password' : 'text'" required>
-          <mat-icon matSuffix (click)="chide = !chide">
-            {{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf="loginForm.get('cpassword').hasError('required')">
-            Confirm Password is required
           </mat-error>
         </mat-form-field>
         <div class="flex-sb-m w-full p-t-15 p-b-20">
@@ -65,7 +79,7 @@
           </a>
         </div>
       </form>
-      <div class="login100-more" style="background-image: url('assets/images/pages/bg-02.png');">
+      <div class="login100-more" style="background-image: url('assets/images/pages/bg-01.png');">
       </div>
     </div>
   </div>
