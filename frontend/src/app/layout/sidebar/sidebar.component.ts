@@ -10,6 +10,7 @@ import {
 import { ROUTES } from './sidebar-items';
 import { LoggeduserService } from 'src/app/shared/services/loggeduser.service';
 import { User } from 'src/app/shared/models/user.model';
+import { Roles } from 'src/app/shared/models/enums.enum';
 declare const Waves: any;
 @Component({
   selector: 'app-sidebar',
@@ -34,6 +35,16 @@ export class SidebarComponent implements OnInit {
   ) {
     //Temporal code
     this.user = loggedUser.getUserLoggedIn();
+
+    if (!this.user){
+      this.user = {
+        none : '',
+        rol: Roles.none,
+        useraddress: '',
+        username: ''
+      }
+    }
+
   }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
