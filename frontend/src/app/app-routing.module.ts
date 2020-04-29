@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard],
-    data: { roles: [Roles.admin, Roles.doctor]}
+    data: { roles: [Roles.admin, Roles.doctor, Roles.patient]}
   },
   {
     path: 'email',
