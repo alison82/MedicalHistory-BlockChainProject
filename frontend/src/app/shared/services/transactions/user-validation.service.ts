@@ -17,15 +17,15 @@ export class UservalidationService {
     console.log(this.rolContract);
 
     let rol:any;
-    if (this.rolContract.isAdmin(address)) {
+    if (await this.rolContract.isAdmin(address)) {
       console.log("Is Admin");
       rol = Roles.admin;
     }
-    else if (this.rolContract.isDoctor(address)){
+    else if (await this.rolContract.isMedic(address)){
       console.log("Is a Doctor!!!!");
       rol = Roles.doctor;
     }
-    else if (this.rolContract.isPatient(address)){
+    else if (await this.rolContract.isPatient(address)){
       console.log("Is a Patient!!!!");
       rol = Roles.patient;
     }
