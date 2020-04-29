@@ -7,8 +7,6 @@ import { ContactGridComponent } from '../apps/contact-grid/contact-grid.componen
 //import * as contract from 'truffle-contract';
 let contract = require('truffle-contract');
 
-import * as assistantregisterContract from './AssistantRegister.json';
-
 //import * as medicsregisterContract from './MedicsRegister.json';
 let medicsregisterContract = require('./MedicsRegister.json');
 
@@ -20,7 +18,7 @@ import * as userRolesContract from './UserRoles.json';
 import { Contracts, Roles } from '../shared/models/enums.enum';
 import * as pendingRecords from './PendingRecords.json';
 const abiPendingRecords = require('./PendingRecords.json'); // compiled contracts
-
+const abiPatienDiagnosis = require('./PatientDiagnosis.json'); // compiled contracts
 //import * as cj from 'circular-json';
 //import { ConsoleReporter } from 'jasmine';
 
@@ -90,11 +88,11 @@ export class ContractsService {
 
     switch (cont) {
       case Contracts.AssistantRegister:
-        ngoContract = contract(assistantregisterContract);
+        ngoContract = contract(abiPatienDiagnosis);
         break;
 
       case Contracts.MedicsRegister:
-        ngoContract = contract(medicsregisterContract);
+        ngoContract = contract(abiPatienDiagnosis);
 
         break;
 
@@ -103,11 +101,11 @@ export class ContractsService {
         break;
 
       case Contracts.PatientDiagnosis:
-        ngoContract = contract(patientdiagnosisContract);
+        ngoContract = contract(abiPatienDiagnosis);
         break;
 
       case Contracts.UserRoles:
-        ngoContract = contract(userRolesContract);
+        ngoContract = contract(abiPatienDiagnosis);
         break;
 
       case Contracts.PendingRecords:
@@ -122,7 +120,7 @@ export class ContractsService {
     //try {
         console.log(cont);
         const ngoInstance = await ngoContract.deployed();
-        //console.log(ngoInstance);
+        console.log(ngoInstance);
         return ngoInstance;
     //} catch (error) {
     //    console.log(Contracts.PendingRecords);

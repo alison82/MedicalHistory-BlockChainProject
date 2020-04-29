@@ -1,9 +1,7 @@
-pragma solidity 0.5.16;
-
-import "./MedicsRegister.sol";
+pragma solidity ^0.5.16;
 
 
-contract PendingRecords is MedicsRegister {
+contract PendingRecords {
     string[] public medicPending;
     event NewMedicRecord(string _hash);
     event RemoveMedicRecord(string _hash);

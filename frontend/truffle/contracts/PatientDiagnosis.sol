@@ -22,6 +22,20 @@ contract PatientDiagnosis is PatientRecords {
         string diagnostic;
         string observations;
         string[] estudio;
+        bool isDiag;
+    }
+
+    /**
+     * @title Representa un Estudio el cual le pertenece a un paciente.
+     */
+    struct Paciente {
+        string nombre;
+        string curp;
+        string tipoSangre;
+        string sexo;
+        string hashCredencial;
+        string hashFoto;
+        bool isPatient;
     }
 
     /**
@@ -29,6 +43,7 @@ contract PatientDiagnosis is PatientRecords {
      */
     mapping (address => mapping (uint256 => Diagnostico)) public fileToPatientDiagnosis;
     mapping (address => uint256[]) public extendedFileToPatientDiagnosis;
+    mapping (address => Paciente) public fileToPatient;
     /**
      * @notice Patrón de switch para encender/apagar
      */
@@ -37,25 +52,16 @@ contract PatientDiagnosis is PatientRecords {
     /**
      * @dev Eventos que serán registrados en la blockchain.
      */
-    event DiagnosticdAdded(
+    event DiagnosticAdded(
         address indexed _patient,
         address indexed _medic,
-        string _comorb,
-        uint256 _age,
-        uint256 _weight,
-        string _diagnostic,
-        string _observations,
         uint256 _date
         );
 
     event DiagnosisUpdate(
         address indexed _patient,
         address indexed _medic,
-        string _comorb,
-        uint256 _age,
-        uint256 _weight,
-        string _diagnostic,
-        string _observations
+        uint256 _date
         );
 
     event DiagnosticRetrieve(
@@ -74,12 +80,40 @@ contract PatientDiagnosis is PatientRecords {
         uint256[] _dates
     );
 
-    event DiagnosticDelete(
+//    event DiagnosticDelete(
+//        address indexed _patient,
+//        address indexed _medic,
+//        uint256 _date
+//        );
+    event PatientAdded(
         address indexed _patient,
         address indexed _medic,
-        uint256 _date
+        uint256 whenWas
         );
 
+    event PatientUpdate(
+        address indexed _patient,
+        address indexed _medic,
+        uint256 whenWas
+        );
+
+    event PatientRetrieve(
+        address indexed _patient,
+        address indexed _medic,
+        string _nombre,
+        string _curp,
+        string _tipoSangre,
+        string _sexo,
+        string _hashCredencial,
+        string _hashFoto,
+        uint256 whenWas
+        );
+
+//    event PatientDelete(
+//        address indexed _patient,
+//        address indexed _medic,
+//        uint256 _date
+//        );
     /**
     * @dev Indica que se ha puesto el contrato en pausa.
     * @param _admin Un administrador
@@ -104,19 +138,20 @@ contract PatientDiagnosis is PatientRecords {
     */
     function () external payable {}
 
-    /**
-    * @notice Pausar el contrato
-    * Se detiene el contrato bajo ciertas condiciones.
-    * Sera útil cuando nuevos errores sean descubiertos.
-    * @param _stop Switch del contrado de encendido/apagado
-    */
-    function emergencyStop(bool _stop) public onlyAdmin {
-        stopped = _stop;
-        emit LogSwitchStop(msg.sender, _stop);
+    function patientDiagnosis(address _account, uint256 _timeStamp) public view returns (Diagnostico memory diag) {
+        return fileToPatientDiagnosis[_account][_timeStamp];
     }
 
-    function patientDiagnosis(address _account, uint256 _timeStamp) public view returns (Diagnostico memory) {
-        return fileToPatientDiagnosis[_account][_timeStamp];
+    function extendedIsDiag(address _account) public view returns (bool isIndeed) {
+        return extendedFileToPatientDiagnosis[_account].length >= 0;
+    }
+
+    function isDiag(address entityAddress, uint256 date) public view returns(bool isIndeed) {
+        return fileToPatientDiagnosis[entityAddress][date].isDiag;
+    }
+
+    function isPaciente(address entityAddress) public view returns(bool isIndeed) {
+        return fileToPatient[entityAddress].isPatient;
     }
 
     /**
@@ -140,6 +175,7 @@ contract PatientDiagnosis is PatientRecords {
         )
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
+        require(extendedIsDiag(_account));
         require(isPatient(_account) && isMedic(msg.sender));
         require(bytes(_comorb).length < 50);
         require(_age < 120);
@@ -154,21 +190,63 @@ contract PatientDiagnosis is PatientRecords {
             _weight,
             _diagnostic,
             _observations,
-            _estudio
+            _estudio,
+            true
         );
 
         fileToPatientDiagnosis[_account][_date] = diagnostico;
         extendedFileToPatientDiagnosis[_account].push(_date);
 
-        emit DiagnosticdAdded(
+        emit DiagnosticAdded(
             _account,
             msg.sender,
-            _comorb,
-            _age,
-            _weight,
-            _diagnostic,
-            _observations,
             _date
+        );
+        _success = true;
+    }
+
+    /**
+   * @dev Función de creación de Diagnóstico. Esta función es realizada por un doctor.
+   * @param _account a
+   * @return _success a
+   */
+    function patientSelfReg(
+        address _account,
+        string memory _nombre,
+        string memory _curp,
+        string memory _tipoSangre,
+        string memory _sexo,
+        string memory _hashCredencial,
+        string memory _hashFoto
+        )
+    public payable nonlyStopped returns (bool _success) {
+        require(_account != address(0));
+        require(!isPaciente(_account));
+        require(bytes(_nombre).length < 50);
+        require(bytes(_curp).length == 18);
+        require(bytes(_tipoSangre).length < 8);
+        require(bytes(_sexo).length < 10);
+        require(bytes(_hashCredencial).length == 46);
+        require(bytes(_hashFoto).length == 46);
+
+        Paciente memory paciente = Paciente(
+            _nombre,
+            _curp,
+            _tipoSangre,
+            _sexo,
+            _hashCredencial,
+            _hashFoto,
+            true
+        );
+
+        fileToPatient[_account] = paciente;
+        addPatient(_account);
+        address(this).transfer(1 ether);
+
+        emit PatientAdded(
+            _account,
+            msg.sender,
+            now
         );
         _success = true;
     }
@@ -190,31 +268,76 @@ contract PatientDiagnosis is PatientRecords {
         )
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
+        require(isDiag(_account, _date));
         require(bytes(_comorb).length < 256);
         require(_age < 120);
         require(_weight < 700);
         require(bytes(_diagnostic).length < 50);
         require(bytes(_observations).length < 512);
         require(_date >= 0 && _date <= 2**256 - 1);
-        //require(fileToPatientDiagnosis[_account][_date] != 0);
         require(_estudio.length > 0);
 
-        Diagnostico memory diagnostico = patientDiagnosis(_account, _date);
-        diagnostico.comorb = _comorb;
-        diagnostico.age = _age;
-        diagnostico.weight = _weight;
-        diagnostico.diagnostic = _diagnostic;
-        diagnostico.observations = _observations;
-        diagnostico.estudio = _estudio;
+        Diagnostico memory diagnostico = Diagnostico(
+            _comorb,
+            _age,
+            _weight,
+            _diagnostic,
+            _observations,
+            _estudio,
+            true
+        );
+
+        fileToPatientDiagnosis[_account][_date] = diagnostico;
 
         emit DiagnosisUpdate(
             _account,
             msg.sender,
-            diagnostico.comorb,
-            diagnostico.age,
-            diagnostico.weight,
-            diagnostico.diagnostic,
-            diagnostico.observations
+            now
+        );
+        _success = true;
+    }
+
+    /**
+   * @dev Función de creación de Diagnóstico. Esta función es realizada por un doctor.
+   * @param _account a
+   * @return _success a
+   */
+    function selfUpdatePatient(
+        address _account,
+        string memory _nombre,
+        string memory _curp,
+        string memory _tipoSangre,
+        string memory _sexo,
+        string memory _hashCredencial,
+        string memory _hashFoto
+        )
+    public payable nonlyStopped onlyPatient returns (bool _success) {
+        require(_account != address(0));
+        require(bytes(_nombre).length < 50);
+        require(bytes(_curp).length == 18);
+        require(bytes(_tipoSangre).length < 8);
+        require(bytes(_sexo).length < 10);
+        require(bytes(_hashCredencial).length == 46);
+        require(bytes(_hashFoto).length == 46);
+
+        Paciente memory paciente = Paciente(
+            _nombre,
+            _curp,
+            _tipoSangre,
+            _sexo,
+            _hashCredencial,
+            _hashFoto,
+            true
+        );
+
+        fileToPatient[_account] = paciente;
+
+        address(this).transfer(0.03 ether);
+
+        emit PatientUpdate(
+            _account,
+            msg.sender,
+            now
         );
         _success = true;
     }
@@ -226,25 +349,19 @@ contract PatientDiagnosis is PatientRecords {
     * @return _date The uploaded timestamp
     */
     function viewDiagnostic(address _account, uint256 _date) public nonlyStopped onlyPatient returns (
-        string memory _comorb,
-        uint256 _age,
-        uint256 _weight,
-        string memory _diagnostic,
-        string memory _observations,
         string[] memory _estudio
         ) {
-        if (isPatient(msg.sender)) {
-            require(msg.sender == _account);
-        }
-        if (isMedic(msg.sender)) {
-            require(msg.sender != _account);
-        }
         require(_account != address(0));
         require(_date >= 0 && _date <= 2**256 - 1);
-        //require(fileToPatientDiagnosis[_account][_date] != false);
-
+        require(isDiag(_account, _date));
         Diagnostico memory diagnostico = patientDiagnosis(_account, _date);
-
+        if (isMedic(msg.sender) && isPatient(msg.sender)) {
+            require(msg.sender != _account || msg.sender == _account);
+        } else if (isMedic(msg.sender)) {
+            require(msg.sender != _account);
+        } else if (isPatient(msg.sender)) {
+            require(msg.sender == _account);
+        }
         emit DiagnosticRetrieve(
             _account,
             msg.sender,
@@ -254,12 +371,39 @@ contract PatientDiagnosis is PatientRecords {
             diagnostico.diagnostic,
             diagnostico.observations
         );
-        _comorb = diagnostico.comorb;
-        _age = diagnostico.age;
-        _weight = diagnostico.weight;
-        _diagnostic = diagnostico.diagnostic;
-        _observations = diagnostico.observations;
         _estudio = diagnostico.estudio;
+    }
+
+    /**
+   * @dev Función de creación de Diagnóstico. Esta función es realizada por un doctor.
+   * @param _account a
+   */
+    function retrievePatient(
+        address _account
+        )
+    public payable nonlyStopped onlyPatient returns (
+            string memory _hashCredencial,
+            string memory _hashFoto
+        ) {
+        require(_account != address(0));
+
+        Paciente memory paciente = fileToPatient[_account];
+        address(this).transfer(0.03 ether);
+
+        emit PatientRetrieve(
+            _account,
+            msg.sender,
+            paciente.nombre,
+            paciente.curp,
+            paciente.tipoSangre,
+            paciente.sexo,
+            paciente.hashCredencial,
+            paciente.hashFoto,
+            now
+        );
+
+        _hashCredencial = paciente.hashCredencial;
+        _hashFoto = paciente.hashFoto;
     }
 
     /**
@@ -273,21 +417,20 @@ contract PatientDiagnosis is PatientRecords {
         )
     public nonlyStopped onlyPatient returns (uint256[] memory _dates) {
         require(_account != address(0));
-        if (isMedic(msg.sender) || isPatient(msg.sender)) {
-            _dates = extendedFileToPatientDiagnosis[_account];
-        } else if (isPatient(msg.sender)) {
-            require(msg.sender == _account);
-            _dates = extendedFileToPatientDiagnosis[_account];
+        require(extendedIsDiag(_account));
+        if (isMedic(msg.sender) && isPatient(msg.sender)) {
+            require(msg.sender != _account || msg.sender == _account);
         } else if (isMedic(msg.sender)) {
             require(msg.sender != _account);
-            _dates = extendedFileToPatientDiagnosis[_account];
+        } else if (isPatient(msg.sender)) {
+            require(msg.sender == _account);
         }
-
         emit FullDiagnosticRetrieve(
             _account,
             msg.sender,
-            _dates
+            extendedFileToPatientDiagnosis[_account]
         );
+        _dates = extendedFileToPatientDiagnosis[_account];
     }
 
     /**
@@ -296,20 +439,19 @@ contract PatientDiagnosis is PatientRecords {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function deleteDiagnostic(address _account, uint256 _date) public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account != address(0));
-        require(_date >= 0 && _date <= 2**256 - 1);
-        //require(fileToPatientDiagnosis[_account][_date] != false);
-
-        delete fileToPatientDiagnosis[_account][_date];
-        //delete extendedFileToPatientDiagnosis[_account];
-
-        emit DiagnosticDelete(
-            _account,
-            msg.sender,
-            _date
-        );
-        _success = true;
-    }
+//    function deleteDiagnostic(address _account, uint256 _date) public nonlyStopped onlyMedic returns (bool _success) {
+//        require(_account != address(0));
+//        require(isDiag(_account, _date));
+//        require(_date >= 0 && _date <= 2**256 - 1);
+//
+//        fileToPatientDiagnosis[_account][_date].isDiag = false;
+//
+//        emit DiagnosticDelete(
+//            _account,
+//            msg.sender,
+//            _date
+//        );
+//        _success = true;
+//    }
 
 }

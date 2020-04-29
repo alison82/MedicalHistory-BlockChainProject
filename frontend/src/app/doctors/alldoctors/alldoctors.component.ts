@@ -11,6 +11,9 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
+
+import { AdminService } from '../../shared/services/transactions/admin.service'
+
 @Component({
   selector: 'app-alldoctors',
   templateUrl: './alldoctors.component.html',
@@ -37,8 +40,12 @@ export class AlldoctorsComponent implements OnInit {
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public doctorsService: DoctorsService,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    public adminService: AdminService
+  ) {
+
+    this.adminService.getPendingRequest();
+  }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('filter', { static: true }) filter: ElementRef;

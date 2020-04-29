@@ -12,3 +12,4 @@ yarn-error.log*
 backend/build/
 # gitignore
 # .gitignore
+frontend/truffle/build

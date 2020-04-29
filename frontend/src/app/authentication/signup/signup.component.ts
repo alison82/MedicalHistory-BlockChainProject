@@ -13,13 +13,14 @@ import { LoggeduserService } from 'src/app/shared/services/loggeduser.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Patient } from 'src/app/shared/models/patient.model';
 import { DoctorService } from 'src/app/shared/services/transactions/doctor.service';
+import { PatientService } from 'src/app/shared/services/transactions/patient.service';
 
 declare const $: any;
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  providers: [DoctorService]   
+  providers: [DoctorService,PatientService]   
 })
 export class SignupComponent implements OnInit {
   IPFS = require('ipfs-mini');
@@ -44,11 +45,12 @@ export class SignupComponent implements OnInit {
     private contractService: ContractsService,
     private loggedUser: LoggeduserService,
     private siginService: SigninService,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private patientService: PatientService
   ) {
     this.type = `Register ${siginService.getRol().toString()}`;
     this.isDoctor = false;
-
+    console.log("This is the rol: "+siginService.getRol().toString());
     //Configurar variables segun el tipo de rol que se desea crear
     switch (this.siginService.getRol()) {
       case Roles.doctor:
@@ -65,14 +67,14 @@ export class SignupComponent implements OnInit {
     }
 
   }
-  ngOnInit() {
 
+  ngOnInit() {
     //Inicializar compontente
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       secondname: ['', Validators.required],
-      specialty: ['', Validators.required],
+      specialty: [''],
       id: ['', Validators.required],
       email: [
         '',
@@ -97,15 +99,20 @@ export class SignupComponent implements OnInit {
       });
     });
   }
+
   get f() {
     return this.loginForm.controls;
   }
+
   onSubmit() {
+    console.log("On submit");
     this.submitted = true;
     // stop here if form is invalid
+    console.log(this.loginForm.invalid);
     if (this.loginForm.invalid) {
       return;
-    } else {
+    } 
+    else {
       console.log(`El rol predomintante es: ${this.siginService.getRol()}`);
 
       switch (this.siginService.getRol()) {
@@ -115,6 +122,7 @@ export class SignupComponent implements OnInit {
           break;
 
         case Roles.patient:
+          console.log("Soy paciente");
           this.addPatient();
 
           //Esperar aceptacion de la cuenta
@@ -147,10 +155,7 @@ export class SignupComponent implements OnInit {
     doctor.user.username = '';
     doctor.user.rol = Roles.doctor.toString();
 
-    // console.log(`Address here: ${address}`)
-
     var hashString = await this.sendToIPFS();
-    // console.log(`Hasta aqui: ${doctor.name}`)
     await this.doctorService.register(hashString, doctor.address).then(res=>{
       console.log("RegisteredX2!!!!!!")
     },error=>{
@@ -160,27 +165,34 @@ export class SignupComponent implements OnInit {
   }
 
   async addPatient(){
-    const contractInstance = await this.contractService.getContract(Contracts.AssistantRegister);
+    //const contractInstance = await this.contractService.getContract(Contracts.AssistantRegister);
 
     const address = await this.contractService.getCurrentAddress();
 
     console.log(`Address here: ${address}`)
 
     let patient = new Patient();
-    patient.address = '';
-    patient.name = this.loginForm.value.fullname;
+    patient.address = address;
+    patient.name = this.loginForm.value.name + " "+this.loginForm.value.surname+ " " +this.loginForm.value.secondname;
     patient.surname = this.loginForm.value.surname;
     patient.secondname = this.loginForm.value.secondname;
     patient.curp = this.loginForm.value.id;
     patient.email = this.loginForm.value.email;
-    patient.hashPicture = '';
+    patient.hashPicture = '0xB9771F330c261083a40DC8A230976622A911126e126e';
+    patient.hashCredential = '0xB9771F330c261083a40DC8A230976622A911126e126e';
+    patient.bloodType="O+";
     patient.user = new User();
     patient.user.useraddress = address;
-    patient.user.username = '';
+    patient.user.username = this.loginForm.value.name ;
     patient.user.rol = Roles.patient.toString();
+    patient.gender="M";
 
     console.log(`Hasta aqui: ${patient.name}`)
-
-    contractInstance.addAssistant('0x9847BCe3b39C5E9e9137532dd77d2F9E11859C37', patient.name, patient.surname, patient.secondname, patient.curp, patient.hashPicture, { from: patient.user.useraddress});
+    await this.patientService.register(patient).then(res=>{
+      console.log("Registered Patient!!!!!!")
+    },error=>{
+      console.log(error);
+    });
+    //contractInstance.addAssistant('0x9847BCe3b39C5E9e9137532dd77d2F9E11859C37', patient.name, patient.surname, patient.secondname, patient.curp, patient.hashPicture, { from: patient.user.useraddress});
   }
 }

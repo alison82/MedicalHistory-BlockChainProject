@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ContractsService } from '../../../contracts/contracts.service';
-import {  Contracts} from '../../models/enums.enum'
+import { Contracts } from '../../models/enums.enum'
 import { Doctor } from '../../models/doctor.model';
 
 
@@ -16,8 +16,8 @@ export class AdminService {
   constructor(private contractInstance: ContractsService) {
   }
 
-  async addDoctor(doctor: Doctor, address): Promise<any>{
-    this.doctorContract = await this.contractInstance.getContract(Contracts.MedicsRegister);
+  async addDoctor(doctor: Doctor, admin_address): Promise<any>{
+    this.doctorContract = await this.contractInstance.getContract(Contracts.PatientDiagnosis);
     return this.doctorContract.addMedics(
                                     doctor.address,
                                     doctor.name,
@@ -26,8 +26,14 @@ export class AdminService {
                                     doctor.email,
                                     doctor.hashPicture
                                   ,
-                                  { from:address });
+                                  { from: admin_address }).then(res=>{
+                                    console.log("Registered!!!!!!")
+                                  },error=>{
+                                    console.log(error);
+                                  });
   }
+
+
 
   async updateDoctor(doctor): Promise<any>{
     let current = new Date();
@@ -55,8 +61,6 @@ export class AdminService {
 
   private getDoctorData(hashString): Doctor{
     return this.ipfs.catJSON(hashString);
-    //console.log(json);
-    //return JSON.parse(json);
   }
 
   async getPendingRequest():Promise<Doctor[]>{
@@ -69,7 +73,7 @@ export class AdminService {
       var current_doctor = new Doctor;
       var hash_String = await this.getHash(i);
       var json= await this.getDoctorData(hash_String);
-      //console.log(json);
+
       current_doctor.name = json.name;
       current_doctor.surname = json.surname;
       current_doctor.secondname = json.secondname;
@@ -85,8 +89,3 @@ export class AdminService {
   }
 
 }
-
-
-/*
-
-*/

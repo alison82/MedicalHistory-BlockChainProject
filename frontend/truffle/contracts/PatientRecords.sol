@@ -1,6 +1,7 @@
-pragma solidity 0.5.16;
+pragma solidity ^0.5.16;
 
-import "./PendingRecords.sol";
+import "./MedicsRegister.sol";
+import "./acceso/UserRoles.sol";
 
 /**
  * @title Smart Contract de Historial de pacientes - Control de Estudio basado en rol.
@@ -11,13 +12,14 @@ import "./PendingRecords.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
-contract PatientRecords is PendingRecords {
+contract PatientRecords is MedicsRegister {
     /**
      * @title Representa un Estudio el cual le pertenece a un paciente.
      */
     struct Estudio {
         string descript;
         uint256 uploadDate;
+        bool isEstudio;
     }
 
     /**
@@ -53,12 +55,11 @@ contract PatientRecords is PendingRecords {
         uint256 _uploadDate
         );
 
-    event RecordDelete(
-        address indexed _patient,
-        address indexed _medic,
-        string _ipfsHash
-        );
-
+//    event RecordDelete(
+//        address indexed _patient,
+//        address indexed _medic,
+//        string _ipfsHash
+//        );
     /**
     * @dev Indica que se ha puesto el contrato en pausa.
     * @param _admin Un administrador
@@ -108,7 +109,8 @@ contract PatientRecords is PendingRecords {
 
         Estudio memory _estudio = Estudio(
             _descript,
-            _uploadDate
+            _uploadDate,
+            true
         );
 
         ipfsHashToEstudio[_ipfsHash] = _estudio;
@@ -177,23 +179,23 @@ contract PatientRecords is PendingRecords {
     * @param _account The owner address
     * @return _uploadDate The uploaded timestamp
     */
-    function deleteRecord(
-        address _account,
-        string memory _ipfsHash
-        )
-    public nonlyStopped onlyMedic returns (bool _success) {
-        require(_account != 0x0000000000000000000000000000000000000000);
-        require(bytes(_ipfsHash).length == 46);
-
-        delete ipfsHashToEstudio[_ipfsHash];
-
-        emit RecordDelete(
-            _account,
-            msg.sender,
-            _ipfsHash
-        );
-
-        _success = true;
-    }
+//    function deleteRecord(
+//        address _account,
+//        string memory _ipfsHash
+//        )
+//    public nonlyStopped onlyMedic returns (bool _success) {
+//        require(_account != 0x0000000000000000000000000000000000000000);
+//        require(bytes(_ipfsHash).length == 46);
+//
+//        ipfsHashToEstudio[_ipfsHash].isEstudio = false;
+//
+//        emit RecordDelete(
+//            _account,
+//            msg.sender,
+//            _ipfsHash
+//        );
+//
+//        _success = true;
+//    }
 
 }

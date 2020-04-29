@@ -1,4 +1,5 @@
-pragma solidity 0.5.16;
+pragma solidity ^0.5.16;
+
 import "./acceso/UserRoles.sol";
 
 /**
@@ -19,13 +20,14 @@ contract MedicsRegister is UserRoles {
         string cedula;
         string email;
         string hashPicture;
-        uint256 date;
+        uint256 whenAdded;
+        bool isMedico;
     }
 
     /**
      * @notice Mapea la dirección al médico..
      */
-    mapping (address => Medico[]) public fileToMedic;
+    mapping (address => Medico) public fileToMedic;
 
      /**
      * @notice Patrón de switch para encender/apagar
@@ -45,17 +47,15 @@ contract MedicsRegister is UserRoles {
         string _hashPicture,
         uint256 _date);
 
-    event MedicsUpdate(
-        address indexed _medic,
-        address indexed _admin,
-        string _name,
-        string _specialty,
-        string _cedula,
-        string _email,
-        string _hashPicture,
-        uint256 _date,
-        uint256 _queryDate);
-
+//    event Medics(
+//        address indexed _medic,
+//        address indexed _admin,
+//        string _name,
+//        string _specialty,
+//        string _cedula,
+//        string _email,
+//        string _hashPicture,
+//        uint256 _queryDate);
     event MedicsRetrieve(
         address indexed _medic,
         address indexed _admin,
@@ -67,12 +67,11 @@ contract MedicsRegister is UserRoles {
         uint256 _date,
         uint256 _queryDate);
 
-    event MedicsDelete(
-        address indexed _medic,
-        address indexed _admin,
-        string _hashPicture,
-        uint256 _date);
-
+//    event MedicsDelete(
+//        address indexed _medic,
+//        address indexed _admin,
+//        string _hashPicture,
+//        uint256 _date);
     /**
     * @dev Indica que se ha puesto el contrato en pausa.
     * @param _admin Un administrador
@@ -118,7 +117,8 @@ contract MedicsRegister is UserRoles {
         string memory _specialty,
         string memory _cedula,
         string memory _email,
-        string memory _hashPicture)
+        string memory _hashPicture
+    )
     public nonlyStopped onlyAdmin returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
         require(bytes(_name).length < 128);
@@ -134,10 +134,12 @@ contract MedicsRegister is UserRoles {
             _cedula,
             _email,
             _hashPicture,
-            _date
+            _date,
+            true
         );
 
-        fileToMedic[_account].push(medico);
+        fileToMedic[_account] = medico;
+        addMedic(_account);
 
         emit MedicsAdded(
             _account,
@@ -158,55 +160,55 @@ contract MedicsRegister is UserRoles {
     * @param _account Cuenta del médico
     * @return a
     */
-    function updateMedics(
-        address _account,
-        string memory _name,
-        string memory _specialty,
-        string memory _cedula,
-        string memory _email,
-        string memory _hashPicture,
-        uint256 _date)
-    public nonlyStopped onlyAdmin returns (bool _success) {
-        require(_account != 0x0000000000000000000000000000000000000000);
-        require(bytes(_name).length < 128);
-        require(bytes(_specialty).length < 30);
-        require(bytes(_cedula).length < 30);
-        require(bytes(_email).length < 30);
-        require(bytes(_hashPicture).length < 30);
-        require(_date >= 0 && _date <= 2**256 - 1);
-        require(fileToMedic[_account].length > 0);
-
-        uint256 _queryDate = now;
-        uint256 len = getMedicsCount(_account);
-        Medico memory medico;
-        for (uint256 i = 0; i < len; i++) {
-            medico = fileToMedic[_account][i];
-            if (medico.date == _date) {
-                break;
-            }
-        }
-
-        medico.name = _name;
-        medico.specialty = _specialty;
-        medico.cedula = _cedula;
-        medico.email = _email;
-        medico.hashPicture = _hashPicture;
-        medico.date = _date;
-
-        emit MedicsUpdate(
-            _account,
-            msg.sender,
-            medico.name,
-            medico.specialty,
-            medico.cedula,
-            medico.email,
-            medico.hashPicture,
-            medico.date,
-            _queryDate
-        );
-        _success = true;
-    }
-
+//    function //Medics(
+//        address _account,
+//        string memory _name,
+//        string memory _specialty,
+//        string memory _cedula,
+//        string memory _email,
+//        string memory _hashPicture
+//    )
+//    public nonlyStopped onlyAdmin returns (bool _success) {
+//        require(_account != 0x0000000000000000000000000000000000000000);
+//        require(bytes(_name).length < 128);
+//        require(bytes(_specialty).length < 30);
+//        require(bytes(_cedula).length < 30);
+//        require(bytes(_email).length < 30);
+//        require(bytes(_hashPicture).length < 30);
+//        //require(fileToMedic[_account].length > 0);
+//
+//        uint256 _queryDate = now;
+//
+//        Medico memory medico = Medico(
+//            _name,
+//            _specialty,
+//            _cedula,
+//            _email,
+//            _hashPicture,
+//            fileToMedic[_account].whenAdded,
+//            true
+//        );
+//
+//        fileToMedic[_account] = medico;
+//
+//        medico.name = _name;
+//        medico.specialty = _specialty;
+//        medico.cedula = _cedula;
+//        medico.email = _email;
+//        medico.hashPicture = _hashPicture;
+//
+//        emit Medics//(
+//            _account,
+//            msg.sender,
+//            medico.name,
+//            medico.specialty,
+//            medico.cedula,
+//            medico.email,
+//            medico.hashPicture,
+//            _queryDate
+//        );
+//        _success = true;
+//    }
     /**
     * @notice Returns el Medico en el índice del propietario de la dirección.
     * @dev Controlado por el switch
@@ -218,24 +220,18 @@ contract MedicsRegister is UserRoles {
         string memory specialty,
         string memory cedula,
         string memory email,
-        string memory hashPicture) {
+        string memory hashPicture,
+        uint256 whenAdded
+    ) {
         if (isAdmin(msg.sender)) {
             require(msg.sender != _account);
         }
         require(_account != 0x0000000000000000000000000000000000000000);
         require(_date >= 0 && _date <= 2**256 - 1);
-        require(fileToMedic[_account].length > 0);
+        //require(fileToMedic[_account].length > 0);
 
         uint256 _queryDate = now;
-        uint256 len = getMedicsCount(_account);
-        Medico memory medico;
-
-        for (uint256 i = 0; i < len; i++) {
-            medico = fileToMedic[_account][i];
-            if (medico.date == _date) {
-                break;
-            }
-        }
+        Medico memory medico = fileToMedic[_account];
 
         emit MedicsRetrieve(
             _account,
@@ -245,7 +241,7 @@ contract MedicsRegister is UserRoles {
             medico.cedula,
             medico.email,
             medico.hashPicture,
-            medico.date,
+            medico.whenAdded,
             _queryDate
         );
         name = medico.name;
@@ -253,6 +249,7 @@ contract MedicsRegister is UserRoles {
         cedula = medico.cedula;
         email = medico.email;
         hashPicture = medico.hashPicture;
+        whenAdded = medico.whenAdded;
     }
 
     /**
@@ -261,37 +258,22 @@ contract MedicsRegister is UserRoles {
     * @param _account The owner address
     * @return _date The uploaded timestamp
     */
-    function deleteMedics(address _account, uint256 _date) public nonlyStopped onlyAdmin returns (bool _success) {
-        require(_account != 0x0000000000000000000000000000000000000000);
-        require(_date >= 0 && _date <= 2**256 - 1);
-        require(fileToMedic[_account].length > 0);
+//    function deleteMedics(address _account, uint256 _date) public nonlyStopped onlyAdmin returns (bool _success) {
+//        require(_account != 0x0000000000000000000000000000000000000000);
+//        require(_date >= 0 && _date <= 2**256 - 1);
+//        //require(fileToMedic[_account].length > 0);
+//
+//        uint256 _queryDate = now;
+//        string memory hashPic = fileToMedic[_account].hashPicture;
+//        fileToMedic[_account].isMedico = false;
+//
+//        emit MedicsDelete(
+//            _account,
+//            msg.sender,
+//            hashPic,
+//            _queryDate
+//        );
+//        _success = true;
+//    }
 
-        uint256 _queryDate = now;
-        uint256 len = getMedicsCount(_account);
-
-        for (uint256 i = 0; i < len; i++) {
-            if (fileToMedic[_account][i].date == _date) {
-                emit MedicsDelete(
-                    _account,
-                    msg.sender,
-                    fileToMedic[_account][i].hashPicture,
-                    _queryDate
-                );
-                delete fileToMedic[_account][i];
-                break;
-            }
-        }
-        _success = true;
-    }
-
-    /**
-    * @notice Retorna el numero de medicos de esa direccion
-    * @dev Controlado por el switch
-    * @param _medic El dueño de la dirección
-    * @return Retorna el médico
-    */
-    function getMedicsCount(address _medic) internal view nonlyStopped returns (uint256) {
-        require(_medic != 0x0000000000000000000000000000000000000000);
-        return fileToMedic[_medic].length;
-    }
 }

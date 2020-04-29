@@ -21,7 +21,6 @@ export class DoctorService {
   }
 
   async register(hashString, address): Promise<any>{
-  
     // Send to blockchain
     this.registerContract = await this.contractInstance.getContract(Contracts.PendingRecords);
     console.log(hashString);
