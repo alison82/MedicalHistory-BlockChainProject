@@ -30045,9 +30045,563 @@
     "name": "solc",
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0xbf3f493c772c8c283fd124432c2d0f539ab343faa04258fe88e52912d36b102b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newAdm",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "whoAddedAdm",
+              "type": "address"
+            }
+          ],
+          "name": "AdminAdded",
+          "type": "event"
+        },
+        "0x8864f7e8a3380841730dc6cd85a46a50d39d8521d4c55ba7faf825e5bb1d6a61": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_date",
+              "type": "uint256"
+            }
+          ],
+          "name": "DiagnosisUpdate",
+          "type": "event"
+        },
+        "0xc76a6c87db395959e2b38c12986f5904eb13332810fff9c429f1f96ce566aa00": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_date",
+              "type": "uint256"
+            }
+          ],
+          "name": "DiagnosticAdded",
+          "type": "event"
+        },
+        "0x9938502686a91e4f81577fc5def2278e38d6af2a37e6eb3d255fdb29b3af63fa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_comorb",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_age",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_weight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_diagnostic",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_observations",
+              "type": "string"
+            }
+          ],
+          "name": "DiagnosticRetrieve",
+          "type": "event"
+        },
+        "0xc7f5159d1102cf2ec23ffec745ab0d855395057e6c5f7619dc2826012fe9a5b5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256[]",
+              "name": "_dates",
+              "type": "uint256[]"
+            }
+          ],
+          "name": "FullDiagnosticRetrieve",
+          "type": "event"
+        },
+        "0x58b15338e6499b2b2827d169f60332c3b4b476fcd06b9a3c7e37afa77c49228e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_admin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "_stop",
+              "type": "bool"
+            }
+          ],
+          "name": "LogSwitchStop",
+          "type": "event"
+        },
+        "0x93b0ab94930bbad064296971ea5e731f84ae511662781bcaf28543ab9042368a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newMed",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "whoAddedMed",
+              "type": "address"
+            }
+          ],
+          "name": "MedicAdded",
+          "type": "event"
+        },
+        "0xb35968fdda9034197de288afbe8a2947dedade83d7dbc0de3e340d4f62ce64dc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "oldMed",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "whoRemovedMed",
+              "type": "address"
+            }
+          ],
+          "name": "MedicRemoved",
+          "type": "event"
+        },
+        "0x99ef3acfa68b13c01a6a7e6717e2224b4157940e6a56be5bd957d13c059fe3a0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_admin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_specialty",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_cedula",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_email",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hashPicture",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_date",
+              "type": "uint256"
+            }
+          ],
+          "name": "MedicsAdded",
+          "type": "event"
+        },
+        "0xec95aa37f5ff4f1e52a5333f61229ce376a04a63d4ccdfae6678ef305b97f232": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_admin",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_specialty",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_cedula",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_email",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hashPicture",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_date",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_queryDate",
+              "type": "uint256"
+            }
+          ],
+          "name": "MedicsRetrieve",
+          "type": "event"
+        },
+        "0x2307cf939b5254e14a1148c82c404da79a28d96b2e809eb9a9ee8fe009ae71d0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "whenWas",
+              "type": "uint256"
+            }
+          ],
+          "name": "PatientAdded",
+          "type": "event"
+        },
+        "0xf6dfb9f71429364456283a1521c30cc400d799d7b381d7ce164687f11c18dbaf": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newPat",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "whoAddedPat",
+              "type": "address"
+            }
+          ],
+          "name": "PatientAdded",
+          "type": "event"
+        },
+        "0xd00481c3fc5867ec74704c9c99334b8d53c7735c947bdcb6cbebcae6740ed940": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "oldPat",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "whoRemovedPat",
+              "type": "address"
+            }
+          ],
+          "name": "PatientRemoved",
+          "type": "event"
+        },
+        "0x16415829ac3edb82b22ad83d057c7c1f86de9ee05fbf6ad3ce3b410a74a38ac7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_nombre",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_curp",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_tipoSangre",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_sexo",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hashCredencial",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hashFoto",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "whenWas",
+              "type": "uint256"
+            }
+          ],
+          "name": "PatientRetrieve",
+          "type": "event"
+        },
+        "0x9e71bc592b814feac46375b302d8d1a7df91fcc6f69df3adb3bc0ce721fe6daf": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "whenWas",
+              "type": "uint256"
+            }
+          ],
+          "name": "PatientUpdate",
+          "type": "event"
+        },
+        "0x977dc7867dd6fb513af3d4bb11f4457a5052487f13412788530b454c0b7dfa2c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_ipfsHash",
+              "type": "string"
+            }
+          ],
+          "name": "RecordAdded",
+          "type": "event"
+        },
+        "0x4ee0bf4d8ed0ec027f6654b0ba0995ae922f70b4f3bdbc0ff59c0a7dbd5491c6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_descript",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_uploadDate",
+              "type": "uint256"
+            }
+          ],
+          "name": "RecordRetrieve",
+          "type": "event"
+        },
+        "0x87a983619f6316fe3e7ce828f67913b1a1048bf0b29304e3722f250644b04981": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_descript",
+              "type": "string"
+            }
+          ],
+          "name": "RecordUpdate",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x4c78B2C698DfD17CF0dE0aEb6cE9732A0f85f381",
+      "transactionHash": "0x28904e555ccd2293d032f50729a7fe22753052fc5355fecc0e8326f11c4e83c1"
+    }
+  },
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T05:21:54.221Z",
+  "updatedAt": "2020-04-29T05:35:57.045Z",
   "devdoc": {
     "author": "Francisco Alemán",
     "details": "El contrato hereda las funciones del contrato de roles",

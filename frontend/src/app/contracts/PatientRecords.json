@@ -8180,7 +8180,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T05:21:54.247Z",
+  "updatedAt": "2020-04-29T05:35:57.071Z",
   "devdoc": {
     "author": "Adrián Constante",
     "details": "El contrato hereda las funciones del contrato de roles",

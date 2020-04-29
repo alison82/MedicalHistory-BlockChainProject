@@ -4,7 +4,7 @@ import Web3 from "web3";
 import * as TruffleContract from 'truffle-contract';
 import { Subject } from 'rxjs';
 
-let tokenAbi = require('../../../contracts/Medical.json');
+let tokenAbi = require('./PatientDiagnosis.json');
 
 declare let window: any;
 declare let require: any;
@@ -56,6 +56,11 @@ constructor() { }
       }
       console.log(this.account);
   }
+
+  public existProvider(){
+    return (typeof window.web3 !== "undefined");
+  }
+
   private async enableAccounts() {
     if (window.ethereum) {
       window.web3 = new Web3(ethereum);
@@ -67,6 +72,7 @@ constructor() { }
       }
     }
   }
+
   public refreshAccounts = () => {
     if (typeof window.web3 !== 'undefined') {
       this.web3.eth.getAccounts((err, accs) => {

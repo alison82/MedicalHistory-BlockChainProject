@@ -49,7 +49,12 @@ export class AppComponent {
     console.log(browser);
 
     if ((browser.includes('Chrome')) || (browser.includes('Firefox')) || (browser.includes('Opera')) || (browser.includes('MS-Edge-Chromium'))){
-      if (! this.contractService.existProvider()) {
+
+      const v = await this.contractService.existProvider().then(res => {
+        return res;
+      })
+
+      if (!v) {
         this._router.navigate(['/errors/etherum-config']);
         return;
       }
@@ -58,23 +63,8 @@ export class AppComponent {
       this._router.navigate(['/errors/browser-unsupported']);
       return;
     }
-    //Temporal view
-    //this.loggedUser.setUserLoggedIn({username: 'Alison', rol: Roles.admin, useraddress: '', none: ''});
 
-    //const accounts = await this.web3.eth.getAccounts();
-
-    //this.web3.eth.personal.sign(this.web3.utils.fromUtf8("Hola"), accounts[0].toString(), 'prueba', (data) => {console.log(data)});
-
-    //Existen cuentas disponibles en metamask
-    /*if (accounts.length > 0){
-      this.loggedUser.setUserLoggedIn({username: accounts[0].toString(), rol: Roles.admin});
-      this._router.navigate(['/dashboard/main']);
-      console.log(`El usuario: ${JSON.stringify(this.loggedUser.getUserLoggedIn())} entró`);
-    } else {
-      console.log(`No Accounts: ${accounts}`);
-    }
-    */
-    //this._router.navigate(['/authentication/signin']);
+    this.contractService.startAll();
 
   }
 

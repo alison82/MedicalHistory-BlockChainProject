@@ -2930,9 +2930,43 @@
     "name": "solc",
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0xda8ad9477ca7c92626705474e6194137fbe13627f4f72e07c6d8411bf7c7a1f0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hash",
+              "type": "string"
+            }
+          ],
+          "name": "NewMedicRecord",
+          "type": "event"
+        },
+        "0xf2cbfee8c87498d0a092f7a5fd04a4bdad181bc04b6dfb9f6406e09809d2f584": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_hash",
+              "type": "string"
+            }
+          ],
+          "name": "RemoveMedicRecord",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x374d04d78381216e2d2b147D7B5bc97367E8D7AF",
+      "transactionHash": "0x4c25f03e55c5177559abbe6a906edc6095a021f3496a1e535bbd191deb6d9f5c"
+    }
+  },
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T05:21:54.255Z",
+  "updatedAt": "2020-04-29T05:35:57.080Z",
   "devdoc": {
     "methods": {
       "addMedicRecord(string)": {
