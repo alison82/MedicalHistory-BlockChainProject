@@ -18,6 +18,7 @@ import { SigninService } from './signin.service';
 import { Roles } from 'src/app/shared/models/enums.enum';
 import { ContractsService } from 'src/app/contracts/contracts.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UservalidationService } from 'src/app/shared/services/transactions/user-validation.service';
 
 declare const $: any;
 @Component({
@@ -42,6 +43,7 @@ export class SigninComponent implements OnInit {
     public dialog: MatDialog,
     public signinService: SigninService,
     private contractService: ContractsService,
+    private userValidationService: UservalidationService
     //private snackBar: MatSnackBar
   ) {}
   ngOnInit() {
@@ -73,18 +75,13 @@ export class SigninComponent implements OnInit {
   async onSubmit() {
     this.submitted = true;
 
-
-    //const accounts = await this.web3.eth.getAccounts();
-
-
-    //const publicAddress: string = accounts[0];
-
-    const publicAddress = (await this.contractService.getCurrentAddress());
+    const publicAddress = await this.contractService.getCurrentAddress().then(res => {
+      return res;
+    });
 
     if (!publicAddress){
       console.log('Debe loguearse');
       return;
-
       /*this.showNotification(
         'snackbar-error',
         'You must login in metamask!!',
@@ -93,15 +90,10 @@ export class SigninComponent implements OnInit {
       );*/
     }
 
-    //Verificar si la direccion se encuentra registrada
+    let user = new User();
+    user.useraddress = publicAddress;
 
-    //if (this.contractService.)
-
-    console.log(`publicAddress: ${publicAddress}`);
-
-    const none = this.contractService.getUserNonebyAddress(publicAddress);
-
-      //Code to get none value
+    //Code to get none value
     const info: string = 'We are getting your public address to access to the system. Are you agree?';
 
     await this.web3.eth.personal.sign(this.web3.utils.fromUtf8(info), publicAddress, '', (err, signature) => {
@@ -112,15 +104,22 @@ export class SigninComponent implements OnInit {
         console.log(`login with: ${signature}`);
     });
 
-    let user: User = await this.contractService.getUserInfobyAddress(publicAddress, none);
+    const _rol = await this.userValidationService.getUserType(publicAddress).then(res => {
+      return res;
+    })
 
+    console.log(`Rol: ${_rol}`);
+
+    user.rol = _rol;
     //Varificar el rol del usuario para enviarlo a su vista correspondiente
 
-    if ((user.rol === Roles.admin) || ((user.rol === Roles.admin))){
+    if ((user.rol === Roles.admin) || ((user.rol === Roles.admin))  || ((user.rol === Roles.patient))){
       //Registrar login
+      this.loggedUser.setUserLoggedIn(user);
 
       //Ir a la vista correspondiente
       this.router.navigate(['/dashboard/main']);
+      return;
     }
 
 

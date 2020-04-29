@@ -9,8 +9,8 @@ export class UservalidationService {
 
   private rolContract: any
 
-  constructor(private contractIntance: ContractsService) {  
-    this.rolContract = contractIntance.getContract(Contracts.UserRoles);
+  constructor(private contractIntance: ContractsService) {
+    this.rolContract = contractIntance._getContract();
   }
 
   getUserType(address): Promise<any>{

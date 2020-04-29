@@ -31,7 +31,6 @@ contract UserRoles {
 
 //    event Medic//unce(address indexed medRen);
     event PatientAdded(
-        address indexed newPat,
         address indexed whoAddedPat);
 
     event PatientRemoved(
@@ -136,7 +135,6 @@ contract UserRoles {
      * @param account Cuenta que será asignada como paciente
      */
     function addPatient(address account) public {
-        require(account == msg.sender);
         _addPatient(account);
     }
 
@@ -154,7 +152,7 @@ contract UserRoles {
     function _addPatient(address account) internal {
         require(account != address(0), "Error en la address usada");
         _patient.add(account);
-        emit PatientAdded(account, msg.sender);
+        emit PatientAdded(msg.sender);
     }
 
     /**
@@ -186,7 +184,6 @@ contract UserRoles {
 //        _admins.remove(account);
 //        emit Admin//unce(account);
 //    }
-
     /**
     * @dev Función interna para implementar la asignación de médicos
     * @param account La cuenta que será asignada como médico.
@@ -211,7 +208,7 @@ contract UserRoles {
      * @dev Función interna para implementar la renuncia de un medico
      * @param account La cuenta que será revocada de médico.
     */
-//    function _//unceMedic(address account) internal {
+//    function _renounceMedic(address account) internal {
 //        require(account != address(0), "Error en la address usada");
 //        _medic.remove(account);
 //        emit Medic//unce(account);

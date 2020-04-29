@@ -132,14 +132,14 @@
     "absolutePath": "/D/Mega-AC1982/Develop/Block-Chain/v1.1/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol",
     "exportedSymbols": {
       "PendingRecords": [
-        1766
+        1752
       ]
     },
-    "id": 1767,
+    "id": 1753,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1652,
+        "id": 1638,
         "literals": [
           "solidity",
           "^",
@@ -155,19 +155,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1766,
+        "id": 1752,
         "linearizedBaseContracts": [
-          1766
+          1752
         ],
         "name": "PendingRecords",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1655,
+            "id": 1641,
             "name": "medicPending",
             "nodeType": "VariableDeclaration",
-            "scope": 1766,
+            "scope": 1752,
             "src": "61:28:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -177,7 +177,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 1653,
+                "id": 1639,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "61:6:4",
@@ -186,7 +186,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 1654,
+              "id": 1640,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "61:8:4",
@@ -201,20 +201,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1659,
+            "id": 1645,
             "name": "NewMedicRecord",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1658,
+              "id": 1644,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1657,
+                  "id": 1643,
                   "indexed": false,
                   "name": "_hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1659,
+                  "scope": 1645,
                   "src": "117:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -223,7 +223,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1656,
+                    "id": 1642,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:6:4",
@@ -243,20 +243,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1663,
+            "id": 1649,
             "name": "RemoveMedicRecord",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1662,
+              "id": 1648,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1661,
+                  "id": 1647,
                   "indexed": false,
                   "name": "_hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1663,
+                  "scope": 1649,
                   "src": "161:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -265,7 +265,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1660,
+                    "id": 1646,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:6:4",
@@ -284,7 +284,7 @@
           },
           {
             "body": {
-              "id": 1678,
+              "id": 1664,
               "nodeType": "Block",
               "src": "391:92:4",
               "statements": [
@@ -294,11 +294,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1671,
+                        "id": 1657,
                         "name": "_hashString",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1665,
+                        "referencedDeclaration": 1651,
                         "src": "420:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -315,18 +315,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1668,
+                        "id": 1654,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "402:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1670,
+                      "id": 1656,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -340,7 +340,7 @@
                         "typeString": "function (string storage ref) returns (uint256)"
                       }
                     },
-                    "id": 1672,
+                    "id": 1658,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -354,7 +354,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1673,
+                  "id": 1659,
                   "nodeType": "ExpressionStatement",
                   "src": "402:30:4"
                 },
@@ -364,11 +364,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1675,
+                        "id": 1661,
                         "name": "_hashString",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1665,
+                        "referencedDeclaration": 1651,
                         "src": "463:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -383,18 +383,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1674,
+                      "id": 1660,
                       "name": "NewMedicRecord",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1659,
+                      "referencedDeclaration": 1645,
                       "src": "448:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (string memory)"
                       }
                     },
-                    "id": 1676,
+                    "id": 1662,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -408,29 +408,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1677,
+                  "id": 1663,
                   "nodeType": "EmitStatement",
                   "src": "443:32:4"
                 }
               ]
             },
             "documentation": "@notice Guarda el hash de un registro del medico\n@param _hashString cadena de IPFS que contiene el archivo de registro",
-            "id": 1679,
+            "id": 1665,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addMedicRecord",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1666,
+              "id": 1652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1665,
+                  "id": 1651,
                   "name": "_hashString",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1679,
+                  "scope": 1665,
                   "src": "357:25:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -439,7 +439,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1664,
+                    "id": 1650,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "357:6:4",
@@ -455,12 +455,12 @@
               "src": "356:27:4"
             },
             "returnParameters": {
-              "id": 1667,
+              "id": 1653,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "391:0:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "333:150:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -468,7 +468,7 @@
           },
           {
             "body": {
-              "id": 1687,
+              "id": 1673,
               "nodeType": "Block",
               "src": "681:45:4",
               "statements": [
@@ -477,18 +477,18 @@
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1684,
+                      "id": 1670,
                       "name": "medicPending",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1655,
+                      "referencedDeclaration": 1641,
                       "src": "699:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                         "typeString": "string storage ref[] storage ref"
                       }
                     },
-                    "id": 1685,
+                    "id": 1671,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -502,36 +502,36 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 1683,
-                  "id": 1686,
+                  "functionReturnParameters": 1669,
+                  "id": 1672,
                   "nodeType": "Return",
                   "src": "692:26:4"
                 }
               ]
             },
             "documentation": "@notice Regresa la longitud del arreglo de solicitudes pendientes\n@return Longitud de MedicPending",
-            "id": 1688,
+            "id": 1674,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPendingLength",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1680,
+              "id": 1666,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "646:2:4"
             },
             "returnParameters": {
-              "id": 1683,
+              "id": 1669,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1682,
+                  "id": 1668,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1688,
+                  "scope": 1674,
                   "src": "669:10:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -540,7 +540,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1681,
+                    "id": 1667,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "669:4:4",
@@ -555,7 +555,7 @@
               ],
               "src": "668:12:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "621:105:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -563,7 +563,7 @@
           },
           {
             "body": {
-              "id": 1699,
+              "id": 1685,
               "nodeType": "Block",
               "src": "1001:46:4",
               "statements": [
@@ -572,25 +572,25 @@
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 1695,
+                      "id": 1681,
                       "name": "medicPending",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1655,
+                      "referencedDeclaration": 1641,
                       "src": "1019:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                         "typeString": "string storage ref[] storage ref"
                       }
                     },
-                    "id": 1697,
+                    "id": 1683,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 1696,
+                      "id": 1682,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1690,
+                      "referencedDeclaration": 1676,
                       "src": "1032:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -608,30 +608,30 @@
                       "typeString": "string storage ref"
                     }
                   },
-                  "functionReturnParameters": 1694,
-                  "id": 1698,
+                  "functionReturnParameters": 1680,
+                  "id": 1684,
                   "nodeType": "Return",
                   "src": "1012:27:4"
                 }
               ]
             },
             "documentation": "@notice Regresa la cadena hash de un indice dado\n@param _index Indice a consultar\n@return Cadena dentro del indice indicado en MedicPending",
-            "id": 1700,
+            "id": 1686,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPendingRequest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1691,
+              "id": 1677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1690,
+                  "id": 1676,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1700,
+                  "scope": 1686,
                   "src": "939:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -640,7 +640,7 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 1689,
+                    "id": 1675,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
                     "src": "939:6:4",
@@ -656,15 +656,15 @@
               "src": "938:15:4"
             },
             "returnParameters": {
-              "id": 1694,
+              "id": 1680,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1693,
+                  "id": 1679,
                   "name": "_hashString",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1700,
+                  "scope": 1686,
                   "src": "974:25:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -673,7 +673,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1692,
+                    "id": 1678,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "974:6:4",
@@ -688,7 +688,7 @@
               ],
               "src": "973:27:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "912:135:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -696,7 +696,7 @@
           },
           {
             "body": {
-              "id": 1764,
+              "id": 1750,
               "nodeType": "Block",
               "src": "1344:406:4",
               "statements": [
@@ -707,18 +707,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1710,
+                    "id": 1696,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1707,
+                      "id": 1693,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1702,
+                      "referencedDeclaration": 1688,
                       "src": "1359:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -731,18 +731,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1708,
+                        "id": 1694,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "1369:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1709,
+                      "id": 1695,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -763,14 +763,14 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1713,
+                  "id": 1699,
                   "nodeType": "IfStatement",
                   "src": "1355:47:4",
                   "trueBody": {
                     "expression": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 1711,
+                      "id": 1697,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -785,23 +785,23 @@
                       },
                       "value": "false"
                     },
-                    "functionReturnParameters": 1706,
-                    "id": 1712,
+                    "functionReturnParameters": 1692,
+                    "id": 1698,
                     "nodeType": "Return",
                     "src": "1390:12:4"
                   }
                 },
                 {
                   "assignments": [
-                    1715
+                    1701
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1715,
+                      "id": 1701,
                       "name": "removedHash",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1764,
+                      "scope": 1750,
                       "src": "1415:25:4",
                       "stateVariable": false,
                       "storageLocation": "memory",
@@ -810,7 +810,7 @@
                         "typeString": "string"
                       },
                       "typeName": {
-                        "id": 1714,
+                        "id": 1700,
                         "name": "string",
                         "nodeType": "ElementaryTypeName",
                         "src": "1415:6:4",
@@ -823,30 +823,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1719,
+                  "id": 1705,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 1716,
+                      "id": 1702,
                       "name": "medicPending",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1655,
+                      "referencedDeclaration": 1641,
                       "src": "1443:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                         "typeString": "string storage ref[] storage ref"
                       }
                     },
-                    "id": 1718,
+                    "id": 1704,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 1717,
+                      "id": 1703,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1702,
+                      "referencedDeclaration": 1688,
                       "src": "1456:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -869,14 +869,14 @@
                 },
                 {
                   "body": {
-                    "id": 1743,
+                    "id": 1729,
                     "nodeType": "Block",
                     "src": "1528:62:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1741,
+                          "id": 1727,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -885,25 +885,25 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1733,
+                              "id": 1719,
                               "name": "medicPending",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1655,
+                              "referencedDeclaration": 1641,
                               "src": "1543:12:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                                 "typeString": "string storage ref[] storage ref"
                               }
                             },
-                            "id": 1735,
+                            "id": 1721,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1734,
+                              "id": 1720,
                               "name": "i",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1721,
+                              "referencedDeclaration": 1707,
                               "src": "1556:1:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -927,36 +927,36 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1736,
+                              "id": 1722,
                               "name": "medicPending",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1655,
+                              "referencedDeclaration": 1641,
                               "src": "1561:12:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                                 "typeString": "string storage ref[] storage ref"
                               }
                             },
-                            "id": 1740,
+                            "id": 1726,
                             "indexExpression": {
                               "argumentTypes": null,
                               "commonType": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 1739,
+                              "id": 1725,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1737,
+                                "id": 1723,
                                 "name": "i",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1721,
+                                "referencedDeclaration": 1707,
                                 "src": "1574:1:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -968,7 +968,7 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "31",
-                                "id": 1738,
+                                "id": 1724,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -1006,7 +1006,7 @@
                             "typeString": "string storage ref"
                           }
                         },
-                        "id": 1742,
+                        "id": 1728,
                         "nodeType": "ExpressionStatement",
                         "src": "1543:35:4"
                       }
@@ -1018,18 +1018,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1729,
+                    "id": 1715,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1724,
+                      "id": 1710,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1721,
+                      "referencedDeclaration": 1707,
                       "src": "1496:1:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1044,7 +1044,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1728,
+                      "id": 1714,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1053,18 +1053,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1725,
+                          "id": 1711,
                           "name": "medicPending",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1655,
+                          "referencedDeclaration": 1641,
                           "src": "1500:12:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                             "typeString": "string storage ref[] storage ref"
                           }
                         },
-                        "id": 1726,
+                        "id": 1712,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -1083,7 +1083,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "31",
-                        "id": 1727,
+                        "id": 1713,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1110,18 +1110,18 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1744,
+                  "id": 1730,
                   "initializationExpression": {
                     "assignments": [
-                      1721
+                      1707
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 1721,
+                        "id": 1707,
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 1744,
+                        "scope": 1730,
                         "src": "1479:6:4",
                         "stateVariable": false,
                         "storageLocation": "default",
@@ -1130,7 +1130,7 @@
                           "typeString": "uint256"
                         },
                         "typeName": {
-                          "id": 1720,
+                          "id": 1706,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
                           "src": "1479:4:4",
@@ -1143,14 +1143,14 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 1723,
+                    "id": 1709,
                     "initialValue": {
                       "argumentTypes": null,
-                      "id": 1722,
+                      "id": 1708,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1702,
+                      "referencedDeclaration": 1688,
                       "src": "1488:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -1163,7 +1163,7 @@
                   "loopExpression": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1731,
+                      "id": 1717,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1174,11 +1174,11 @@
                       "src": "1523:3:4",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 1730,
+                        "id": 1716,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1721,
+                        "referencedDeclaration": 1707,
                         "src": "1523:1:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1190,7 +1190,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1732,
+                    "id": 1718,
                     "nodeType": "ExpressionStatement",
                     "src": "1523:3:4"
                   },
@@ -1200,7 +1200,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1751,
+                    "id": 1737,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1213,25 +1213,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1745,
+                        "id": 1731,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "1607:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1750,
+                      "id": 1736,
                       "indexExpression": {
                         "argumentTypes": null,
                         "commonType": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1749,
+                        "id": 1735,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1240,18 +1240,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1746,
+                            "id": 1732,
                             "name": "medicPending",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1655,
+                            "referencedDeclaration": 1641,
                             "src": "1620:12:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                               "typeString": "string storage ref[] storage ref"
                             }
                           },
-                          "id": 1747,
+                          "id": 1733,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -1270,7 +1270,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "31",
-                          "id": 1748,
+                          "id": 1734,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1307,14 +1307,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1752,
+                  "id": 1738,
                   "nodeType": "ExpressionStatement",
                   "src": "1600:42:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1756,
+                    "id": 1742,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1327,18 +1327,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1753,
+                        "id": 1739,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "1653:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1755,
+                      "id": 1741,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -1357,7 +1357,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1757,
+                  "id": 1743,
                   "nodeType": "ExpressionStatement",
                   "src": "1653:21:4"
                 },
@@ -1367,11 +1367,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1759,
+                        "id": 1745,
                         "name": "removedHash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1715,
+                        "referencedDeclaration": 1701,
                         "src": "1708:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1386,18 +1386,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1758,
+                      "id": 1744,
                       "name": "RemoveMedicRecord",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1663,
+                      "referencedDeclaration": 1649,
                       "src": "1690:17:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (string memory)"
                       }
                     },
-                    "id": 1760,
+                    "id": 1746,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1411,7 +1411,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1761,
+                  "id": 1747,
                   "nodeType": "EmitStatement",
                   "src": "1685:35:4"
                 },
@@ -1419,7 +1419,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1762,
+                    "id": 1748,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -1434,30 +1434,30 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1706,
-                  "id": 1763,
+                  "functionReturnParameters": 1692,
+                  "id": 1749,
                   "nodeType": "Return",
                   "src": "1731:11:4"
                 }
               ]
             },
             "documentation": "@notice Remueve el elemento del indice indicado\n@dev Hace un swap para no dejar espacios en blanco\n@param _index The owner address\n@return booleano diciendo si fue exitoso o no",
-            "id": 1765,
+            "id": 1751,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "removePending",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1703,
+              "id": 1689,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1702,
+                  "id": 1688,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1765,
+                  "scope": 1751,
                   "src": "1300:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1466,7 +1466,7 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 1701,
+                    "id": 1687,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1300:6:4",
@@ -1482,15 +1482,15 @@
               "src": "1299:15:4"
             },
             "returnParameters": {
-              "id": 1706,
+              "id": 1692,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1705,
+                  "id": 1691,
                   "name": "success",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1765,
+                  "scope": 1751,
                   "src": "1330:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1499,7 +1499,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1704,
+                    "id": 1690,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1330:4:4",
@@ -1514,14 +1514,14 @@
               ],
               "src": "1329:14:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "1277:473:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1767,
+        "scope": 1753,
         "src": "30:1723:4"
       }
     ],
@@ -1531,14 +1531,14 @@
     "absolutePath": "/D/Mega-AC1982/Develop/Block-Chain/v1.1/MedicalHistory-BlockChainProject/frontend/truffle/contracts/PendingRecords.sol",
     "exportedSymbols": {
       "PendingRecords": [
-        1766
+        1752
       ]
     },
-    "id": 1767,
+    "id": 1753,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1652,
+        "id": 1638,
         "literals": [
           "solidity",
           "^",
@@ -1554,19 +1554,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1766,
+        "id": 1752,
         "linearizedBaseContracts": [
-          1766
+          1752
         ],
         "name": "PendingRecords",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1655,
+            "id": 1641,
             "name": "medicPending",
             "nodeType": "VariableDeclaration",
-            "scope": 1766,
+            "scope": 1752,
             "src": "61:28:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1576,7 +1576,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 1653,
+                "id": 1639,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "61:6:4",
@@ -1585,7 +1585,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 1654,
+              "id": 1640,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "61:8:4",
@@ -1600,20 +1600,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1659,
+            "id": 1645,
             "name": "NewMedicRecord",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1658,
+              "id": 1644,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1657,
+                  "id": 1643,
                   "indexed": false,
                   "name": "_hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1659,
+                  "scope": 1645,
                   "src": "117:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1622,7 +1622,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1656,
+                    "id": 1642,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:6:4",
@@ -1642,20 +1642,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 1663,
+            "id": 1649,
             "name": "RemoveMedicRecord",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1662,
+              "id": 1648,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1661,
+                  "id": 1647,
                   "indexed": false,
                   "name": "_hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1663,
+                  "scope": 1649,
                   "src": "161:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1664,7 +1664,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1660,
+                    "id": 1646,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:6:4",
@@ -1683,7 +1683,7 @@
           },
           {
             "body": {
-              "id": 1678,
+              "id": 1664,
               "nodeType": "Block",
               "src": "391:92:4",
               "statements": [
@@ -1693,11 +1693,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1671,
+                        "id": 1657,
                         "name": "_hashString",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1665,
+                        "referencedDeclaration": 1651,
                         "src": "420:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1714,18 +1714,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1668,
+                        "id": 1654,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "402:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1670,
+                      "id": 1656,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1739,7 +1739,7 @@
                         "typeString": "function (string storage ref) returns (uint256)"
                       }
                     },
-                    "id": 1672,
+                    "id": 1658,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1753,7 +1753,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1673,
+                  "id": 1659,
                   "nodeType": "ExpressionStatement",
                   "src": "402:30:4"
                 },
@@ -1763,11 +1763,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1675,
+                        "id": 1661,
                         "name": "_hashString",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1665,
+                        "referencedDeclaration": 1651,
                         "src": "463:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1782,18 +1782,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1674,
+                      "id": 1660,
                       "name": "NewMedicRecord",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1659,
+                      "referencedDeclaration": 1645,
                       "src": "448:14:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (string memory)"
                       }
                     },
-                    "id": 1676,
+                    "id": 1662,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1807,29 +1807,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1677,
+                  "id": 1663,
                   "nodeType": "EmitStatement",
                   "src": "443:32:4"
                 }
               ]
             },
             "documentation": "@notice Guarda el hash de un registro del medico\n@param _hashString cadena de IPFS que contiene el archivo de registro",
-            "id": 1679,
+            "id": 1665,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addMedicRecord",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1666,
+              "id": 1652,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1665,
+                  "id": 1651,
                   "name": "_hashString",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1679,
+                  "scope": 1665,
                   "src": "357:25:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1838,7 +1838,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1664,
+                    "id": 1650,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "357:6:4",
@@ -1854,12 +1854,12 @@
               "src": "356:27:4"
             },
             "returnParameters": {
-              "id": 1667,
+              "id": 1653,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "391:0:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "333:150:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1867,7 +1867,7 @@
           },
           {
             "body": {
-              "id": 1687,
+              "id": 1673,
               "nodeType": "Block",
               "src": "681:45:4",
               "statements": [
@@ -1876,18 +1876,18 @@
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1684,
+                      "id": 1670,
                       "name": "medicPending",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1655,
+                      "referencedDeclaration": 1641,
                       "src": "699:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                         "typeString": "string storage ref[] storage ref"
                       }
                     },
-                    "id": 1685,
+                    "id": 1671,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -1901,36 +1901,36 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 1683,
-                  "id": 1686,
+                  "functionReturnParameters": 1669,
+                  "id": 1672,
                   "nodeType": "Return",
                   "src": "692:26:4"
                 }
               ]
             },
             "documentation": "@notice Regresa la longitud del arreglo de solicitudes pendientes\n@return Longitud de MedicPending",
-            "id": 1688,
+            "id": 1674,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPendingLength",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1680,
+              "id": 1666,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "646:2:4"
             },
             "returnParameters": {
-              "id": 1683,
+              "id": 1669,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1682,
+                  "id": 1668,
                   "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1688,
+                  "scope": 1674,
                   "src": "669:10:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1939,7 +1939,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1681,
+                    "id": 1667,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "669:4:4",
@@ -1954,7 +1954,7 @@
               ],
               "src": "668:12:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "621:105:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -1962,7 +1962,7 @@
           },
           {
             "body": {
-              "id": 1699,
+              "id": 1685,
               "nodeType": "Block",
               "src": "1001:46:4",
               "statements": [
@@ -1971,25 +1971,25 @@
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 1695,
+                      "id": 1681,
                       "name": "medicPending",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1655,
+                      "referencedDeclaration": 1641,
                       "src": "1019:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                         "typeString": "string storage ref[] storage ref"
                       }
                     },
-                    "id": 1697,
+                    "id": 1683,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 1696,
+                      "id": 1682,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1690,
+                      "referencedDeclaration": 1676,
                       "src": "1032:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -2007,30 +2007,30 @@
                       "typeString": "string storage ref"
                     }
                   },
-                  "functionReturnParameters": 1694,
-                  "id": 1698,
+                  "functionReturnParameters": 1680,
+                  "id": 1684,
                   "nodeType": "Return",
                   "src": "1012:27:4"
                 }
               ]
             },
             "documentation": "@notice Regresa la cadena hash de un indice dado\n@param _index Indice a consultar\n@return Cadena dentro del indice indicado en MedicPending",
-            "id": 1700,
+            "id": 1686,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPendingRequest",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1691,
+              "id": 1677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1690,
+                  "id": 1676,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1700,
+                  "scope": 1686,
                   "src": "939:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2039,7 +2039,7 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 1689,
+                    "id": 1675,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
                     "src": "939:6:4",
@@ -2055,15 +2055,15 @@
               "src": "938:15:4"
             },
             "returnParameters": {
-              "id": 1694,
+              "id": 1680,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1693,
+                  "id": 1679,
                   "name": "_hashString",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1700,
+                  "scope": 1686,
                   "src": "974:25:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2072,7 +2072,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1692,
+                    "id": 1678,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "974:6:4",
@@ -2087,7 +2087,7 @@
               ],
               "src": "973:27:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "912:135:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -2095,7 +2095,7 @@
           },
           {
             "body": {
-              "id": 1764,
+              "id": 1750,
               "nodeType": "Block",
               "src": "1344:406:4",
               "statements": [
@@ -2106,18 +2106,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1710,
+                    "id": 1696,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1707,
+                      "id": 1693,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1702,
+                      "referencedDeclaration": 1688,
                       "src": "1359:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -2130,18 +2130,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1708,
+                        "id": 1694,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "1369:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1709,
+                      "id": 1695,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -2162,14 +2162,14 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1713,
+                  "id": 1699,
                   "nodeType": "IfStatement",
                   "src": "1355:47:4",
                   "trueBody": {
                     "expression": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 1711,
+                      "id": 1697,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2184,23 +2184,23 @@
                       },
                       "value": "false"
                     },
-                    "functionReturnParameters": 1706,
-                    "id": 1712,
+                    "functionReturnParameters": 1692,
+                    "id": 1698,
                     "nodeType": "Return",
                     "src": "1390:12:4"
                   }
                 },
                 {
                   "assignments": [
-                    1715
+                    1701
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1715,
+                      "id": 1701,
                       "name": "removedHash",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1764,
+                      "scope": 1750,
                       "src": "1415:25:4",
                       "stateVariable": false,
                       "storageLocation": "memory",
@@ -2209,7 +2209,7 @@
                         "typeString": "string"
                       },
                       "typeName": {
-                        "id": 1714,
+                        "id": 1700,
                         "name": "string",
                         "nodeType": "ElementaryTypeName",
                         "src": "1415:6:4",
@@ -2222,30 +2222,30 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1719,
+                  "id": 1705,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 1716,
+                      "id": 1702,
                       "name": "medicPending",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1655,
+                      "referencedDeclaration": 1641,
                       "src": "1443:12:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                         "typeString": "string storage ref[] storage ref"
                       }
                     },
-                    "id": 1718,
+                    "id": 1704,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 1717,
+                      "id": 1703,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1702,
+                      "referencedDeclaration": 1688,
                       "src": "1456:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -2268,14 +2268,14 @@
                 },
                 {
                   "body": {
-                    "id": 1743,
+                    "id": 1729,
                     "nodeType": "Block",
                     "src": "1528:62:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1741,
+                          "id": 1727,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2284,25 +2284,25 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1733,
+                              "id": 1719,
                               "name": "medicPending",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1655,
+                              "referencedDeclaration": 1641,
                               "src": "1543:12:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                                 "typeString": "string storage ref[] storage ref"
                               }
                             },
-                            "id": 1735,
+                            "id": 1721,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1734,
+                              "id": 1720,
                               "name": "i",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1721,
+                              "referencedDeclaration": 1707,
                               "src": "1556:1:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -2326,36 +2326,36 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1736,
+                              "id": 1722,
                               "name": "medicPending",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1655,
+                              "referencedDeclaration": 1641,
                               "src": "1561:12:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                                 "typeString": "string storage ref[] storage ref"
                               }
                             },
-                            "id": 1740,
+                            "id": 1726,
                             "indexExpression": {
                               "argumentTypes": null,
                               "commonType": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 1739,
+                              "id": 1725,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1737,
+                                "id": 1723,
                                 "name": "i",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1721,
+                                "referencedDeclaration": 1707,
                                 "src": "1574:1:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -2367,7 +2367,7 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "31",
-                                "id": 1738,
+                                "id": 1724,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -2405,7 +2405,7 @@
                             "typeString": "string storage ref"
                           }
                         },
-                        "id": 1742,
+                        "id": 1728,
                         "nodeType": "ExpressionStatement",
                         "src": "1543:35:4"
                       }
@@ -2417,18 +2417,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1729,
+                    "id": 1715,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1724,
+                      "id": 1710,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1721,
+                      "referencedDeclaration": 1707,
                       "src": "1496:1:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2443,7 +2443,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1728,
+                      "id": 1714,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2452,18 +2452,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1725,
+                          "id": 1711,
                           "name": "medicPending",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1655,
+                          "referencedDeclaration": 1641,
                           "src": "1500:12:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                             "typeString": "string storage ref[] storage ref"
                           }
                         },
-                        "id": 1726,
+                        "id": 1712,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -2482,7 +2482,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "31",
-                        "id": 1727,
+                        "id": 1713,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2509,18 +2509,18 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1744,
+                  "id": 1730,
                   "initializationExpression": {
                     "assignments": [
-                      1721
+                      1707
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 1721,
+                        "id": 1707,
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 1744,
+                        "scope": 1730,
                         "src": "1479:6:4",
                         "stateVariable": false,
                         "storageLocation": "default",
@@ -2529,7 +2529,7 @@
                           "typeString": "uint256"
                         },
                         "typeName": {
-                          "id": 1720,
+                          "id": 1706,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
                           "src": "1479:4:4",
@@ -2542,14 +2542,14 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 1723,
+                    "id": 1709,
                     "initialValue": {
                       "argumentTypes": null,
-                      "id": 1722,
+                      "id": 1708,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1702,
+                      "referencedDeclaration": 1688,
                       "src": "1488:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
@@ -2562,7 +2562,7 @@
                   "loopExpression": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1731,
+                      "id": 1717,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2573,11 +2573,11 @@
                       "src": "1523:3:4",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 1730,
+                        "id": 1716,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1721,
+                        "referencedDeclaration": 1707,
                         "src": "1523:1:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2589,7 +2589,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1732,
+                    "id": 1718,
                     "nodeType": "ExpressionStatement",
                     "src": "1523:3:4"
                   },
@@ -2599,7 +2599,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1751,
+                    "id": 1737,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2612,25 +2612,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1745,
+                        "id": 1731,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "1607:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1750,
+                      "id": 1736,
                       "indexExpression": {
                         "argumentTypes": null,
                         "commonType": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1749,
+                        "id": 1735,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2639,18 +2639,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1746,
+                            "id": 1732,
                             "name": "medicPending",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1655,
+                            "referencedDeclaration": 1641,
                             "src": "1620:12:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                               "typeString": "string storage ref[] storage ref"
                             }
                           },
-                          "id": 1747,
+                          "id": 1733,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -2669,7 +2669,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "31",
-                          "id": 1748,
+                          "id": 1734,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2706,14 +2706,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1752,
+                  "id": 1738,
                   "nodeType": "ExpressionStatement",
                   "src": "1600:42:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1756,
+                    "id": 1742,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2726,18 +2726,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1753,
+                        "id": 1739,
                         "name": "medicPending",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1655,
+                        "referencedDeclaration": 1641,
                         "src": "1653:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_storage_$dyn_storage",
                           "typeString": "string storage ref[] storage ref"
                         }
                       },
-                      "id": 1755,
+                      "id": 1741,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -2756,7 +2756,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1757,
+                  "id": 1743,
                   "nodeType": "ExpressionStatement",
                   "src": "1653:21:4"
                 },
@@ -2766,11 +2766,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1759,
+                        "id": 1745,
                         "name": "removedHash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1715,
+                        "referencedDeclaration": 1701,
                         "src": "1708:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -2785,18 +2785,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1758,
+                      "id": 1744,
                       "name": "RemoveMedicRecord",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1663,
+                      "referencedDeclaration": 1649,
                       "src": "1690:17:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (string memory)"
                       }
                     },
-                    "id": 1760,
+                    "id": 1746,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2810,7 +2810,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1761,
+                  "id": 1747,
                   "nodeType": "EmitStatement",
                   "src": "1685:35:4"
                 },
@@ -2818,7 +2818,7 @@
                   "expression": {
                     "argumentTypes": null,
                     "hexValue": "74727565",
-                    "id": 1762,
+                    "id": 1748,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -2833,30 +2833,30 @@
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1706,
-                  "id": 1763,
+                  "functionReturnParameters": 1692,
+                  "id": 1749,
                   "nodeType": "Return",
                   "src": "1731:11:4"
                 }
               ]
             },
             "documentation": "@notice Remueve el elemento del indice indicado\n@dev Hace un swap para no dejar espacios en blanco\n@param _index The owner address\n@return booleano diciendo si fue exitoso o no",
-            "id": 1765,
+            "id": 1751,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "removePending",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1703,
+              "id": 1689,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1702,
+                  "id": 1688,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1765,
+                  "scope": 1751,
                   "src": "1300:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2865,7 +2865,7 @@
                     "typeString": "uint32"
                   },
                   "typeName": {
-                    "id": 1701,
+                    "id": 1687,
                     "name": "uint32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1300:6:4",
@@ -2881,15 +2881,15 @@
               "src": "1299:15:4"
             },
             "returnParameters": {
-              "id": 1706,
+              "id": 1692,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1705,
+                  "id": 1691,
                   "name": "success",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1765,
+                  "scope": 1751,
                   "src": "1330:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2898,7 +2898,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1704,
+                    "id": 1690,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1330:4:4",
@@ -2913,14 +2913,14 @@
               ],
               "src": "1329:14:4"
             },
-            "scope": 1766,
+            "scope": 1752,
             "src": "1277:473:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1767,
+        "scope": 1753,
         "src": "30:1723:4"
       }
     ],
@@ -2966,7 +2966,7 @@
     }
   },
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T05:35:57.080Z",
+  "updatedAt": "2020-04-29T07:14:34.469Z",
   "devdoc": {
     "methods": {
       "addMedicRecord(string)": {

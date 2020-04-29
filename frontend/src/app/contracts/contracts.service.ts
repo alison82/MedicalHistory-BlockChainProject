@@ -58,6 +58,10 @@ export class ContractsService {
     return this.web3Service.account;
   }
 
+  async _getContract(){
+    return this.web3Service.contractInstance;
+  }
+
   async getUserNonebyAddress(address){
     // Verificar con un contrato si este usuario se encuentra ya registrado y devolver el none correspondiente
   }
