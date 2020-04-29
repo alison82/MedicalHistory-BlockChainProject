@@ -59,7 +59,7 @@ export class AppComponent {
       return;
     }
     //Temporal view
-    this.loggedUser.setUserLoggedIn({username: 'Alison', rol: Roles.admin, useraddress: '', none: ''});
+    //this.loggedUser.setUserLoggedIn({username: 'Alison', rol: Roles.admin, useraddress: '', none: ''});
 
     //const accounts = await this.web3.eth.getAccounts();
 
