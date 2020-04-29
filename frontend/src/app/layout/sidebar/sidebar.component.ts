@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
   listMaxWidth: string;
   headerHeight = 60;
   user: User;
+  _rolItem: any;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -43,6 +44,12 @@ export class SidebarComponent implements OnInit {
         useraddress: '',
         username: ''
       }
+    }
+
+    this._rolItem = {
+      doctor: ['Patient', 'All Patient'],
+      patient: ['Patient', 'Patient Profile'],
+      admin: []
     }
 
   }
@@ -122,4 +129,17 @@ export class SidebarComponent implements OnInit {
       this.renderer.addClass(this.document.body, 'submenu-closed');
     }
   }
+
+  itemRol(itemTitle){
+
+    if (this.user.rol === Roles.admin){
+      return true;
+    }
+
+    const v = this._rolItem[this.user.rol].indexOf(itemTitle) !== -1;
+
+    return v;
+  }
+
+
 }

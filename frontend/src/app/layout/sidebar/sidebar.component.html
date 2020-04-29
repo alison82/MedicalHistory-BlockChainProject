@@ -20,12 +20,12 @@
                 <!-- First level menu -->
                 <li [class.active]="showMenu === sidebarItem.title" *ngFor="let sidebarItem of sidebarItems"
                     [routerLinkActive]="sidebarItem.submenu.length != 0 ? '' : 'active'">
-                    <div class="header" *ngIf="sidebarItem.groupTitle === true">{{sidebarItem.title}}</div>
+                    <div class="header" *ngIf="sidebarItem.groupTitle === true && itemRol(sidebarItem.title)">{{sidebarItem.title}}</div>
                     <a [routerLink]="sidebarItem.class === '' ? [sidebarItem.path] : null"
-                        *ngIf="!sidebarItem.groupTitle;" [ngClass]="[sidebarItem.class]"
+                        *ngIf="!sidebarItem.groupTitle && itemRol(sidebarItem.title);" [ngClass]="[sidebarItem.class]"
                         (click)="callMenuToggle($event, sidebarItem.title)">
-                        <i [ngClass]="[sidebarItem.icon]"></i>
-                        <span class="hide-menu">{{sidebarItem.title}}
+                        <i *ngIf="itemRol(sidebarItem.title);" [ngClass]="[sidebarItem.icon]"></i>
+                        <span *ngIf="itemRol(sidebarItem.title);" class="hide-menu">{{sidebarItem.title}}
                         </span>
                     </a>
                     <!-- Second level menu -->
@@ -33,7 +33,7 @@
                         <li *ngFor="let sidebarSubItem of sidebarItem.submenu"
                             [class.activeSub]="showSubMenu === sidebarSubItem.title"
                             [routerLinkActive]="sidebarSubItem.submenu.length > 0 ? '' : 'active'">
-                            <a [routerLink]="sidebarSubItem.submenu.length > 0 ? null : [sidebarSubItem.path]"
+                            <a *ngIf="itemRol(sidebarSubItem.title);"[routerLink]="sidebarSubItem.submenu.length > 0 ? null : [sidebarSubItem.path]"
                                 (click)="callSubMenuToggle(sidebarSubItem.title)" [ngClass]="[sidebarSubItem.class]">
                                 {{sidebarSubItem.title}}
                             </a>
@@ -42,7 +42,7 @@
                                 [ngClass]="{'in' : showSubMenu === sidebarSubItem.title }">
                                 <li *ngFor="let sidebarSubsubItem of sidebarSubItem.submenu"
                                     [ngClass]="[sidebarSubsubItem.class]">
-                                    <a [routerLink]="[sidebarSubsubItem.path]">
+                                    <a *ngIf="itemRol(sidebarSubItem.title);" [routerLink]="[sidebarSubsubItem.path]">
                                         {{sidebarSubsubItem.title}}
                                     </a>
                                 </li>
