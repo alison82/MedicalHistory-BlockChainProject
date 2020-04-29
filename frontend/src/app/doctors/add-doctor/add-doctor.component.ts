@@ -15,41 +15,24 @@ export class AddDoctorComponent {
   docForm_Doc: FormGroup;
   hide3 = true;
   agree3 = false;
+
   constructor(  private fb: FormBuilder, 
                 public adminService: AdminService,
                 private contractService: ContractsService) {
     this.docForm = this.fb.group({
       first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      last: [''],
-      gender: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      conformPassword: ['', [Validators.required]],
-      designation: [''],
-      department: [''],
-      address: [''],
+      cedula: [''],
+      specialty: ['', [Validators.required]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
-      dob: ['', [Validators.required]],
-      education: [''],
-      uploadImg: ['']
     });
-
-    this.docForm_Doc = this.fb.group({
-        first:['Liliana'],
-        last1:['Duran'],
-        last2:['Polanco'],
-        email:['llll@gmail.com'],
-        cedula:['123456789'],
-        specialty:['Cardiologia'],
-        address:['0x8085A6759EbA2A66D7E5cc04597c552aEd46F20b'],
-        hashPicture:['']
-      });
   }
+  
+  
   onSubmit() {
-    console.log('Form Value', this.docForm_Doc.value);
+    console.log('Form Value', this.docForm.value);
     var doctor  = new Doctor();
     doctor.name       = this.docForm_Doc.value.first;
     doctor.surname    = this.docForm_Doc.value.last1;
@@ -60,16 +43,16 @@ export class AddDoctorComponent {
     doctor.address      = this.docForm_Doc.value.address;
     doctor.hashPicture  = this.docForm_Doc.value.hashPicture;
     this.register(doctor);
-    
   }
 
-async register(doctor:Doctor){
-  var admin_account   = await this.contractService.getCurrentAddress();
-  await this.adminService.addDoctor(doctor, admin_account).then(res=>{
-    console.log("RegisteredX2!!!!!!")
-  },error=>{
-    console.log(error);
-  });
-}
+  async register(doctor:Doctor){
+    var admin_account   = await this.contractService.getCurrentAddress();
+    await this.adminService.addDoctor(doctor, admin_account).then(res=>{
+      console.log("RegisteredX2!!!!!!")
+    },error=>{
+      console.log(error);
+    });
+  }
 
 }
+
