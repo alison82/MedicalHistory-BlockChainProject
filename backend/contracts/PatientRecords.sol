@@ -1,7 +1,6 @@
 pragma solidity ^0.5.16;
 
 import "./MedicsRegister.sol";
-import "./acceso/UserRoles.sol";
 
 /**
  * @title Smart Contract de Historial de pacientes - Control de Estudio basado en rol.

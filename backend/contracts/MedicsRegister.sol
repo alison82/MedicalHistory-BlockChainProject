@@ -160,7 +160,7 @@ contract MedicsRegister is UserRoles {
     * @param _account Cuenta del médico
     * @return a
     */
-//    function //Medics(
+//    function updateMedics(
 //        address _account,
 //        string memory _name,
 //        string memory _specialty,

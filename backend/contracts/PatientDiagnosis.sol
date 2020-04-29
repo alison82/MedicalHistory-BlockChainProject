@@ -1,7 +1,8 @@
-pragma solidity 0.5.16;
 pragma experimental ABIEncoderV2;
+pragma solidity ^0.5.16;
 
 import "./PatientRecords.sol";
+import "./MedicsRegister.sol";
 
 /**
  * @title Smart Contract de Diagnóstico de pacientes - Control de Diagnóstico realizado por el médico.
@@ -10,7 +11,7 @@ import "./PatientRecords.sol";
  * @dev El contrato hereda las funciones del contrato de roles
  */
 
-contract PatientDiagnosis is PatientRecords {
+contract PatientDiagnosis is MedicsRegister {
 
     /**
      * @title Representa un Diágnostico el cual le pertenece a un paciente.
@@ -21,7 +22,7 @@ contract PatientDiagnosis is PatientRecords {
         uint256 weight;
         string diagnostic;
         string observations;
-        string[] estudio;
+        string estudio;
         bool isDiag;
     }
 
@@ -72,7 +73,7 @@ contract PatientDiagnosis is PatientRecords {
         uint256 _weight,
         string _diagnostic,
         string  _observations,
-        string[] _estudio
+        string _estudio
         );
 
     event FullDiagnosticRetrieve(
@@ -138,10 +139,9 @@ contract PatientDiagnosis is PatientRecords {
     */
     function () external payable {}
 
-    function patientDiagnosis(address _account, uint256 _timeStamp) public view returns (Diagnostico memory diag) {
-        return fileToPatientDiagnosis[_account][_timeStamp];
-    }
-
+    //function patientDiagnosis(address _account, uint256 _timeStamp) public view returns (Diagnostico memory diag) {
+    //    return fileToPatientDiagnosis[_account][_timeStamp];
+    //}
     function extendedIsDiag(address _account) public view returns (bool isIndeed) {
         return extendedFileToPatientDiagnosis[_account].length >= 0;
     }
@@ -171,7 +171,7 @@ contract PatientDiagnosis is PatientRecords {
         uint16 _weight,
         string memory _diagnostic,
         string memory _observations,
-        string[] memory _estudio
+        string memory _estudio
         )
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
@@ -258,7 +258,7 @@ contract PatientDiagnosis is PatientRecords {
         uint256 _weight,
         string memory _diagnostic,
         string memory _observations,
-        string[] memory _estudio,
+        string memory _estudio,
         uint256 _date
         )
     public nonlyStopped onlyMedic returns (bool _success) {
@@ -270,7 +270,6 @@ contract PatientDiagnosis is PatientRecords {
         require(bytes(_diagnostic).length < 50);
         require(bytes(_observations).length < 512);
         require(_date >= 0 && _date <= 2**256 - 1);
-        require(_estudio.length > 0);
 
         Diagnostico memory diagnostico = Diagnostico(
             _comorb,
@@ -348,7 +347,7 @@ contract PatientDiagnosis is PatientRecords {
         require(_account != address(0));
         require(_date >= 0 && _date <= 2**256 - 1);
         require(isDiag(_account, _date));
-        Diagnostico memory diagnostico = patientDiagnosis(_account, _date);
+        Diagnostico memory diagnostico = fileToPatientDiagnosis[_account][_date];
         if (isMedic(msg.sender) && isPatient(msg.sender)) {
             require(msg.sender != _account || msg.sender == _account);
         } else if (isMedic(msg.sender)) {
@@ -377,8 +376,7 @@ contract PatientDiagnosis is PatientRecords {
         address _account
         )
     public payable nonlyStopped onlyPatient returns (
-            string memory _hashCredencial,
-            string memory _hashFoto
+            bool _success
         ) {
         require(_account != address(0));
         require(msg.value == 0.001 ether);
@@ -397,8 +395,7 @@ contract PatientDiagnosis is PatientRecords {
             now
         );
 
-        _hashCredencial = paciente.hashCredencial;
-        _hashFoto = paciente.hashFoto;
+        _success = true;
     }
 
     /**

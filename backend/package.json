@@ -9,6 +9,7 @@
   "dependencies": {
     "3box": "^1.17.1",
     "@graphprotocol/graph-cli": "^0.17.1",
+    "@truffle/hdwallet-provider": "^1.0.34",
     "package.json": "^2.0.1",
     "truffle-hdwallet-provider": "^1.0.17",
     "truffle-hdwallet-provider-privkey": "1.0.3",
