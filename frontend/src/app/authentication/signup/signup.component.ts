@@ -20,7 +20,7 @@ declare const $: any;
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  providers: [DoctorService,PatientService]   
+  providers: [DoctorService,PatientService]
 })
 export class SignupComponent implements OnInit {
   IPFS = require('ipfs-mini');
@@ -111,7 +111,7 @@ export class SignupComponent implements OnInit {
     console.log(this.loginForm.invalid);
     if (this.loginForm.invalid) {
       return;
-    } 
+    }
     else {
       console.log(`El rol predomintante es: ${this.siginService.getRol()}`);
 
@@ -124,8 +124,8 @@ export class SignupComponent implements OnInit {
         case Roles.patient:
           console.log("Soy paciente");
           this.addPatient();
-
           //Esperar aceptacion de la cuenta
+
 
           this.router.navigate(['/dashboard/main']);
           break;
@@ -193,6 +193,8 @@ export class SignupComponent implements OnInit {
     },error=>{
       console.log(error);
     });
+
+    this.loggedUser.setUserLoggedIn(patient.user);
     //contractInstance.addAssistant('0x9847BCe3b39C5E9e9137532dd77d2F9E11859C37', patient.name, patient.surname, patient.secondname, patient.curp, patient.hashPicture, { from: patient.user.useraddress});
   }
 }

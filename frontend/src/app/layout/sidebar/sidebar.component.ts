@@ -81,6 +81,7 @@ export class SidebarComponent implements OnInit {
     this.sidebarItems = ROUTES.filter(sidebarItem => sidebarItem);
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
+    console.log('Entro a SideBar');
   }
   initLeftSidebar() {
     const _this = this;
