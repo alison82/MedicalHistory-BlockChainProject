@@ -31,6 +31,7 @@ export class SigninComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   hide = true;
+  publicAddress: any;
 
   @ViewChild(ToastContainerDirective, {static: true}) toastContainer: ToastContainerDirective;
 
@@ -72,6 +73,8 @@ export class SigninComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
+
+
   async onSubmit() {
     this.submitted = true;
 
