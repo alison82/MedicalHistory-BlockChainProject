@@ -71,7 +71,8 @@ contract PatientDiagnosis is PatientRecords {
         uint256 _age,
         uint256 _weight,
         string _diagnostic,
-        string  _observations
+        string  _observations,
+        string[] _estudio
         );
 
     event FullDiagnosticRetrieve(
@@ -87,7 +88,6 @@ contract PatientDiagnosis is PatientRecords {
 //        );
     event PatientAdded(
         address indexed _patient,
-        address indexed _medic,
         uint256 whenWas
         );
 
@@ -177,11 +177,11 @@ contract PatientDiagnosis is PatientRecords {
         require(_account != address(0));
         require(extendedIsDiag(_account));
         require(isPatient(_account) && isMedic(msg.sender));
-        require(bytes(_comorb).length < 50);
-        require(_age < 120);
-        require(_weight < 700);
-        require(bytes(_diagnostic).length < 256);
-        require(bytes(_observations).length < 512);
+        // require(bytes(_comorb).length < 50);
+        // require(_age < 120);
+        // require(_weight < 700);
+        // require(bytes(_diagnostic).length < 256);
+        // require(bytes(_observations).length < 512);
 
         uint256 _date = now;
         Diagnostico memory diagnostico = Diagnostico(
@@ -207,11 +207,9 @@ contract PatientDiagnosis is PatientRecords {
 
     /**
    * @dev Función de creación de Diagnóstico. Esta función es realizada por un doctor.
-   * @param _account a
    * @return _success a
    */
     function patientSelfReg(
-        address _account,
         string memory _nombre,
         string memory _curp,
         string memory _tipoSangre,
@@ -220,14 +218,13 @@ contract PatientDiagnosis is PatientRecords {
         string memory _hashFoto
         )
     public payable nonlyStopped returns (bool _success) {
-        require(_account != address(0));
-        require(!isPaciente(_account));
-        require(bytes(_nombre).length < 50);
-        require(bytes(_curp).length == 18);
-        require(bytes(_tipoSangre).length < 8);
-        require(bytes(_sexo).length < 10);
-        require(bytes(_hashCredencial).length == 46);
-        require(bytes(_hashFoto).length == 46);
+        require(msg.value == 0.05 ether, "Pagale mijo");
+        // require(bytes(_nombre).length < 50);
+        // require(bytes(_curp).length == 18);
+        // require(bytes(_tipoSangre).length < 8);
+        // require(bytes(_sexo).length < 10);
+        // require(bytes(_hashCredencial).length == 46);
+        // require(bytes(_hashFoto).length == 46);
 
         Paciente memory paciente = Paciente(
             _nombre,
@@ -239,12 +236,10 @@ contract PatientDiagnosis is PatientRecords {
             true
         );
 
-        fileToPatient[_account] = paciente;
-        addPatient(_account);
-        address(this).transfer(1 ether);
+        fileToPatient[msg.sender] = paciente;
+        addPatient(msg.sender);
 
         emit PatientAdded(
-            _account,
             msg.sender,
             now
         );
@@ -269,13 +264,13 @@ contract PatientDiagnosis is PatientRecords {
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
         require(isDiag(_account, _date));
-        require(bytes(_comorb).length < 256);
-        require(_age < 120);
-        require(_weight < 700);
-        require(bytes(_diagnostic).length < 50);
-        require(bytes(_observations).length < 512);
-        require(_date >= 0 && _date <= 2**256 - 1);
-        require(_estudio.length > 0);
+        // require(bytes(_comorb).length < 256);
+        // require(_age < 120);
+        // require(_weight < 700);
+        // require(bytes(_diagnostic).length < 50);
+        // require(bytes(_observations).length < 512);
+        // require(_date >= 0 && _date <= 2**256 - 1);
+        // require(_estudio.length > 0);
 
         Diagnostico memory diagnostico = Diagnostico(
             _comorb,
@@ -313,12 +308,13 @@ contract PatientDiagnosis is PatientRecords {
         )
     public payable nonlyStopped onlyPatient returns (bool _success) {
         require(_account != address(0));
-        require(bytes(_nombre).length < 50);
-        require(bytes(_curp).length == 18);
-        require(bytes(_tipoSangre).length < 8);
-        require(bytes(_sexo).length < 10);
-        require(bytes(_hashCredencial).length == 46);
-        require(bytes(_hashFoto).length == 46);
+        require(msg.value == 0.03 ether);
+        // require(bytes(_nombre).length < 50);
+        // require(bytes(_curp).length == 18);
+        // require(bytes(_tipoSangre).length < 8);
+        // require(bytes(_sexo).length < 10);
+        // require(bytes(_hashCredencial).length == 46);
+        // require(bytes(_hashFoto).length == 46);
 
         Paciente memory paciente = Paciente(
             _nombre,
@@ -331,8 +327,6 @@ contract PatientDiagnosis is PatientRecords {
         );
 
         fileToPatient[_account] = paciente;
-
-        address(this).transfer(0.03 ether);
 
         emit PatientUpdate(
             _account,
@@ -349,7 +343,7 @@ contract PatientDiagnosis is PatientRecords {
     * @return _date The uploaded timestamp
     */
     function viewDiagnostic(address _account, uint256 _date) public nonlyStopped onlyPatient returns (
-        string[] memory _estudio
+        bool _success
         ) {
         require(_account != address(0));
         require(_date >= 0 && _date <= 2**256 - 1);
@@ -369,9 +363,10 @@ contract PatientDiagnosis is PatientRecords {
             diagnostico.age,
             diagnostico.weight,
             diagnostico.diagnostic,
-            diagnostico.observations
+            diagnostico.observations,
+            diagnostico.estudio
         );
-        _estudio = diagnostico.estudio;
+        _success = true;
     }
 
     /**
@@ -386,9 +381,9 @@ contract PatientDiagnosis is PatientRecords {
             string memory _hashFoto
         ) {
         require(_account != address(0));
+        require(msg.value == 0.001 ether);
 
         Paciente memory paciente = fileToPatient[_account];
-        address(this).transfer(0.03 ether);
 
         emit PatientRetrieve(
             _account,
