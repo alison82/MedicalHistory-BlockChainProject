@@ -17,6 +17,7 @@ import * as userRolesContract from './UserRoles.json';
 
 import { Contracts, Roles } from '../shared/models/enums.enum';
 import * as pendingRecords from './PendingRecords.json';
+import { Web3Service } from './web3.service';
 const abiPendingRecords = require('./PendingRecords.json'); // compiled contracts
 const abiPatienDiagnosis = require('./PatientDiagnosis.json'); // compiled contracts
 //import * as cj from 'circular-json';
@@ -31,36 +32,34 @@ const abiPatienDiagnosis = require('./PatientDiagnosis.json'); // compiled contr
 
 export class ContractsService {
 
-  constructor(
-    @Inject(WEB3) private web3: Web3
-  ) { }
+  upload: boolean;
+  contract: any;
+
+  constructor( @Inject(WEB3) private web3: Web3,  private web3Service: Web3Service) {
+    this.upload = false;
+  }
+
+  public async startAll(){
+    this.contract = await this.web3Service.createWeb3().then(res => {
+      console.log(res);
+      return res;
+    })
+    this.upload = true;
+  }
+
+
 
   async existProvider(){
-    if (this.web3.currentProvider) {
-      return true;
-    }
-    return false;
+    console.log(`Exist provider: ${this.web3Service.existProvider()}`)
+    return this.web3Service.existProvider();
   }
 
   async getCurrentAddress(){
-    const accounts = await this.web3.eth.getAccounts();
-    return accounts[0];
+    return this.web3Service.account;
   }
 
-  async getAccountInfo() {
-    return new Promise((resolve, reject) => {
-      this.web3.eth.getCoinbase((err, account) => {
-        if(err === null) {
-          this.web3.eth.getBalance(account, (err, balance) => {
-            if(err === null) {
-              return resolve({fromAccount: account, balance: this.web3.utils.fromWei(balance, "ether")});
-            } else {
-              return reject("error!");
-            }
-          });
-        }
-      });
-    });
+  async _getContract(){
+    return this.web3Service.contractInstance;
   }
 
   async getUserNonebyAddress(address){
@@ -111,7 +110,7 @@ export class ContractsService {
       case Contracts.PendingRecords:
         ngoContract = contract(abiPendingRecords);
         break;
-        
+
       default:
         break;
     }
