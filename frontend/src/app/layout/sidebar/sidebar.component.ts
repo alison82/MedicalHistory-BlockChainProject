@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
     this._rolItem = {
       doctor: ['Patient', 'All Patient'],
       patient: ['Patient', 'Patient Profile'],
-      admin: []
+      admin: ['Doctors', 'All Doctor']
     }
 
   }

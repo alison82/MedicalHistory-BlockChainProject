@@ -142,7 +142,7 @@ export class SignupComponent implements OnInit {
 
   async addDoctor(){
     let doctor = new Doctor();
-    doctor.address = await this.contractService.getCurrentAddress();
+    doctor.address = await (await this.contractService.getCurrentAddress()).toString();
     doctor.name = this.loginForm.value.name;
     doctor.surname = this.loginForm.value.surname;
     doctor.secondname = this.loginForm.value.secondname;

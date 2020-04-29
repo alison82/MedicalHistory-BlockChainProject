@@ -62,42 +62,25 @@
                             </div>
                             <mat-table #table [dataSource]="dataSource" matSort class="mat-cell"> -->
                                 <!-- ID Column -->
-                                <ng-container matColumnDef="id">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-                                    <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="img">
-                                    <mat-header-cell mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-                                    <mat-cell mat-cell *matCellDef="let row" class="table-img"> <img [src]="row.img" />
-                                    </mat-cell>
+                                <ng-container matColumnDef="address">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.address}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="name">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
                                     <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="surname">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.department}}</mat-cell>
+                                <ng-container matColumnDef="specialty">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Speciality</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.specialty}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="second name">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Specialization</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.specialization}}</mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="email">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Degree</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.degree}}</mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="address">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.mobile}}</mat-cell>
+                                <ng-container matColumnDef="cedula">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Cedula</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.cedula}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="email">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
                                     <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="date">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</mat-header-cell>
-                                    <mat-cell *matCellDef="let row"> {{row.date | date: 'MM/dd/yyyy'}}</mat-cell>
                                 </ng-container>
                                 <!-- actions -->
                                 <ng-container matColumnDef="actions">

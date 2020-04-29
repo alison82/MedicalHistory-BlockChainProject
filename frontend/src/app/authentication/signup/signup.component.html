@@ -31,11 +31,11 @@
         </mat-form-field>
         <mat-form-field *ngIf="isDoctor" class="example-full-width" appearance="outline">
           <mat-label>Speciality</mat-label>
-          <input matInput formControlName="speciality" required>
+          <input matInput formControlName="specialty" required>
           <mat-icon matSuffix>face</mat-icon>
-          <!--<mat-error *ngIf="loginForm.get('speciality').hasError('required')">
+          <mat-error *ngIf="loginForm.get('specialty').hasError('required')">
             Speciality is required
-          </mat-error>-->
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{id}}</mat-label>
