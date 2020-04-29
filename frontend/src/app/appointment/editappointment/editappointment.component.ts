@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+
+import { ContractsService } from '../../contracts/contracts.service';
+import { DoctorService } from '../../shared/services/transactions/doctor.service';
+import { Diagnosis } from 'src/app/shared/models/diagnosis.model';
+
 @Component({
   selector: 'app-editappointment',
   templateUrl: './editappointment.component.html',
-  styleUrls: ['./editappointment.component.sass']
+  styleUrls: ['./editappointment.component.sass'],
+  providers:[ContractsService,DoctorService]
 })
 export class EditappointmentComponent {
   bookingForm: FormGroup;
@@ -21,7 +28,10 @@ export class EditappointmentComponent {
     injury: 'Fever',
     note: 'No Comments'
   };
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private doctorService: DoctorService,
+              private contractService: ContractsService
+              ) {
     this.bookingForm = this.createContactForm();
   }
   onSubmit() {
@@ -49,4 +59,23 @@ export class EditappointmentComponent {
       note: [this.formdata.note]
     });
   }
+
+  async setDiagnose(){
+    var diag: Diagnosis;
+    diag.address_patient="0xe7046Db098fb516B8a05b9D22fE953F6EBFC1C1C";
+    diag.age=27;
+    diag.address_doctor= await this.contractService.getCurrentAddress();
+    diag.comorb="No se que es comorb";
+    diag.description="Diagnostico 1";
+    diag.observations ="Observaciones 1";
+    diag.weigth = 95;
+
+    await this.doctorService.setDiagnostic(diag).then(res=>{
+      console.log("Diagnose !!!!!!")
+    },error=>{
+      console.log(error);
+    });
+
+  }
+
 }

@@ -177,11 +177,11 @@ contract PatientDiagnosis is PatientRecords {
         require(_account != address(0));
         require(extendedIsDiag(_account));
         require(isPatient(_account) && isMedic(msg.sender));
-        require(bytes(_comorb).length < 50);
-        require(_age < 120);
-        require(_weight < 700);
-        require(bytes(_diagnostic).length < 256);
-        require(bytes(_observations).length < 512);
+        // require(bytes(_comorb).length < 50);
+        // require(_age < 120);
+        // require(_weight < 700);
+        // require(bytes(_diagnostic).length < 256);
+        // require(bytes(_observations).length < 512);
 
         uint256 _date = now;
         Diagnostico memory diagnostico = Diagnostico(
@@ -219,12 +219,14 @@ contract PatientDiagnosis is PatientRecords {
         )
     public payable nonlyStopped returns (bool _success) {
         require(msg.value == 0.05 ether, "Pagale mijo");
-        require(bytes(_nombre).length < 50);
-        require(bytes(_curp).length == 18);
-        require(bytes(_tipoSangre).length < 8);
-        require(bytes(_sexo).length < 10);
-        require(bytes(_hashCredencial).length == 46);
-        require(bytes(_hashFoto).length == 46);
+
+        // require(bytes(_nombre).length < 50);
+        // require(bytes(_curp).length == 18);
+        // require(bytes(_tipoSangre).length < 8);
+        // require(bytes(_sexo).length < 10);
+        // require(bytes(_hashCredencial).length == 46);
+        // require(bytes(_hashFoto).length == 46);
+
 
         Paciente memory paciente = Paciente(
             _nombre,
@@ -264,13 +266,13 @@ contract PatientDiagnosis is PatientRecords {
     public nonlyStopped onlyMedic returns (bool _success) {
         require(_account != address(0));
         require(isDiag(_account, _date));
-        require(bytes(_comorb).length < 256);
-        require(_age < 120);
-        require(_weight < 700);
-        require(bytes(_diagnostic).length < 50);
-        require(bytes(_observations).length < 512);
-        require(_date >= 0 && _date <= 2**256 - 1);
-        require(_estudio.length > 0);
+        // require(bytes(_comorb).length < 256);
+        // require(_age < 120);
+        // require(_weight < 700);
+        // require(bytes(_diagnostic).length < 50);
+        // require(bytes(_observations).length < 512);
+        // require(_date >= 0 && _date <= 2**256 - 1);
+        // require(_estudio.length > 0);
 
         Diagnostico memory diagnostico = Diagnostico(
             _comorb,
@@ -309,12 +311,21 @@ contract PatientDiagnosis is PatientRecords {
     public payable nonlyStopped onlyPatient returns (bool _success) {
         require(_account != address(0));
         require(msg.value == 0.03 ether);
+<<<<<<< HEAD
+        // require(bytes(_nombre).length < 50);
+        // require(bytes(_curp).length == 18);
+        // require(bytes(_tipoSangre).length < 8);
+        // require(bytes(_sexo).length < 10);
+        // require(bytes(_hashCredencial).length == 46);
+        // require(bytes(_hashFoto).length == 46);
+=======
         require(bytes(_nombre).length < 50);
         require(bytes(_curp).length == 18);
         require(bytes(_tipoSangre).length < 8);
         require(bytes(_sexo).length < 10);
         require(bytes(_hashCredencial).length == 46);
         require(bytes(_hashFoto).length == 46);
+>>>>>>> 42701637682227002626713d4ea182dadf15796d
 
         Paciente memory paciente = Paciente(
             _nombre,

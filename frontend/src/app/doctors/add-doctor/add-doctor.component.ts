@@ -34,14 +34,11 @@ export class AddDoctorComponent {
   onSubmit() {
     console.log('Form Value', this.docForm.value);
     var doctor  = new Doctor();
-    doctor.name       = this.docForm_Doc.value.first;
-    doctor.surname    = this.docForm_Doc.value.last1;
-    doctor.secondname   = this.docForm_Doc.value.last2;
-    doctor.email        = this.docForm_Doc.value.email;
-    doctor.cedula       = this.docForm_Doc.value.cedula;
-    doctor.specialty    = this.docForm_Doc.value.specialty;
-    doctor.address      = this.docForm_Doc.value.address;
-    doctor.hashPicture  = this.docForm_Doc.value.hashPicture;
+    doctor.name       = this.docForm.value.first;
+    doctor.email        = this.docForm.value.email;
+    doctor.cedula       = this.docForm.value.cedula;
+    doctor.specialty    = this.docForm.value.specialty;
+    doctor.hashPicture  = "aaaaaaaaaaaaaaaaaaaaaaa";//this.docForm.value.hashPicture;
     this.register(doctor);
   }
 

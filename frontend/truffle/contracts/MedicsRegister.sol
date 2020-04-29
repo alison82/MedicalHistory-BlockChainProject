@@ -121,11 +121,11 @@ contract MedicsRegister is UserRoles {
     )
     public nonlyStopped onlyAdmin returns (bool _success) {
         require(_account != 0x0000000000000000000000000000000000000000);
-        require(bytes(_name).length < 128);
-        require(bytes(_specialty).length < 30);
-        require(bytes(_cedula).length < 30);
-        require(bytes(_email).length < 30);
-        require(bytes(_hashPicture).length < 30);
+        // require(bytes(_name).length < 128);
+        // require(bytes(_specialty).length < 30);
+        // require(bytes(_cedula).length < 30);
+        // require(bytes(_email).length < 30);
+        // require(bytes(_hashPicture).length < 30);
 
         uint256 _date = now;
         Medico memory medico = Medico(

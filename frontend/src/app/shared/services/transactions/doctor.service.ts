@@ -15,9 +15,6 @@ export class DoctorService {
   registerContract: any;
 
   constructor(private contractInstance: ContractsService) {
-    
-    this.diagnosisContract = contractInstance.getContract(Contracts.PatientDiagnosis);
-    
   }
 
   async register(hashString, address): Promise<any>{
@@ -41,7 +38,7 @@ export class DoctorService {
     let _doctor: any;
     let current = new Date();
     let _timestamp= current.getTime();
-    this.doctorContract =  await this.contractInstance.getContract(Contracts.MedicsRegister);
+    this.doctorContract =  await this.contractInstance.getContract(Contracts.PatientDiagnosis);
     _doctor= this.doctorContract.viewMedics(address,
                                             _timestamp,
                                             {from: address});
@@ -50,24 +47,13 @@ export class DoctorService {
       return _doctor;
   }
 
-  /* Definici+on del contrato:
-      function viewMedics(address _account, uint256 _date) public nonlyStopped onlyAdmin returns (
-        string memory name,
-        string memory specialty,
-        string memory cedula,
-        string memory email,
-        string memory hashPicture)
-  */
+
 
   /******************************Actions related with patient*********************************/
   async setDiagnostic(diagnostic: Diagnosis): Promise<any>{
-    this.doctorContract =  await this.contractInstance.getContract(Contracts.MedicsRegister);
+    this.doctorContract =  await this.contractInstance.getContract(Contracts.PatientDiagnosis);
     return this.diagnosisContract.addDiagnostic(
                                                       diagnostic.address_patient,
-                                                      diagnostic.address_doctor,
-                                                      diagnostic.name,
-                                                      diagnostic.last_name,
-                                                      diagnostic.last_name_2,
                                                       diagnostic.comorb,
                                                       diagnostic.age,
                                                       diagnostic.weigth,
@@ -78,15 +64,13 @@ export class DoctorService {
       );
   }
 
+
   async updateDiagnostic(diagnostic: Diagnosis): Promise<any>{
     let current = new Date();
     let timestamp= current.getTime();
     this.doctorContract =  await this.contractInstance.getContract(Contracts.MedicsRegister);
     return this.diagnosisContract.updateDiagnostic(
                                                       diagnostic.address_patient,
-                                                      diagnostic.name,
-                                                      diagnostic.last_name,
-                                                      diagnostic.last_name_2,
                                                       diagnostic.comorb,
                                                       diagnostic.age,
                                                       diagnostic.weigth,
