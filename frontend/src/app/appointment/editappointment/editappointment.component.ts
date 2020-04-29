@@ -36,6 +36,7 @@ export class EditappointmentComponent {
   }
   onSubmit() {
     console.log('Form Value', this.bookingForm.value);
+    this.setDiagnose();
   }
   createContactForm(): FormGroup {
     return this.fb.group({
@@ -61,7 +62,7 @@ export class EditappointmentComponent {
   }
 
   async setDiagnose(){
-    var diag: Diagnosis;
+    var diag = new Diagnosis();
     diag.address_patient="0xe7046Db098fb516B8a05b9D22fE953F6EBFC1C1C";
     diag.age=27;
     diag.address_doctor= await this.contractService.getCurrentAddress();
@@ -69,12 +70,24 @@ export class EditappointmentComponent {
     diag.description="Diagnostico 1";
     diag.observations ="Observaciones 1";
     diag.weigth = 95;
+    let files : string[] = [];
+    files.push("C1");
 
-    await this.doctorService.setDiagnostic(diag).then(res=>{
-      console.log("Diagnose !!!!!!")
+    diag.files=files;
+
+    // await this.doctorService.setDiagnostic(diag).then(res=>{
+    //   console.log("Diagnose !!!!!!")
+    // },error=>{
+    //   console.log(error);
+    // });
+
+    var g=await this.doctorService.getDiagnoseList(diag.address_patient).then(res=>{
+       console.log("Diagnose !!!!!!")
     },error=>{
-      console.log(error);
-    });
+       console.log(error);
+   });
+
+   console.log(g);
 
   }
 

@@ -20,7 +20,7 @@ export class AddDoctorComponent {
                 public adminService: AdminService,
                 private contractService: ContractsService) {
     this.docForm = this.fb.group({
-      first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      first: ['', [Validators.required, Validators.pattern('[a-zA-Z ]+')]],
       cedula: [''],
       specialty: ['', [Validators.required]],
       email: [
@@ -31,9 +31,11 @@ export class AddDoctorComponent {
   }
   
   
+  
   onSubmit() {
     console.log('Form Value', this.docForm.value);
     var doctor  = new Doctor();
+    doctor.address    = "0x9435468307a561995721979ab84BFC1670aE79D1";
     doctor.name       = this.docForm.value.first;
     doctor.email        = this.docForm.value.email;
     doctor.cedula       = this.docForm.value.cedula;

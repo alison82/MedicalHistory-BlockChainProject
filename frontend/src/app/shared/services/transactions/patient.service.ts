@@ -12,16 +12,6 @@ export class PatientService {
     
   }
 
-/*
-        string memory _nombre,
-        string memory _curp,
-        string memory _tipoSangre,
-        string memory _sexo,
-        string memory _hashCredencial,
-        string memory _hashFoto
-        )
-*/
-
   public async register(patient: Patient): Promise<any>{
     this.patientContract = await this.contractInstance.getContract(Contracts.PatientDiagnosis);
     return this.patientContract.patientSelfReg(
@@ -38,8 +28,18 @@ export class PatientService {
     );
   }
 
+  public async getPatient(address,queryAddress){
+    this.patientContract = await this.contractInstance.getContract(Contracts.PatientDiagnosis);
+    return this.patientContract.retrievePatient(
+      address,
+      { 
+        from: queryAddress
+      }
+    );
+  }
+
   // Return the list of time stamps
-  getDiagnoseList(address): Promise<any>{
+  public async getDiagnoseList(address): Promise<any>{
     this.patientContract = this.contractInstance.getContract(Contracts.PatientDiagnosis);
     return this.patientContract.extendedViewDiagnostic(address,{
                                                                   from: address

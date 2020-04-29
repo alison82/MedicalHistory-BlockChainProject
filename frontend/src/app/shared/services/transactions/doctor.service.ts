@@ -48,10 +48,19 @@ export class DoctorService {
   }
 
 
+  public async getPatient(address,queryAddress){
+    this.doctorContract = await this.contractInstance.getContract(Contracts.PatientDiagnosis);
+    return this.doctorContract.retrievePatient(
+      address,
+      { 
+        from: queryAddress
+      }
+    );
+  }
 
   /******************************Actions related with patient*********************************/
   async setDiagnostic(diagnostic: Diagnosis): Promise<any>{
-    this.doctorContract =  await this.contractInstance.getContract(Contracts.PatientDiagnosis);
+    this.diagnosisContract =  await this.contractInstance.getContract(Contracts.PatientDiagnosis);
     return this.diagnosisContract.addDiagnostic(
                                                       diagnostic.address_patient,
                                                       diagnostic.comorb,
@@ -64,6 +73,13 @@ export class DoctorService {
       );
   }
 
+  public async getDiagnoseList(address): Promise<any>{
+    this.diagnosisContract = await this.contractInstance.getContract(Contracts.PatientDiagnosis);
+    return this.diagnosisContract.extendedViewDiagnostic(address,{
+                                                                  from: address
+                                                                }
+                                                      );
+  }
 
   async updateDiagnostic(diagnostic: Diagnosis): Promise<any>{
     let current = new Date();
