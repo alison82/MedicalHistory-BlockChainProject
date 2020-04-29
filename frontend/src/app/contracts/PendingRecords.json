@@ -2961,12 +2961,12 @@
         }
       },
       "links": {},
-      "address": "0x374d04d78381216e2d2b147D7B5bc97367E8D7AF",
-      "transactionHash": "0x4c25f03e55c5177559abbe6a906edc6095a021f3496a1e535bbd191deb6d9f5c"
+      "address": "0x6ef46cE104dba4A00d714f68A945A91bd613fe92",
+      "transactionHash": "0x29a39cd75bf4d1beca52ad2c55f888c8b6a74514bc1b012d82b60440948b35e8"
     }
   },
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T07:14:34.469Z",
+  "updatedAt": "2020-04-29T07:42:55.053Z",
   "devdoc": {
     "methods": {
       "addMedicRecord(string)": {

@@ -9602,7 +9602,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T07:14:34.414Z",
+  "updatedAt": "2020-04-29T07:42:54.974Z",
   "devdoc": {
     "author": "Francisco Alemán",
     "details": "El contrato hereda las funciones del contrato de roles",

@@ -30144,15 +30144,102 @@
           ],
           "name": "RecordUpdate",
           "type": "event"
+        },
+        "0xe16669e0e55bfd648b5c00e04428a3a61bcbbc506b4eac67bffd4fb6db93f0f0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_medic",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_comorb",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_age",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_weight",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_diagnostic",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_observations",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string[]",
+              "name": "_estudio",
+              "type": "string[]"
+            }
+          ],
+          "name": "DiagnosticRetrieve",
+          "type": "event"
+        },
+        "0x9f815c7c90015ccc408ebc7248155bc63ec6c595bea724abf4d4c58066fb4002": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_patient",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "whenWas",
+              "type": "uint256"
+            }
+          ],
+          "name": "PatientAdded",
+          "type": "event"
+        },
+        "0xa58cff07db0adda3ab7a40bd2f18ab57210bf38391a52ffd2e8eee6b8bdec71a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "whoAddedPat",
+              "type": "address"
+            }
+          ],
+          "name": "PatientAdded",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x4c78B2C698DfD17CF0dE0aEb6cE9732A0f85f381",
-      "transactionHash": "0x28904e555ccd2293d032f50729a7fe22753052fc5355fecc0e8326f11c4e83c1"
+      "address": "0xb058726DAF995C7246e4f7Ba83c289Dd8D668a82",
+      "transactionHash": "0xf425101009161715497aa416b5795b90f00c1be79ceb9b8e21f76f6be96b0243"
     }
   },
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-04-29T07:14:34.442Z",
+  "updatedAt": "2020-04-29T07:42:55.009Z",
   "devdoc": {
     "author": "Francisco Alemán",
     "details": "El contrato hereda las funciones del contrato de roles",

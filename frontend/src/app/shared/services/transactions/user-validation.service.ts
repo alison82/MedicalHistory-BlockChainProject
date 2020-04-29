@@ -10,20 +10,22 @@ export class UservalidationService {
   private rolContract: any
 
   constructor(private contractIntance: ContractsService) {
-    this.rolContract = contractIntance._getContract();
   }
 
-  getUserType(address): Promise<any>{
+  async getUserType(address): Promise<any>{
+    this.rolContract = this.contractIntance._getContract();
+    console.log(this.rolContract);
+
     let rol:any;
-    if (this.isAdmin(address)) {
+    if (this.rolContract.isAdmin(address)) {
       console.log("Is Admin");
       rol = Roles.admin;
     }
-    else if (this.isDoctor(address)){
+    else if (this.rolContract.isDoctor(address)){
       console.log("Is a Doctor!!!!");
       rol = Roles.doctor;
     }
-    else if (this.isPatient(address)){
+    else if (this.rolContract.isPatient(address)){
       console.log("Is a Patient!!!!");
       rol = Roles.patient;
     }
@@ -39,11 +41,11 @@ export class UservalidationService {
   }
 
   private isAdmin(address): Promise<boolean>{
-    return this.rolContract.isMedic(address,{from: address});
+    return this.rolContract.isAdmin(address,{from: address});
   }
 
   private isPatient(address): Promise<boolean>{
-    return this.rolContract.isMedic(address,{from: address});
+    return this.rolContract.isPatient(address,{from: address});
   }
 
 

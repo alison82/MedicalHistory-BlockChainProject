@@ -58,8 +58,8 @@ export class ContractsService {
     return this.web3Service.account;
   }
 
-  async _getContract(){
-    return this.web3Service.contractInstance;
+  _getContract(){
+    return this.contract;
   }
 
   async getUserNonebyAddress(address){
