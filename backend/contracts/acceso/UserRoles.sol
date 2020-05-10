@@ -1,6 +1,5 @@
-pragma solidity 0.5.16;
-
-import "./Roles.sol";
+pragma solidity ^0.5.16;
+import "@openzeppelin/contracts/access/Roles.sol";
 
 /**
  * @title Smart Contract de roles - Control de Permisos/Acceso basado en rol.
@@ -17,27 +16,24 @@ contract UserRoles {
      * @dev Eventos que serán registrados en la blockchain con finalidad de auditoria.
      */
     event AdminAdded(
-        address indexed account,
+        address indexed newAdm,
         address indexed whoAddedAdm);
 
-    event AdminRenounce(address indexed accountRen);
-
+//    event Admin//unce(address indexed accountRen);
     event MedicAdded(
-        address indexed account,
+        address indexed newMed,
         address indexed whoAddedMed);
 
     event MedicRemoved(
-        address indexed account,
+        address indexed oldMed,
         address indexed whoRemovedMed);
 
-    event MedicRenounce(address indexed accountRen);
-
+//    event Medic//unce(address indexed medRen);
     event PatientAdded(
-        address indexed account,
         address indexed whoAddedPat);
 
     event PatientRemoved(
-        address indexed account,
+        address indexed oldPat,
         address indexed whoRemovedPat);
 
     /**
@@ -74,12 +70,6 @@ contract UserRoles {
     }
 
     /**
-    * @dev Está función será llamada para todos los mensajes que sean enviados a este contrado.
-    * Enviar Ether a este contrato ocasionará una excepción, dado que las funciones no tienen un modificador de pago.
-    */
-    function() external {}
-
-    /**
     * @param account Cuenta donde se validará el rol.
     * @return true si la cuenta tiene rol de admin
     */
@@ -98,10 +88,9 @@ contract UserRoles {
     /**
     * @dev Renunciar a rol de administrador. Quien inque al contrato no volverá a ser admin.
     */
-    function renounceAdmin() public {
-        _renounceAdmin(msg.sender);
-    }
-
+//    function //unceAdmin() public {
+//        _//unceAdmin(msg.sender);
+//    }
     /**
     * @param account Cuenta donde se validará el rol.
     * @return true si la cuenta tiene rol de médico
@@ -129,10 +118,9 @@ contract UserRoles {
     /**
     * @dev Renunciar a rol de personal médico. Quien invoque al contrato no volverá a ser médico.
     */
-    function renounceMedic() public onlyMedic {
-        _removeMedic(msg.sender);
-    }
-
+//    function renounceMedic() public onlyMedic {
+//        _removeMedic(msg.sender);
+//    }
     /**
     * @param account Cuenta donde se validará el rol.
     * @return true si la cuenta tiene rol de paciente
@@ -145,7 +133,7 @@ contract UserRoles {
      * @dev Función pública para asignar paciente
      * @param account Cuenta que será asignada como paciente
      */
-    function addPatient(address account) public onlyMedic {
+    function addPatient(address account) public {
         _addPatient(account);
     }
 
@@ -161,8 +149,9 @@ contract UserRoles {
     * @param account La cuenta que será asignada como paciente.
     */
     function _addPatient(address account) internal {
+        require(account != address(0), "Error en la address usada");
         _patient.add(account);
-        emit PatientAdded(account, msg.sender);
+        emit PatientAdded(msg.sender);
     }
 
     /**
@@ -170,6 +159,7 @@ contract UserRoles {
      * @param account La cuenta que será revocada de pacientes.
     */
     function _removePatient(address account) internal {
+        require(account != address(0), "Error en la address usada");
         _patient.remove(account);
         emit PatientRemoved(account, msg.sender);
     }
@@ -179,6 +169,7 @@ contract UserRoles {
     * @param account La cuenta que será asignada como admin.
     */
     function _addAdmin(address account) internal {
+        require(account != address(0), "Error en la address usada");
         _admins.add(account);
         emit AdminAdded(account, msg.sender);
     }
@@ -187,16 +178,17 @@ contract UserRoles {
      * @dev Función interna para implementar la renuncia/revocación de admins
      * @param account La cuenta que será revocada de admin.
     */
-    function _renounceAdmin(address account) internal {
-        _admins.remove(account);
-        emit AdminRenounce(account);
-    }
-
+//    function renounceAdmin(address account) internal {
+//        require(account != address(0), "Error en la address usada");
+//        _admins.remove(account);
+//        emit Admin//unce(account);
+//    }
     /**
     * @dev Función interna para implementar la asignación de médicos
     * @param account La cuenta que será asignada como médico.
     */
     function _addMedic(address account) internal {
+        require(account != address(0), "Error en la address usada");
         _medic.add(account);
         emit MedicAdded(account, msg.sender);
     }
@@ -206,6 +198,7 @@ contract UserRoles {
      * @param account La cuenta que será revocada de médico.
     */
     function _removeMedic(address account) internal {
+        require(account != address(0), "Error en la address usada");
         _medic.remove(account);
         emit MedicRemoved(account, msg.sender);
     }
@@ -214,8 +207,9 @@ contract UserRoles {
      * @dev Función interna para implementar la renuncia de un medico
      * @param account La cuenta que será revocada de médico.
     */
-    function _renounceMedic(address account) internal {
-        _medic.remove(account);
-        emit MedicRenounce(account);
-    }
+//    function _renounceMedic(address account) internal {
+//        require(account != address(0), "Error en la address usada");
+//        _medic.remove(account);
+//        emit Medic//unce(account);
+//    }
 }

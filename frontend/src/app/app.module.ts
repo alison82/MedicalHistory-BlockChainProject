@@ -9,7 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { PageLoaderComponent } from './layout/page-loader/page-loader.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
 import { AppointmentService } from '../app/appointment/viewappointment/appointment.service';
 import { DoctorsService } from '../app/doctors/alldoctors/doctors.service';
@@ -43,6 +43,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
+import { ToastrModule, ToastContainerModule} from 'ngx-toastr';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false
@@ -83,10 +87,17 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxMaskModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'YOUR API KEY'
-    })
+    }),
+    DeviceDetectorModule.forRoot(),
+    CommonModule,
+    ToastrModule.forRoot({ positionClass: 'inline' }),
+    ToastContainerModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
@@ -98,7 +109,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     StaffService,
     PatientService,
     RoomService,
-    PaymentService
+    PaymentService,
+    {
+      provide: Window,
+      useValue: window
+    }
   ],
   entryComponents: [
     SimpleDialogComponent,

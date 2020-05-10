@@ -8,6 +8,9 @@ import {
   HostListener
 } from '@angular/core';
 import { ROUTES } from './sidebar-items';
+import { LoggeduserService } from 'src/app/shared/services/loggeduser.service';
+import { User } from 'src/app/shared/models/user.model';
+import { Roles } from 'src/app/shared/models/enums.enum';
 declare const Waves: any;
 @Component({
   selector: 'app-sidebar',
@@ -23,11 +26,33 @@ export class SidebarComponent implements OnInit {
   listMaxHeight: string;
   listMaxWidth: string;
   headerHeight = 60;
+  user: User;
+  _rolItem: any;
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    public elementRef: ElementRef
-  ) {}
+    public elementRef: ElementRef,
+    private loggedUser: LoggeduserService
+  ) {
+    //Temporal code
+    this.user = loggedUser.getUserLoggedIn();
+
+    if (!this.user){
+      this.user = {
+        none : '',
+        rol: Roles.none,
+        useraddress: '',
+        username: ''
+      }
+    }
+
+    this._rolItem = {
+      doctor: ['Patient', 'All Patient'],
+      patient: ['Patient', 'Patient Profile'],
+      admin: ['Doctors', 'All Doctor']
+    }
+
+  }
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
     this.setMenuHeight();
@@ -63,6 +88,7 @@ export class SidebarComponent implements OnInit {
     this.sidebarItems = ROUTES.filter(sidebarItem => sidebarItem);
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
+    console.log('Entro a SideBar');
   }
   initLeftSidebar() {
     const _this = this;
@@ -103,4 +129,17 @@ export class SidebarComponent implements OnInit {
       this.renderer.addClass(this.document.body, 'submenu-closed');
     }
   }
+
+  itemRol(itemTitle){
+
+    if (this.user.rol === Roles.admin){
+      return true;
+    }
+
+    const v = this._rolItem[this.user.rol].indexOf(itemTitle) !== -1;
+
+    return v;
+  }
+
+
 }

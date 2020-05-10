@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Doctors } from './doctors.model';
+//import { Doctors } from './doctors.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AdminService } from 'src/app/shared/services/transactions/admin.service';
+import { Doctor } from 'src/app/shared/models/doctor.model';
 @Injectable()
 export class DoctorsService {
   private readonly API_URL = 'assets/data/doctors.json';
-  dataChange: BehaviorSubject<Doctors[]> = new BehaviorSubject<Doctors[]>([]);
+  dataChange: BehaviorSubject<Doctor[]> = new BehaviorSubject<Doctor[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
-  constructor(private httpClient: HttpClient) {}
-  get data(): Doctors[] {
+  constructor(private httpClient: HttpClient, private adminService: AdminService) {}
+  //get data(): Doctors[] {
+  get data(): Doctor[] {
     return this.dataChange.value;
   }
   getDialogData() {
@@ -17,7 +20,13 @@ export class DoctorsService {
   }
   /** CRUD METHODS */
   getAllDoctorss(): void {
-    this.httpClient.get<Doctors[]>(this.API_URL).subscribe(
+    console.log(`get All doctors`);
+
+    this.adminService.getPendingRequest().then(res => {
+      console.log(`pendientes: ${JSON.stringify(res)}`);
+      this.dataChange.next(res);
+    })
+    /*this.httpClient.get<Doctors[]>(this.API_URL).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -25,12 +34,13 @@ export class DoctorsService {
         console.log(error.name + ' ' + error.message);
       }
     );
+    */
   }
   // DEMO ONLY, you can find working methods below
-  addDoctors(doctors: Doctors): void {
+  addDoctors(doctors: Doctor): void {
     this.dialogData = doctors;
   }
-  updateDoctors(doctors: Doctors): void {
+  updateDoctors(doctors: Doctor): void {
     this.dialogData = doctors;
   }
   deleteDoctors(id: number): void {

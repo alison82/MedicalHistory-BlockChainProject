@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'app-edit-patient',
   templateUrl: './edit-patient.component.html',
@@ -22,6 +24,8 @@ export class EditPatientComponent {
     address: '101, Elanxa, New Yourk',
     dob: '1987-02-17T14:22:18Z'
   };
+
+
   constructor(private fb: FormBuilder) {
     this.patientForm = this.createContactForm();
   }

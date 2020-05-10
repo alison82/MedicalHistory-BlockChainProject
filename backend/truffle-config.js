@@ -23,7 +23,9 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const privateKey = "36d2bff77a7b43c9b0b17813dee2c22e";
+const endpointUrl = "https://kovan.infura.io/v3/11743711987d4e20ba3d7a57b8e80013 ";
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -42,21 +44,33 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
-
+      development: {
+      host: "0.0.0.0",     // Localhost (default: none)
+      port: 7545,            // Standard Ethereum port (default: none)
+      network_id: "5777",       // Any network (default: none)
+     },
+     kovan: {
+         provider: function() {
+             return new HDWalletProvider(
+                 //private keys array
+                 [privateKey],
+                 //url to ethereum node
+                 endpointUrl
+             )
+         },
+         gas: 5000000,
+         gasPrice: 25000000000,
+         network_id: 42
+     }
     // Another network with more advanced options...
-    // advanced: {
-      // port: 8777,             // Custom port
-      // network_id: 1342,       // Custom network
-      // gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
-      // gasPrice: 20000000000,  // 20 gwei (in wei) (default: 100 gwei)
+     //advanced: {
+     //  port: 7545,             // Custom port
+     //  network_id: 5777,       // Custom network
+     //  gas: 100000000,           // Gas sent with each transaction (default: ~6700000)
+      // gasPrice: 40000000,  // 20 gwei (in wei) (default: 100 gwei)
       // from: <address>,        // Account to send txs from (default: accounts[0])
       // websockets: true        // Enable EventEmitter interface for web3 (default: false)
-    // },
+     //},
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
@@ -87,13 +101,13 @@ module.exports = {
     solc: {
       // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
+       settings: {          // See the solidity docs for advice about optimization and evmVersion
+        optimizer: {
+          enabled: false,
+          runs: 200
+        },
+        //evmVersion: "byzantium"
+       }
     }
   }
 }
